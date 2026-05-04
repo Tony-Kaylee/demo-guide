@@ -137,6 +137,17 @@
   .vp-card.integrator { border-top:2px solid var(--accent); }
   .vp-card.integrator .vp-industry { color:var(--accent); }
   .vp-card p { margin:0; font-size:12.5px; line-height:1.7; }
+
+  /* REVII PROMPT CALLOUTS */
+  .revii-callout { background:linear-gradient(135deg,rgba(6,182,212,0.07) 0%,rgba(139,92,246,0.07) 100%); border:1px solid rgba(139,92,246,0.3); border-radius:10px; padding:16px 20px; margin:24px 0; position:relative; overflow:hidden; }
+  .revii-callout::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--cyan),#8b5cf6); }
+  .revii-header { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .revii-badge { background:linear-gradient(135deg,var(--cyan),#8b5cf6); border-radius:6px; padding:4px 10px; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#fff; white-space:nowrap; }
+  .revii-title { font-size:13px; font-weight:600; color:#c4b5fd; }
+  .revii-prompt-wrap { margin:8px 0; }
+  .revii-prompt-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8b5cf6; margin-bottom:4px; }
+  .revii-prompt { background:rgba(0,0,0,0.35); border:1px solid rgba(139,92,246,0.2); border-left:3px solid #8b5cf6; border-radius:6px; padding:10px 14px; font-family:'Consolas',monospace; font-size:12.5px; color:#c4b5fd; line-height:1.7; margin:0; white-space:pre-wrap; }
+  .revii-tip { font-size:12px; color:#64748b; line-height:1.6; margin:8px 0 0; font-style:italic; }
 </style>
 </head>
 <body>
@@ -269,7 +280,33 @@
       <div class="callout-label">Demo Tip</div>
       <p>If the Dashboard doesn't load, start with the <strong>Calendar View</strong> and circle back. Never stall on a loading screen.</p>
     </div>
-    <div class="value-props">
+    <div class="revii-callout">
+      <div class="revii-header">
+        <span class="revii-badge">✨ Revii AI</span>
+        <span class="revii-title">Revii Data Analytics — Manager Standups & Oversight</span>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Daily Snapshot</div>
+        <pre class="revii-prompt">List all open tickets for the day.</pre>
+        <p class="revii-tip">💡 Perfect for morning standups — instant workload visibility without touching a dashboard.</p>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Aging Tickets</div>
+        <pre class="revii-prompt">Identify Service Call tickets that have been open for more than two days.</pre>
+        <p class="revii-tip">💡 Catch SLA risks before they escalate. Adjust the timeframe to match your SLA thresholds.</p>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Tech Utilization</div>
+        <pre class="revii-prompt">How many hours did each technician log this week?</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Unposted Charges</div>
+        <pre class="revii-prompt">What is the total value of unposted charges waiting to be invoiced?</pre>
+        <p class="revii-tip">💡 Great for billing managers — surfaces revenue that's sitting uncollected.</p>
+      </div>
+    </div>
+        <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Catch SLA breaches before customers call — not after. Managers see contract compliance rates, ticket queue health, and YTD revenue without pulling a single report.</p></div>
@@ -348,7 +385,28 @@
       <div class="callout-label">AI Moment</div>
       <p>The Rev.ii panel is already open and showing the 90-day summary. Walk through it — "Before any client call, a rep can pull up this summary and be fully briefed in 10 seconds. No digging through notes."</p>
     </div>
-    <div class="value-props">
+    <div class="revii-callout">
+      <div class="revii-header">
+        <span class="revii-badge">✨ Revii AI</span>
+        <span class="revii-title">Revii — Customer Lookup & History</span>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Pull Customer Details</div>
+        <pre class="revii-prompt">Get me the details of [Customer Name], include balance of the customer, and unposted transactions.</pre>
+        <p class="revii-tip">💡 Replace [Customer Name] with the actual account. Instantly surfaces everything you need before a call.</p>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Recent Tickets</div>
+        <pre class="revii-prompt">What are the latest tickets created for this customer?</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Open Ticket Count</div>
+        <pre class="revii-prompt">How many open tickets does this client have?</pre>
+        
+      </div>
+    </div>
+        <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Before a renewal call, pull the 90-day AI summary and immediately see every issue the customer experienced — turning a cold call into an informed conversation.</p></div>
@@ -517,7 +575,20 @@
       <div class="callout-label">The Connection</div>
       <p>This ticket didn't need to be manually created. The moment the quote was accepted, Rev.io created it automatically — with the description, line items, and customer info already populated. <strong>No re-keying, no handoff email, no dropped balls.</strong></p>
     </div>
-    <div class="value-props">
+    <div class="revii-callout">
+      <div class="revii-header">
+        <span class="revii-badge">✨ Revii AI</span>
+        <span class="revii-title">Revii — Create a Ticket by Voice or Chat</span>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Create New Ticket</div>
+        <pre class="revii-prompt">Please create a new service ticket for [Customer Name] with the description:
+"Needs Computer Service". Assign Daniel Gomez as the primary tech.
+Set both priority and severity low for this ticket.</pre>
+        <p class="revii-tip">💡 Revii may ask follow-up questions to clarify details. Answer them to complete creation.</p>
+      </div>
+    </div>
+        <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>When a customer accepts a quote for a new service installation, the work order is auto-created with all line items populated — no dispatch email, no manual ticket creation, no dropped jobs.</p></div>
@@ -556,7 +627,25 @@
       <img src="demo-step8-ticket-view.png" alt="Ticket View">
       <div class="screenshot-caption">Ticket #663 — Quote Signed: Security Upgrade — SLA timers, work description, activity feed, and stage panel</div>
     </div>
-    <div class="value-props">
+    <div class="revii-callout">
+      <div class="revii-header">
+        <span class="revii-badge">✨ Revii AI</span>
+        <span class="revii-title">Revii — Add Notes Without Opening the Ticket</span>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Internal Note (on ticket page)</div>
+        <pre class="revii-prompt">Could you please add an Internal activity note to this ticket.
+This client needs additional maintenance on the computer</pre>
+        <p class="revii-tip">💡 Internal notes are visible to techs only. Use 'public' instead of 'internal' for customer-visible notes.</p>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Internal Note (by Ticket ID)</div>
+        <pre class="revii-prompt">Could you please add an Internal activity note to the ticket with ID [Ticket ID].
+This client needs additional maintenance on the computer</pre>
+        
+      </div>
+    </div>
+        <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Timestamped activity logs serve as an audit trail for SLA compliance — show customers exactly when tickets were opened, responded to, and resolved, contractually.</p></div>
@@ -598,7 +687,27 @@
       <div class="callout-label">AI Moment</div>
       <p>Every technician writes notes differently. Rev.iize standardizes the output automatically — consistent documentation, faster billing, better customer communication. <strong>No training required.</strong></p>
     </div>
-    <div class="value-props">
+    <div class="revii-callout">
+      <div class="revii-header">
+        <span class="revii-badge">✨ Revii AI</span>
+        <span class="revii-title">Revii — Log Time by Conversation</span>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Log Time Entry</div>
+        <pre class="revii-prompt">Let's also add a time log to this ticket. The maintenance of the computer
+was performed, the tech who did it was Daniel Gomez, it started Feb 27,
+2026, at 10am and ended that same day at 11am. As mentioned, this was
+a maintenance job.</pre>
+        <p class="revii-tip">💡 Adjust dates and tech names to match your demo. Revii captures all the billing-relevant fields from plain language.</p>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Voice Ticket (on customer page)</div>
+        <pre class="revii-prompt">Open a ticket with "Network Down" as the issue, priority High,
+status Needs to be Scheduled.</pre>
+        <p class="revii-tip">💡 Demonstrate this by voice from any customer page for maximum impact.</p>
+      </div>
+    </div>
+        <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Field techs write terse notes like "replaced port, tested OK." Rev.iize turns those into professional documentation that holds up for SLA reporting and customer-facing communications.</p></div>
@@ -637,7 +746,29 @@
     </div>
     <div class="script-label">Transition Line</div>
     <div class="script">"Once items have been allocated, it's time to schedule this ticket — we can do that right from the Dispatch Board."</div>
-    <div class="value-props">
+    <div class="revii-callout">
+      <div class="revii-header">
+        <span class="revii-badge">✨ Revii AI</span>
+        <span class="revii-title">Revii — Check & Add Inventory via Chat</span>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Check Inventory Levels</div>
+        <pre class="revii-prompt">Check inventory levels for 365 Asus Router (Product ID 5609)</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">View by Location</div>
+        <pre class="revii-prompt">What are the quantities of product with ID 5609 for each location?</pre>
+        <p class="revii-tip">💡 Shows stock across all warehouses and trucks — great for confirming which truck can handle the job.</p>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Add Parts to Ticket</div>
+        <pre class="revii-prompt">The ticket 4995 required the installation of a 365 Asus Router.
+The product ID is 5909. The client paid 150, and its cost was around 70 dollars.</pre>
+        <p class="revii-tip">💡 Adjust ticket number, product details, and pricing to match your demo.</p>
+      </div>
+    </div>
+        <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Installation teams managing CPE inventory across multiple warehouses can see availability at each location and reserve stock directly from the work order — no separate inventory system needed.</p></div>
@@ -681,7 +812,21 @@
       <div class="callout-label">What to Point Out</div>
       <p>Ticket #663 is sitting in the queue on the left — <strong>open, Apex Technologies, Severity Med, Priority Low</strong>. The daily calendar shows all techs active. Drag the ticket to a tech's slot, fill in the task, and it syncs immediately to their calendar and to Outlook/Google.</p>
     </div>
-    <div class="value-props">
+    <div class="revii-callout">
+      <div class="revii-header">
+        <span class="revii-badge">✨ Revii AI</span>
+        <span class="revii-title">Revii — Schedule Follow-Up Tasks</span>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Create Follow-Up Task (on customer page)</div>
+        <pre class="revii-prompt">Could you add a follow-up task for this customer? We need to create a
+purchase order for the router the customer needs. Assign this task to
+Daniel Gomez and set the start date on Mar 15th and the due date to
+Mar 20, 2026.</pre>
+        <p class="revii-tip">💡 Tasks created via Revii appear on the assigned tech's calendar and task list automatically.</p>
+      </div>
+    </div>
+        <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Telecom field service teams can see every tech's availability in a single timeline view, drag tickets to open slots, and sync instantly to Outlook/Google — replacing separate scheduling tools entirely.</p></div>
@@ -776,7 +921,28 @@
       <div class="callout-label">What to Narrate</div>
       <p>The billing team filters to <strong>Tickets Ready for Billing</strong> — every ticket the field team marked complete is right here, queued up. They review, click Send to Billing, and invoices are generated. The timer running in the top ribbon (00:03:26) is still tracking on Ticket #663 — it'll show up in this queue once the tech marks it done.</p>
     </div>
-    <div class="value-props">
+    <div class="revii-callout">
+      <div class="revii-header">
+        <span class="revii-badge">✨ Revii AI</span>
+        <span class="revii-title">Revii — Close & Bill by Chat</span>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Close Ticket & Mark for Billing (by ID)</div>
+        <pre class="revii-prompt">Please close ticket with ID 274 and mark it ready for billing.</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Close Ticket (on ticket page)</div>
+        <pre class="revii-prompt">Close this ticket and mark it ready for billing.</pre>
+        <p class="revii-tip">💡 Use this when you're already viewing the ticket. Revii handles the status change instantly.</p>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Unposted Charges Check</div>
+        <pre class="revii-prompt">What is the total value of unposted charges waiting to be invoiced?</pre>
+        <p class="revii-tip">💡 Great manager-level prompt — surfaces unbilled revenue at a glance.</p>
+      </div>
+    </div>
+        <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Billing teams managing hundreds of accounts can batch-create invoices by bill profile and cycle date — reducing a multi-hour manual process to minutes.</p></div>
@@ -914,7 +1080,78 @@
         <div class="vp-card integrator"><div class="vp-industry">🔒 Security Integrator</div><p>Security integrators managing RMR portfolios can track recurring revenue trends, inventory valuation of serialized equipment, and job profitability by project — all from pre-built dashboards ready on day one.</p></div>
       </div>
     </div>
-    <div class="callout green">
+    <div class="revii-callout">
+      <div class="revii-header">
+        <span class="revii-badge">✨ Revii AI</span>
+        <span class="revii-title">Revii Data Analytics — Manager & Executive Prompts</span>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Daily Ticket Overview</div>
+        <pre class="revii-prompt">List all open tickets for the day.</pre>
+        <p class="revii-tip">💡 Morning standups — instant workload snapshot.</p>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Aging Service Calls</div>
+        <pre class="revii-prompt">Identify Service Call tickets that have been open for more than two days.</pre>
+        <p class="revii-tip">💡 Catch SLA risks proactively. Adjust the threshold to your SLA terms.</p>
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Tickets by Severity</div>
+        <pre class="revii-prompt">Provide the total number of tickets by severity</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">High Priority Breakdown</div>
+        <pre class="revii-prompt">For all the tickets that have High priority, how many tickets are there on each status?</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Longest Open Ticket</div>
+        <pre class="revii-prompt">What's the longest time a ticket has been open? Which ticket is it?</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Revenue — Unposted Charges</div>
+        <pre class="revii-prompt">What is the total value of unposted charges waiting to be invoiced?</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Revenue — Overdue Balances</div>
+        <pre class="revii-prompt">Show me customers with outstanding balances over 60 days.</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Tech Hours This Week</div>
+        <pre class="revii-prompt">How many hours did each technician log this week?</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Most Open Tickets by Tech</div>
+        <pre class="revii-prompt">Which technician has the most open tickets assigned?</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Top Ticket Customers</div>
+        <pre class="revii-prompt">Which customers have the most tickets this month?</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Expiring Contracts</div>
+        <pre class="revii-prompt">List customers with recurring contracts expiring in the next 30 days.</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Avg Close Time by Type</div>
+        <pre class="revii-prompt">What is the average time to close a ticket by ticket type?</pre>
+        
+      </div>
+      <div class="revii-prompt-wrap">
+        <div class="revii-prompt-label">Escalation Trends</div>
+        <pre class="revii-prompt">How many tickets were escalated this month compared to last month?</pre>
+        
+      </div>
+    </div>
+        <div class="callout green">
       <div class="callout-label">RFP Talking Point</div>
       <p>When an RFP asks "Does the platform include reporting and analytics?" — the answer isn't just yes. It's: <strong>10+ pre-built dashboards, a full SQL interface, custom chart builder, and AI-powered natural language queries.</strong> That's a complete BI layer, not a basic report viewer.</p>
     </div>
