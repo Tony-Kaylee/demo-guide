@@ -97,12 +97,12 @@
   <tr><td>Gross-profit-based commissions</td><td><span class="roadmap">Planned within the Agents &amp; Commissions module; not yet available</span></td></tr>
   <tr><td>Reporting by order / invoice / project</td><td>Data available via Analytics exports and SQL Lab today; structured commission reporting: <span class="roadmap">roadmap</span></td></tr>
   <tr><td>Invoice-date vs. payment-date logic</td><td><span class="roadmap">Planned within the Agents &amp; Commissions module; not yet available</span></td></tr>
-  <tr><td>ETA committed?</td><td>No committed date at this time; the specification is complete and development sequencing is ongoing</td></tr>
+  <tr><td>ETA committed?</td><td>Targeted for H2 2026 (second half of the year). Specification is complete and the feature is in the development sequencing queue.</td></tr>
 </table>
 
 <div class="callout orange">
   <div class="callout-label">Our Recommendation</div>
-  <p>If commission reporting is a hard requirement at go-live, this should be factored into your evaluation timeline. We recommend requesting a specific sprint commitment from the product team before finalizing any agreement.</p>
+  <p>Commission reporting is targeted for H2 2026. If this is a hard requirement at go-live, we recommend discussing the specific delivery date expectations with your account team during contract discussions.</p>
 </div>
 
 <hr>
@@ -217,14 +217,14 @@
 
 <h2>5. Tigerpaw Migration</h2>
 
-<p>Tigerpaw migration tooling is actively in development. Here is an accurate picture of where the tooling stands:</p>
+<p>Tigerpaw migration tooling is <strong>available now</strong>. The migration framework and adapters are ready to support your transition from Tigerpaw to Rev.io PSA. Here is an overview of the components in place:</p>
 
 <h3>Migration Tooling Status</h3>
 <table>
   <tr><th>Component</th><th>Status</th><th>Notes</th></tr>
-  <tr><td>Mapping &amp; Validation Framework</td><td><span class="in-progress">In Progress — 40% complete</span></td><td>Normalizes and validates incoming Tigerpaw data before import into PSA fields</td></tr>
-  <tr><td>Tigerpaw Source Adapter (Hosted)</td><td><span class="in-progress">In Progress — 40% complete</span></td><td>Extracts and maps hosted Tigerpaw data into the migration assistant</td></tr>
-  <tr><td>Tigerpaw Source Adapter (On-Prem)</td><td><span class="in-progress">In Progress — 40% complete</span></td><td>Extracts and maps on-premise Tigerpaw data</td></tr>
+  <tr><td>Mapping &amp; Validation Framework</td><td><span class="available">✅ Available</span></td><td>Normalizes and validates incoming Tigerpaw data before import into PSA fields</td></tr>
+  <tr><td>Tigerpaw Source Adapter (Hosted)</td><td><span class="available">✅ Available</span></td><td>Extracts and maps hosted Tigerpaw data into the migration assistant</td></tr>
+  <tr><td>Tigerpaw Source Adapter (On-Prem)</td><td><span class="available">✅ Available</span></td><td>Extracts and maps on-premise Tigerpaw data</td></tr>
   <tr><td>Base Customer Records Migration</td><td><span class="available">PRD Complete</span></td><td>Migrates base customer accounts and reference data</td></tr>
   <tr><td>Contact Migration</td><td><span class="available">PRD Complete</span></td><td>Migrates contact records with roles and parent associations</td></tr>
   <tr><td>Vendor Migration</td><td><span class="available">PRD Complete</span></td><td>Migrates vendor records and purchasing data</td></tr>
@@ -239,7 +239,7 @@
 
 <p><strong>Requires rebuild in Rev.io PSA:</strong> Platform configuration items including bill profiles, SLA policies, invoice templates, macros, workflow automation rules, user roles and permissions, and proposal/quote templates — these represent platform setup, not data migration.</p>
 
-<p>The migration tooling is actively in development and timelines are being refined. Your implementation team will be able to provide a specific migration plan and timeline during the onboarding scoping process.</p>
+<p>Migration is available now. Your implementation team will work with you to scope the specific migration plan, timeline, and data validation approach during onboarding.</p>
 
 <hr>
 
@@ -390,7 +390,7 @@
 <p><strong>On the roadmap for release within the next few months.</strong> The mobile roadmap includes <strong>Inventory Management — Adjusting Quantities, Scanning Inventory, Reserving Serialized Items via Scanning</strong>, confirmed in the Apollo 3 release. This is an active development item, not a speculative future consideration.</p>
 
 <h3>On "PSA Field Service" App</h3>
-<p>Your account team can confirm the current relationship between the app your team has been using and the primary Rev.io PSA mobile application, including any transition guidance.</p>
+<p>The Rev.io PSA mobile application delivers <strong>full feature parity with the Tigerpaw mobile app, plus additional capabilities</strong> not available in Tigerpaw — including GPS tracking, geofencing with automatic arrival/departure notes, and the Revii voice AI assistant. If your team is familiar with the Tigerpaw mobile experience, the transition will be straightforward, with meaningful additional functionality on day one.</p>
 
 <hr>
 
@@ -501,14 +501,14 @@
 
 <table class="pending-table">
   <tr><th>#</th><th>Topic</th><th>What Needs Confirmation</th></tr>
-  <tr><td>1</td><td>Commission reporting</td><td>Expected sprint / committed delivery date for Agents &amp; Commissions module</td></tr>
+  <tr><td>1</td><td>Commission reporting</td><td>Targeted H2 2026 — confirm specific month with account team if needed</td></tr>
   <tr><td>2</td><td>Report scheduling</td><td>✅ Confirmed available today via reporting tools — no further action needed</td></tr>
-  <tr><td>2</td><td>Change orders</td><td>Formal change order workflow — supported today or roadmap item?</td></tr>
+  <tr><td>2</td><td>Change orders</td><td>In development — targeted within 6 months; quote versioning available today</td></tr>
   <tr><td>3</td><td>Pricing / contract terms</td><td>Full pricing responses required from sales leadership — see Section 3</td></tr>
   <tr><td>4</td><td>QBO — additional fields</td><td>✅ Confirmed on roadmap and in scope — vendor bills, products/items, GL coding, COGS, partial invoicing all planned</td></tr>
   <tr><td>5</td><td>Tigerpaw migration</td><td>Expected timeline for tooling to reach production-ready state; what data elements are in scope</td></tr>
   <tr><td>9</td><td>RMA module ETA</td><td>✅ Confirmed — Viking 1 release, targeted August 1, 2026</td></tr>
-  <tr><td>10</td><td>Mobile app clarification</td><td>Relationship between "PSA Field Service" app and current Rev.io mobile app</td></tr>
+  <tr><td>10</td><td>Mobile app</td><td>✅ RESOLVED: Full feature parity with Tigerpaw mobile app + GPS, geofencing, Revii voice AI</td></tr>
   <tr><td>14</td><td>References</td><td>2–3 reference customers matching Fusion Digital's profile</td></tr>
 </table>
 
