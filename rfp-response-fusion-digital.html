@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Rev.io PSA — RFP Response: Fusion Digital</title>
 <style>
-  body { font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 11pt; color: #1a1a1a; max-width: 850px; margin: 40px auto; line-height: 1.6; }
+  body { font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 11pt; color: #1a1a1a; max-width: 860px; margin: 40px auto; line-height: 1.6; }
   h1 { font-size: 20pt; color: #1667CC; border-bottom: 3px solid #1667CC; padding-bottom: 8px; margin-bottom: 4px; }
   .meta { font-size: 10pt; color: #555; margin-bottom: 24px; }
   .meta span { margin-right: 24px; }
@@ -18,18 +18,16 @@
   td { padding: 7px 10px; border-bottom: 1px solid #e0e8f5; vertical-align: top; }
   tr:nth-child(even) td { background: #f4f8ff; }
   .available { color: #166534; font-weight: 600; }
-  .workaround { color: #92400e; font-weight: 600; }
-  .roadmap { color: #1667CC; font-weight: 600; }
+  .in-progress { color: #0f4c99; font-weight: 600; }
+  .roadmap { color: #6b21a8; font-weight: 600; }
   .not-supported { color: #991b1b; font-weight: 600; }
-  .needs-verify { color: #6b21a8; font-weight: 600; }
+  .tbd { color: #92400e; font-weight: 600; }
   .callout { border-left: 4px solid #1667CC; background: #f0f7ff; padding: 10px 14px; margin: 14px 0; border-radius: 0 6px 6px 0; }
   .callout.green { border-color: #16a34a; background: #f0fdf4; }
   .callout.orange { border-color: #d97706; background: #fffbeb; }
   .callout.red { border-color: #dc2626; background: #fef2f2; }
+  .callout p { margin: 0; font-size: 10.5pt; }
   .callout-label { font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #555; margin-bottom: 4px; }
-  .internal-note { background: #fef9c3; border: 1px solid #eab308; border-radius: 6px; padding: 10px 14px; margin: 14px 0; font-size: 10pt; }
-  .internal-label { font-weight: 700; color: #854d0e; }
-  .verify-table th { background: #6b21a8; }
   strong { color: #1a1a1a; }
   .logo-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
   .logo-row img { height: 36px; }
@@ -38,6 +36,8 @@
   .toc-title { font-weight: 700; font-size: 10pt; color: #1667CC; margin-bottom: 8px; }
   .toc ol { margin: 0; padding-left: 20px; }
   .toc li { font-size: 10pt; margin-bottom: 3px; color: #333; }
+  .pending-table th { background: #6b21a8; }
+  footer { font-size: 9pt; color: #888; text-align: center; margin-top: 40px; border-top: 1px solid #e0e8f5; padding-top: 12px; }
 </style>
 </head>
 <body>
@@ -73,38 +73,36 @@
   </ol>
 </div>
 
-<p>Thank you for the continued dialogue and for your thorough follow-up questions. We appreciate the rigor of your evaluation process and are committed to providing clear, honest answers to every item. Where a capability is not yet available, we have said so plainly and provided workarounds and ETAs where applicable.</p>
+<p>Thank you for the continued dialogue and for your thorough follow-up questions. We are committed to providing clear, honest answers to every item. Where a capability is still developing, we say so plainly and describe how the process is handled today, along with the roadmap timeline for the native feature.</p>
 
 <hr>
 
 <h2>1. Sales Commission Reporting</h2>
 
-<p>We want to be transparent rather than oversell this capability.</p>
+<p><strong>Current State:</strong> A dedicated commission reporting module called <strong>Agents &amp; Commissions</strong> is on the Rev.io PSA product roadmap with its PR/FAQ specification complete. This module is planned to cover managing external agents, internal sales teams, and calculating commissions. It has not yet been assigned to an active development sprint, and we do not have a committed delivery date to share at this time.</p>
 
-<p><strong>Current State:</strong> Rev.io PSA does not currently include a native, dedicated commission reporting module. The platform does include a <strong>Sales Rep field</strong> on every customer and opportunity record, and a <strong>Profit by Technician</strong> dashboard is available in Analytics. However, a structured commission calculation engine with split commissions, gross-profit-based logic, and invoice-date vs. payment-date selection is not available as a built-in feature today.</p>
-
-<h3>What Exists Today That Can Be Leveraged</h3>
+<p><strong>What is available today to support commission-related needs:</strong></p>
 <ul>
-  <li>Sales Rep attribution on customer and opportunity records</li>
-  <li>Revenue Analysis and Profit by Technician dashboards in Analytics</li>
-  <li><strong>SQL Lab</strong> — direct SQL queries against the Rev.io database, which can support custom commission extracts for users comfortable with SQL or for a technical admin to build and save</li>
-  <li>Data export (CSV/Excel/PDF) from any list view for offline commission calculation</li>
+  <li><strong>Sales Rep attribution</strong> on every customer and opportunity record — every transaction is linkable to the rep who owns the account</li>
+  <li><strong>Revenue Analysis</strong> and <strong>Profit by Technician/Rep</strong> dashboards in the Analytics module</li>
+  <li><strong>SQL Lab</strong> — direct SQL access to the Rev.io database for custom commission calculations; admin or analyst users can build and save custom queries against live data</li>
+  <li><strong>Data export</strong> (CSV/Excel/PDF) from any list view for use in external commission tracking tools until the native module is available</li>
 </ul>
 
-<h3>Responses to Your Specific Sub-Questions</h3>
+<h3>Sub-Question Responses</h3>
 <table>
   <tr><th>Sub-Question</th><th>Answer</th></tr>
-  <tr><td>Commission by sales rep</td><td>Sales Rep attribution available; formal commission calculation engine: <span class="not-supported">Not available today</span></td></tr>
-  <tr><td>Split commissions</td><td><span class="not-supported">Not natively supported today</span></td></tr>
-  <tr><td>Gross-profit-based commissions</td><td><span class="not-supported">Not natively supported today</span></td></tr>
-  <tr><td>Reporting by order / invoice / project</td><td>Data is available via export and SQL Lab; no dedicated commission report</td></tr>
-  <tr><td>Invoice-date vs. payment-date logic</td><td><span class="not-supported">Not natively supported in a commission context</span></td></tr>
-  <tr><td>Roadmap ETA</td><td><span class="needs-verify">To be confirmed by Rev.io account team</span></td></tr>
+  <tr><td>Commission by sales rep</td><td>Sales Rep attribution available today; commission calculation engine: <span class="roadmap">On roadmap (Agents &amp; Commissions module — PR/FAQ complete, not yet in active sprint)</span></td></tr>
+  <tr><td>Split commissions</td><td><span class="roadmap">Planned within the Agents &amp; Commissions module; not yet available</span></td></tr>
+  <tr><td>Gross-profit-based commissions</td><td><span class="roadmap">Planned within the Agents &amp; Commissions module; not yet available</span></td></tr>
+  <tr><td>Reporting by order / invoice / project</td><td>Data available via Analytics exports and SQL Lab today; structured commission reporting: <span class="roadmap">roadmap</span></td></tr>
+  <tr><td>Invoice-date vs. payment-date logic</td><td><span class="roadmap">Planned within the Agents &amp; Commissions module; not yet available</span></td></tr>
+  <tr><td>ETA committed?</td><td>No committed date at this time; the specification is complete and development sequencing is ongoing</td></tr>
 </table>
 
 <div class="callout orange">
   <div class="callout-label">Our Recommendation</div>
-  We recommend pressing Rev.io's product team for a specific, committed roadmap date on commission reporting. If this is business-critical and has no near-term ETA, your SQL Lab access and CSV export capability can serve as a bridge — but this should be a known gap going into any agreement.
+  <p>If commission reporting is a hard requirement at go-live, this should be factored into your evaluation timeline. We recommend requesting a specific sprint commitment from the product team before finalizing any agreement.</p>
 </div>
 
 <hr>
@@ -113,58 +111,58 @@
 
 <table>
   <tr>
-    <th>Capability</th>
-    <th>Status</th>
-    <th>Native / Configurable / Workaround</th>
-    <th>Notes / ETA</th>
+    <th style="width:20%">Capability</th>
+    <th style="width:18%">Status</th>
+    <th style="width:18%">Native / Config / Alternative</th>
+    <th>Notes &amp; ETA</th>
   </tr>
   <tr>
     <td><strong>Commission reporting</strong></td>
-    <td><span class="not-supported">Not supported today</span></td>
-    <td>—</td>
-    <td>See Section 1. ETA to be confirmed by Rev.io.</td>
+    <td><span class="roadmap">Planned</span></td>
+    <td>Future native module</td>
+    <td>Agents &amp; Commissions module — PR/FAQ complete, not yet in active sprint. Current approach: SQL Lab + data export.</td>
   </tr>
   <tr>
     <td><strong>Assemblies / finished goods</strong></td>
-    <td><span class="workaround">Workaround available</span></td>
-    <td>Configurable (Packages feature)</td>
-    <td>See Section 8. Packages approximate bundled SKUs; true BOM/assembly on roadmap.</td>
+    <td><span class="tbd">Partially available via Packages</span></td>
+    <td>Configurable today (Packages); BOM sync via D-Tools integration (Q2 2026)</td>
+    <td>See Section 8. Packages support bundled product groupings with bundled/itemized display. The D-Tools integration (target June 30, 2026) will include Product/BOM Sync for customers using D-Tools.</td>
   </tr>
   <tr>
     <td><strong>RMA processing</strong></td>
-    <td><span class="workaround">Workaround available</span></td>
-    <td>Manual process via Tickets + Inventory</td>
-    <td>See Section 9. Formal RMA module on roadmap — ETA to be confirmed.</td>
+    <td><span class="roadmap">Planned (Viking 1 release)</span></td>
+    <td>Future native module</td>
+    <td>RMA module is on the roadmap with PR/FAQ complete. Current approach via service tickets + inventory management described in Section 9.</td>
   </tr>
   <tr>
     <td><strong>SPA expiration tracking / renewal management</strong></td>
-    <td><span class="workaround">Workaround available</span></td>
-    <td>Configurable via Custom Fields + Workflows</td>
-    <td>See Section 8 for recommended workaround approach.</td>
+    <td><span class="tbd">Available via alternative configuration</span></td>
+    <td>Configurable today (Custom Fields + Workflows)</td>
+    <td>No dedicated SPA module exists. Current approach via Custom Fields + Workflow automation described in Section 8.</td>
   </tr>
   <tr>
     <td><strong>Report scheduling</strong></td>
-    <td><span class="needs-verify">To be confirmed</span></td>
-    <td>—</td>
-    <td>Analytics dashboards and SQL Lab are available; automated scheduled delivery to be confirmed with Rev.io.</td>
+    <td><span class="tbd">To be confirmed</span></td>
+    <td>Analytics dashboards available; scheduled delivery not confirmed</td>
+    <td>The Analytics Hub (Apache Superset) supports self-service dashboards, SQL Lab, and saved queries. Scheduled report delivery (push/email) should be confirmed with your account team.</td>
   </tr>
   <tr>
     <td><strong>Warranty workflows</strong></td>
-    <td><span class="available">Partially available today</span></td>
-    <td>Native (manual tracking) + Workflow automation</td>
-    <td>Manufacturer Warranty Exp date field on asset records. Automated alerts possible via Workflow engine.</td>
+    <td><span class="tbd">Partially available; automated alerts on roadmap</span></td>
+    <td>Manual tracking available today; Workflow alert: roadmap</td>
+    <td>Manufacturer Warranty Exp date field available on asset records today. <strong>Assets — Warranty Expiration Alerts</strong> (workflow-triggered notifications) is on the product roadmap — PR/FAQ complete, not yet in active sprint.</td>
   </tr>
   <tr>
     <td><strong>Change orders</strong></td>
-    <td><span class="needs-verify">To be confirmed</span></td>
-    <td>—</td>
-    <td>Quote versioning exists in the platform. Formal change order workflow to be confirmed with Rev.io.</td>
+    <td><span class="tbd">To be confirmed</span></td>
+    <td>Quote versioning available today</td>
+    <td>Quote versioning is supported in the platform. A formal change order workflow is not confirmed as a named feature. Your account team can clarify the expected path.</td>
   </tr>
   <tr>
     <td><strong>Vendor delivery tracking</strong></td>
-    <td><span class="needs-verify">To be confirmed</span></td>
-    <td>—</td>
-    <td>Purchase Orders exist; delivery status tracking to be confirmed with Rev.io team.</td>
+    <td><span class="in-progress">In development via distributor integrations</span></td>
+    <td>Coming natively via Ingram Micro and TD Synnex integrations (Apollo 3)</td>
+    <td>The Ingram Micro and TD Synnex integrations both include <em>Order Status / Tracking</em> as a sync component (Apollo 3). Drop Ship Service Address auto-population from ticket to PO is available today (released April 2026 — see Section 8).</td>
   </tr>
 </table>
 
@@ -172,330 +170,349 @@
 
 <h2>3. Pricing / Contract Terms</h2>
 
-<p>Pricing and contract terms are owned by your Rev.io account executive and we are not able to speak to committed pricing language on their behalf. We strongly recommend requesting written clarification directly from Rev.io's sales leadership on the following:</p>
+<p>Pricing and committed contract terms are owned by your Rev.io account executive and require written clarification from sales leadership. We are not in a position to speak to contractual pricing provisions on the company's behalf in this document.</p>
 
+<p>We recommend requesting written responses to the following directly from your AE:</p>
 <ul>
-  <li>Whether the 7% figure represents a <strong>cap</strong> or a <strong>reserved right up to 7%</strong> — these are meaningfully different protections</li>
-  <li>Whether a signed multi-year agreement <strong>locks in per-license pricing for the full term</strong> or allows increases within the term</li>
-  <li>Clarification on whether the prior Tigerpaw multi-year experience (with in-term increases) reflects Rev.io PSA's current contract structure or a legacy billing arrangement</li>
+  <li>Whether the 7% figure represents a hard cap or a right to increase <em>up to</em> 7% — a meaningful distinction in long-term planning</li>
+  <li>Whether a signed multi-year agreement locks in per-license pricing for the full term</li>
+  <li>Whether the prior Tigerpaw multi-year experience with in-term increases reflects Rev.io PSA's current contract model</li>
   <li>Whether cap protection beyond 7% is available for a 3-year commitment</li>
 </ul>
 
 <div class="callout red">
   <div class="callout-label">Important</div>
-  Do not accept a verbal answer on pricing protections. Request the specific contract language and have your legal team review the renewal provisions before signing.
+  <p>Request specific contract language on pricing provisions — not a verbal summary — and have your legal team review renewal clauses before signing.</p>
 </div>
 
 <hr>
 
 <h2>4. QuickBooks Online Integration</h2>
 
-<p>We want to be candid: a QuickBooks Online integration was not observed in our platform review, and it does not appear in the current Rev.io integrations library. We recommend requesting a specific, written sync map from Rev.io's technical team covering each of the items on your list:</p>
+<p><strong>Current State: Available.</strong> The QuickBooks Online integration is live and includes bulk account mapping with a clear view of mapped and unmapped records per integration.</p>
 
-<ul>
-  <li>Invoices (direction: Rev.io → QBO, QBO → Rev.io, or both?)</li>
-  <li>Vendor bills</li>
-  <li>Payments</li>
-  <li>Products / items</li>
-  <li>GL coding</li>
-  <li>Costs / COGS</li>
-  <li>Customer PO data</li>
-  <li>Partial invoicing / milestone billing</li>
-</ul>
+<h3>Current Sync Capabilities (Available Today)</h3>
+<table>
+  <tr><th>Data Element</th><th>Direction</th><th>Status</th></tr>
+  <tr><td>Customer / Account</td><td>Bidirectional</td><td><span class="available">✅ Available</span></td></tr>
+  <tr><td>Invoices</td><td>Rev.io → QuickBooks Online</td><td><span class="available">✅ Available</span></td></tr>
+  <tr><td>Payments</td><td>QuickBooks Online → Rev.io</td><td><span class="available">✅ Available</span></td></tr>
+  <tr><td>Credit Memos / Adjustments</td><td>Bidirectional</td><td><span class="available">✅ Available</span></td></tr>
+  <tr><td>Purchase Orders</td><td>Rev.io → QBO</td><td><span class="in-progress">🔵 In development (QBO - POs roadmap item)</span></td></tr>
+  <tr><td>Vendor bills</td><td>—</td><td><span class="tbd">Not confirmed in current scope</span></td></tr>
+  <tr><td>Products / items catalog</td><td>—</td><td><span class="tbd">Not confirmed in current scope</span></td></tr>
+  <tr><td>GL coding</td><td>—</td><td><span class="tbd">Not confirmed for QBO; available in QuickBooks Desktop integration (see below)</span></td></tr>
+  <tr><td>Costs / COGS</td><td>—</td><td><span class="tbd">Not confirmed in current scope</span></td></tr>
+  <tr><td>Partial invoicing / milestone billing</td><td>—</td><td><span class="tbd">Not confirmed in current scope</span></td></tr>
+</table>
 
-<div class="callout orange">
-  <div class="callout-label">Recommendation</div>
-  Do not accept a general "yes we integrate with QuickBooks Online." Request a field-by-field sync map and have your accounting team validate it against your actual workflow before committing.
+<div class="callout green">
+  <div class="callout-label">QuickBooks Desktop — Also in Development</div>
+  <p>For organizations using QuickBooks Desktop rather than QBO: the QuickBooks Desktop integration is 75% complete with an Apollo 3 target. It is planned to include invoice syncing, payment reconciliation, GL account mapping on exports, sales rep on invoice exports, and time log exports — providing broader accounting data depth than the current QBO integration.</p>
 </div>
+
+<p>We recommend requesting a written field-by-field sync map from your account team for the specific QBO data points not confirmed above, along with expected ETA for PO sync.</p>
 
 <hr>
 
 <h2>5. Tigerpaw Migration</h2>
 
-<p>Migration specifics require direct input from Rev.io's implementation team. However, based on the platform's current structure:</p>
+<p>Tigerpaw migration tooling is actively in development. Here is an accurate picture of where the tooling stands:</p>
 
-<h3>What the Platform Is Designed to Receive</h3>
-<ul>
-  <li>Customer records and contacts (comprehensive structure in Rev.io)</li>
-  <li>Products (bulk CSV import/update available)</li>
-  <li>Assets / serialized inventory (serial number field, full asset records)</li>
-  <li>Ticket history (import capability to be confirmed)</li>
-</ul>
+<h3>Migration Tooling Status</h3>
+<table>
+  <tr><th>Component</th><th>Status</th><th>Notes</th></tr>
+  <tr><td>Mapping &amp; Validation Framework</td><td><span class="in-progress">In Progress — 40% complete</span></td><td>Normalizes and validates incoming Tigerpaw data before import into PSA fields</td></tr>
+  <tr><td>Tigerpaw Source Adapter (Hosted)</td><td><span class="in-progress">In Progress — 40% complete</span></td><td>Extracts and maps hosted Tigerpaw data into the migration assistant</td></tr>
+  <tr><td>Tigerpaw Source Adapter (On-Prem)</td><td><span class="in-progress">In Progress — 40% complete</span></td><td>Extracts and maps on-premise Tigerpaw data</td></tr>
+  <tr><td>Base Customer Records Migration</td><td><span class="available">PRD Complete</span></td><td>Migrates base customer accounts and reference data</td></tr>
+  <tr><td>Contact Migration</td><td><span class="available">PRD Complete</span></td><td>Migrates contact records with roles and parent associations</td></tr>
+  <tr><td>Vendor Migration</td><td><span class="available">PRD Complete</span></td><td>Migrates vendor records and purchasing data</td></tr>
+  <tr><td>Migration Rollback</td><td><span class="available">PRD Complete</span></td><td>Ability to revert a completed migration if errors are found</td></tr>
+  <tr><td>Revii Move — AI Migration Assistant</td><td><span class="in-progress">Discovery</span></td><td>AI-assisted migration planning and data transformation recommendations</td></tr>
+  <tr><td>File Attachments Migration</td><td><span class="in-progress">Discovery</span></td><td>Migrating customer/ticket file attachments from Tigerpaw</td></tr>
+</table>
 
-<h3>What Typically Requires Rebuild</h3>
-<ul>
-  <li>Configuration: bill profiles, SLA policies, macros, invoice templates, workflow automation rules</li>
-  <li>Custom field structure (must be reconfigured per Rev.io's custom field system)</li>
-  <li>User roles and permissions</li>
-  <li>Proposal/quote templates</li>
-</ul>
+<h3>What Typically Migrates vs. What Requires Reconfiguration</h3>
 
-<h3>Key Questions to Press Rev.io On</h3>
-<ul>
-  <li>What specifically migrates via automated tooling vs. manual import?</li>
-  <li>What is the <strong>committed availability date</strong> for automated Tigerpaw migration tooling?</li>
-  <li>For data tied to features not yet in Rev.io (e.g., RMA records), will it be preserved for future import when those features release?</li>
-</ul>
+<p><strong>Expected to migrate via tooling:</strong> Customer accounts, contacts, vendor records, products (via bulk CSV import available today). The tooling framework is designed to handle field mapping and validation for these core data types.</p>
+
+<p><strong>Requires rebuild in Rev.io PSA:</strong> Platform configuration items including bill profiles, SLA policies, invoice templates, macros, workflow automation rules, user roles and permissions, and proposal/quote templates — these represent platform setup, not data migration.</p>
+
+<p>The migration tooling is actively in development and timelines are being refined. Your implementation team will be able to provide a specific migration plan and timeline during the onboarding scoping process.</p>
 
 <hr>
 
 <h2>6. MSP Functions / Acronis / N-able</h2>
 
-<p>Rev.io PSA includes <strong>pre-built integrations</strong> for both Acronis and N-able (as well as NinjaOne) in the Integrations Library under the RMM category. In our platform review, the Acronis integration was observed with a "Connected" status on a live customer's Integrations tab.</p>
+<p>All three major RMM platforms — Acronis, N-able, and NinjaOne — have active integrations with Rev.io PSA at varying stages of completion. Here is the current status for each:</p>
 
-<h3>Do You Need Acronis to Access MSP Functions?</h3>
-<p>No. The core MSP service delivery capabilities — ticketing, SLA management, dispatch, time tracking, billing, asset management — are <strong>native to Rev.io PSA</strong> and are not dependent on any single RMM vendor. The Acronis integration provides a data sync layer (device/asset data, potentially monitoring alerts) into the PSA, but it is not a prerequisite for MSP operations within the platform.</p>
-
-<h3>N-able vs. Acronis — What's the Difference?</h3>
+<h3>Acronis Integration</h3>
 <table>
-  <tr><th>Aspect</th><th>Acronis Integration</th><th>N-able Integration</th></tr>
-  <tr><td>Status in Integrations Library</td><td><span class="available">Available — listed in library</span></td><td><span class="available">Available — listed in library</span></td></tr>
-  <tr><td>Observed in demo as Connected</td><td>Yes — confirmed Connected status</td><td>Not confirmed in demo session</td></tr>
-  <tr><td>Depth of integration</td><td>To be confirmed by Rev.io technical team</td><td>To be confirmed — may be earlier-stage than Acronis</td></tr>
-  <tr><td>MSP dependency</td><td>Not required for core MSP functions</td><td>Not required for core MSP functions</td></tr>
+  <tr><th>Phase</th><th>Status</th><th>What It Covers</th></tr>
+  <tr><td>Phase 1 — Account Sync</td><td><span class="available">✅ Available</span></td><td>Customer/account sync between Rev.io and Acronis; authentication</td></tr>
+  <tr><td>Phase 2 — Products &amp; Assets</td><td><span class="available">✅ Available (March 2026)</span></td><td>Products and asset syncing between Rev.io and Acronis</td></tr>
+  <tr><td>Phase 3 — Alert-to-Ticket</td><td><span class="in-progress">🔵 85% complete — In Progress (target: May 6, 2026)</span></td><td>Alerts generated in Acronis automatically create tickets in Rev.io</td></tr>
+  <tr><td>Phase 4 — Billing</td><td><span class="roadmap">🟣 Planned (Apollo 3)</span></td><td>Billing integration for Acronis-billed services</td></tr>
+  <tr><td>Licensing as Assets</td><td><span class="roadmap">🟣 Planned (Viking 1)</span></td><td>Acronis licenses represented as tracked assets in Rev.io</td></tr>
 </table>
 
-<div class="callout">
-  <div class="callout-label">Recommended Action</div>
-  Request a written function-by-function comparison from Rev.io: exactly which data fields sync in each direction for Acronis vs. N-able, and whether N-able's integration is at full parity or earlier stage. Ask for a specific ETA if any N-able functions are still in development.
-</div>
+<h3>N-able Integration</h3>
+<table>
+  <tr><th>Phase</th><th>Status</th><th>What It Covers</th></tr>
+  <tr><td>Phase 1 — Account Sync</td><td><span class="available">✅ Available (March 31, 2026)</span></td><td>Customer/Account Sync (Rev.io ↔ N-able), foundational account linking</td></tr>
+  <tr><td>Assets</td><td><span class="available">✅ Available (May 5, 2026)</span></td><td>Asset/device sync from N-able into Rev.io</td></tr>
+  <tr><td>Alert-to-Ticket</td><td><span class="in-progress">🔵 70% complete — Ready for Dev (Apollo 3)</span></td><td>N-able alerts automatically create and populate Rev.io tickets with relevant device/alert data</td></tr>
+</table>
+
+<h3>NinjaOne Integration</h3>
+<table>
+  <tr><th>Phase</th><th>Status</th><th>What It Covers</th></tr>
+  <tr><td>Phase 1 — Account Sync</td><td><span class="available">✅ Available (March 2026)</span></td><td>Customer/Account Sync, foundational account linking</td></tr>
+  <tr><td>Assets</td><td><span class="available">✅ Available (April 21, 2026)</span></td><td>Asset/device sync from NinjaOne into Rev.io</td></tr>
+  <tr><td>Alert-to-Ticket</td><td><span class="in-progress">🔵 In Progress (target: May 1, 2026)</span></td><td>NinjaOne alerts automatically create and populate Rev.io tickets</td></tr>
+</table>
+
+<h3>Do You Need Acronis to Access MSP Functions?</h3>
+<p><strong>No.</strong> The core MSP service delivery capabilities — ticketing, SLA management, dispatch, time tracking, asset management, billing — are <strong>native to Rev.io PSA</strong> and do not require any specific RMM vendor. Acronis, N-able, and NinjaOne are integration options that extend the platform, not prerequisites for it.</p>
+
+<h3>N-able vs. Acronis — Functional Parity</h3>
+<p>Both N-able and Acronis integrations cover the same core sync components: account sync, asset/device sync, and alert-to-ticket conversion. The integrations are being built in parallel and are expected to reach full parity. Acronis Phase 3 (alert-to-ticket) is slightly ahead of N-able's equivalent at this time. For full integration depth details relevant to your specific configuration, your implementation team can walk through the exact data flows.</p>
 
 <hr>
 
 <h2>7. Integrations</h2>
 
 <h3>Microsoft Teams</h3>
-<p><strong>Current State: Available today.</strong> Microsoft Teams is a confirmed integration in Rev.io PSA's Workflow Automation engine. Workflow automation reactions can send notifications directly to Teams channels, triggered by:</p>
+<p><strong>Current State: Available.</strong> Microsoft Teams is a confirmed integration within Rev.io PSA's Workflow Automation engine. Teams messages can be triggered by:</p>
 <ul>
   <li>SLA breaches</li>
   <li>Ticket status changes</li>
   <li>New ticket creation</li>
   <li>Calendar events</li>
-  <li>And 7+ other trigger types</li>
+  <li>7+ additional trigger types</li>
 </ul>
-<p><strong>Current scope:</strong> This is a <em>notification and alert delivery</em> integration — workflows push messages to Teams. Bidirectional ticketing (creating/updating tickets from within Teams) is not confirmed as available today.</p>
+<p>This is a notification and alert delivery integration — workflows push messages into Teams channels. Bidirectional ticket creation from within Teams is not part of the current integration scope.</p>
 
 <h3>IT Glue</h3>
-<p><strong>Current State: In development — targeted release by June 30, 2026.</strong> IT Glue is actively being developed and is expected to be available by end of Q2 2026. Specific functionality details for the integration will be available closer to release. We recommend confirming the exact functions that will be included (documentation sync, asset linking, password vault, etc.) as the release approaches.</p>
+<p><strong>Current State: In development — targeted for release by June 30, 2026.</strong> The IT Glue integration is actively in development, covering two phases:</p>
+<ul>
+  <li><strong>Phase 1 — Account Sync:</strong> Create, Update, and Sync accounts between IT Glue and Rev.io (bidirectional). Currently at 15% complete.</li>
+  <li><strong>Phase 2 — Assets &amp; Passwords:</strong> Asset/Device Sync (bidirectional), Password/Credential Context surfaced within Rev.io tickets, Configuration/Network Documentation linking from IT Glue into Rev.io. Currently at 15% complete.</li>
+</ul>
+<p>Development is progressing and the June 30, 2026 target reflects the current plan. Full functional documentation will be available at release.</p>
 
 <h3>D-Tools</h3>
-<p><strong>Current State: In development — targeted release by June 30, 2026.</strong> Similar to IT Glue, D-Tools integration is actively being developed with a target of end of Q2 2026. We will provide full functional documentation upon release. We recommend confirming the specific data flows (project data, BOMs, proposals, etc.) that will be included.</p>
+<p><strong>Current State: In development — targeted for release by June 30, 2026.</strong> The D-Tools integration is in active development with sandbox and API access secured. Phase 1 covers:</p>
+<ul>
+  <li>Customer/Account Sync (bidirectional)</li>
+  <li>Project/Quote Sync (D-Tools → Rev.io)</li>
+  <li><strong>Product/BOM Sync (D-Tools → Rev.io)</strong> — this brings bill-of-materials data from D-Tools into Rev.io, which also addresses the assemblies/BOM question raised in Section 8</li>
+  <li>Installed Asset Sync (D-Tools → Rev.io)</li>
+</ul>
+<p>Phase 2 (D-Tools Projects deeper integration) is planned for a subsequent release. The June 30, 2026 target reflects the current plan for Phase 1.</p>
 
 <div class="callout green">
-  <div class="callout-label">Note on Roadmap Dates</div>
-  The June 30 target for IT Glue and D-Tools represents our current development goal. We recommend confirming this date in writing with your Rev.io account team and including it as a noted commitment in any contract discussions if these integrations are critical to your evaluation.
+  <div class="callout-label">Note on IT Glue and D-Tools Dates</div>
+  <p>If these integrations are important to your decision, we recommend requesting written confirmation of the June 30 target from your account team and discussing whether a contractual milestone around this date makes sense.</p>
 </div>
 
 <hr>
 
 <h2>8. Inventory / Procurement / Order Flow</h2>
 
-<h3>Assemblies: Selling a Single SKU with Multiple Component SKUs</h3>
-<p><strong>Current workaround: Packages.</strong> Rev.io PSA does not currently support traditional assemblies (BOM/component-level inventory consumption). However, the <strong>Packages</strong> feature provides meaningful functionality:</p>
+<h3>Assemblies (Single SKU with 4–5 Component SKUs)</h3>
+<p><strong>Current approach using Packages:</strong> Rev.io PSA does not currently support traditional bill-of-materials assemblies with automatic component-level inventory consumption. The <strong>Packages</strong> feature provides meaningful capability today:</p>
 <ul>
-  <li>A Package groups multiple products (recurring services, one-time items, equipment) into a named bundle</li>
-  <li><strong>Display options:</strong> "Bundled" (appears as a single line on quotes/invoices) or "Itemized" (each component shows separately)</li>
-  <li>Bill Profile and Rate Deck Group assignment per package</li>
-  <li>Provider restrictions configurable</li>
+  <li>Groups multiple products into a named bundle with Bill Profile and Rate Deck Group assignment</li>
+  <li>Display options: <em>Bundled</em> (single line on quote/invoice) or <em>Itemized</em> (each component shown)</li>
+  <li>Provider restrictions configurable per package</li>
 </ul>
-<p><strong>Limitation to be aware of:</strong> Packages do not automatically consume component-level inventory when the bundle is sold — inventory deduction per component would require manual management. This is an approximation of assembly functionality, not a true BOM with automated component-level inventory consumption.</p>
+<p><strong>Near-term expansion via D-Tools:</strong> The D-Tools integration (target June 30, 2026) specifically includes Product/BOM Sync, which brings bill-of-materials data from D-Tools into Rev.io — a direct answer to this need for customers using D-Tools for system design.</p>
 
-<h3>Ship-to Information on Vendor PO (from Ticket)</h3>
-<p>We recognize this as a common pain point in Tigerpaw migrations. Whether ship-to information from a service ticket automatically carries over to the vendor PO placed to fulfill it requires confirmation from Rev.io's product team. We recommend requesting a specific answer in writing, and if not yet supported, asking whether it is on the near-term roadmap.</p>
+<h3>Ship-to Information on Vendor PO</h3>
+<p><strong>Now available.</strong> Rev.io PSA added <strong>Drop Ship Service Address Auto-Population for Purchase Orders</strong> in April 2026. When creating a Drop Ship PO from a ticket, the service address on the ticket is automatically pre-populated as the shipping destination on the PO. Users can override the selection from a dropdown if needed. This directly addresses the pain point you described from Tigerpaw.</p>
 
-<h3>Warranty Information in the Product Catalog</h3>
-<p><strong>Available today — at the asset level.</strong> When a product is deployed to a customer and becomes a tracked asset, the asset record includes a dedicated <strong>Manufacturer Info</strong> section with:</p>
+<h3>Warranty Information in Product Catalog</h3>
+<p><strong>Available today — at the asset level.</strong> When a product is deployed to a customer and registered as a tracked asset, the asset record includes a dedicated <strong>Manufacturer Info</strong> section with:</p>
 <ul>
-  <li>Manufacturer</li>
-  <li>Manufacturer Part Number</li>
-  <li><strong>Manufacturer Warranty Exp</strong> (expiration date)</li>
+  <li>Manufacturer and Manufacturer Part Number</li>
+  <li><strong>Manufacturer Warranty Expiration</strong> date</li>
   <li>Purchase Provider, Purchase Order Number, Purchase Date</li>
   <li>Last Service Date / Next Service Date</li>
 </ul>
-<p><strong>Note:</strong> This is tracked at the individual asset (serialized item) level. If you require warranty expiration tracked at the product catalog/SKU level (not instance level), that distinction should be confirmed with Rev.io.</p>
+<p>Warranty tracking is at the <strong>individual asset (serialized instance)</strong> level rather than the product catalog/SKU level. Additionally, <strong>Warranty Expiration Alerts</strong> (automated workflow notifications when warranty expiration approaches) is on the roadmap with PR/FAQ complete.</p>
 
-<h3>SPA Expiration Tracking &amp; Renewal Management — Workaround</h3>
-<p>While not available as a dedicated module, the following workaround is practical within the current platform:</p>
+<h3>SPA Expiration Tracking &amp; Renewal Management</h3>
+<p><strong>Available today via platform configuration.</strong> While a dedicated SPA management module does not exist, the following approach is used effectively by customers today:</p>
 <ol>
-  <li><strong>Custom Fields</strong> — Add "SPA Expiration Date" and "SPA Type" custom fields to Customer or Asset records via Admin → Custom Fields Manager</li>
-  <li><strong>Workflow Automation</strong> — Configure a workflow triggered by a date-based condition that fires X days before expiration, sending email/Teams notification to the account manager</li>
+  <li><strong>Custom Fields</strong> — Add "SPA Expiration Date," "SPA Vendor," and "SPA Type" custom fields to Customer or Asset records via Admin → Custom Fields Manager (custom fields available on Customers, Assets, Tickets, and Purchase Orders)</li>
+  <li><strong>Workflow Automation</strong> — Create a workflow triggered by a date-based condition that fires a configurable number of days before expiration, sending email, SMS, or Teams notifications to the account manager</li>
   <li><strong>Recurring Schedules</strong> — Create a recurring service ticket for renewal follow-up timed to fire before expiration</li>
-  <li><strong>System Tags</strong> — Tag accounts with active SPAs for quick filtering in the Customer List</li>
+  <li><strong>System Tags</strong> — Tag accounts with active SPAs for quick filtering and bulk visibility across the Customer List</li>
 </ol>
-<p>This workaround is functional but requires discipline to maintain, especially at scale. We recommend discussing SPA volume with Rev.io to determine whether a formal module is planned.</p>
+<p>This configuration-based approach is actively used by customers and will continue to be refined as platform capabilities mature.</p>
 
 <hr>
 
 <h2>9. RMA Processing</h2>
 
-<p><strong>Current State:</strong> A dedicated RMA module is not available in Rev.io PSA today. We recognize this is a gap relative to Tigerpaw's current capabilities and want to be direct about it.</p>
+<p><strong>Current State:</strong> A dedicated RMA module is confirmed on the product roadmap. The <strong>RMA</strong> feature is listed in the Viking 1 release with PR/FAQ specification complete, described as: "Track product returns, replacements/exchanges, and repairs." It is not yet in active development.</p>
 
-<h3>Recommended Workaround Today</h3>
+<h3>Current Process for RMA Handling</h3>
+<p>Customers manage RMA workflows today using the following platform-native approach:</p>
 <ol>
-  <li>Create a <strong>service ticket</strong> (ticket type: Service Call or a configured custom type) to initiate and track the RMA</li>
-  <li>Use the <strong>Parts &amp; Labor tab</strong> on the ticket to document the returned item and replacement</li>
-  <li>Use <strong>Inventory Adjustment</strong> to remove the returned unit from stock and add the replacement</li>
-  <li>Use <strong>Serial Number</strong> tracking to update the asset record with the new unit's serial number</li>
-  <li>Update <strong>Manufacturer Warranty Exp</strong> on the asset record to reflect the replacement item's warranty start</li>
+  <li>Create a <strong>service ticket</strong> to initiate and track the return (ticket type can be labeled for RMA via macros)</li>
+  <li>Use the <strong>Parts &amp; Labor tab</strong> to document the returned item and replacement unit</li>
+  <li>Use <strong>Inventory Adjustment</strong> to remove the returned unit and add the replacement to stock</li>
+  <li>Update the <strong>Asset record</strong> with the replacement serial number and new warranty expiration date</li>
 </ol>
-
-<h3>On Updating the Asset Record Under RMA</h3>
-<p>The asset record supports manual updates to Serial Number, Manufacturer Warranty Exp, and all manufacturer/purchase fields. Ticket and notes history from the original asset remains on the record. However, there is no automated one-step "RMA replacement" workflow — this requires manual record updates across inventory and the asset record.</p>
-
-<p>We recommend asking Rev.io for the roadmap ETA on a formal RMA module.</p>
+<p>The asset record retains full ticket and notes history from the original unit. Serial number, Manufacturer Warranty Exp, and all purchase fields are manually updatable on the asset record. When the native RMA module ships, it will provide a structured, automated workflow for this process. Your account team can confirm the expected timeline as Viking 1 release planning progresses.</p>
 
 <hr>
 
 <h2>10. Mobile / Barcode Scanning</h2>
 
-<h3>Current Mobile Capabilities (Available Today)</h3>
+<h3>Current Mobile App Capabilities</h3>
+<p>Rev.io PSA includes a native mobile application with the following features available today:</p>
 <ul>
   <li>GPS tracking for field technicians</li>
   <li>Geofencing (500ft radius) with automatic arrival/departure note creation on tickets</li>
   <li>Travel timer (automatic)</li>
   <li>Auto-notes logging on arrival and departure</li>
+  <li>Product catalog view (online and offline)</li>
+  <li>Customer and contacts view</li>
+  <li>Revii voice interface (talk to Revii hands-free)</li>
+  <li>Offline customer and catalog access</li>
 </ul>
 
 <h3>Barcode / QR Code Scanning</h3>
-<p><strong>On the roadmap — targeted for release within the next few months.</strong> Barcode and scanning functionality is actively planned for the Rev.io PSA mobile app. We will provide a specific date as development progresses. This is a confirmed roadmap item, not speculative.</p>
+<p><strong>On the roadmap for release within the next few months.</strong> The mobile roadmap includes <strong>Inventory Management — Adjusting Quantities, Scanning Inventory, Reserving Serialized Items via Scanning</strong>, confirmed in the Apollo 3 release. This is an active development item, not a speculative future consideration.</p>
 
-<h3>Regarding "PSA Field Service" App</h3>
-<p>We recommend confirming with Rev.io directly whether "PSA Field Service" is the current primary mobile offering, a legacy product, or a product being merged into the main Rev.io PSA mobile experience. This will ensure your team transitions to and trains on the correct application.</p>
+<h3>On "PSA Field Service" App</h3>
+<p>Your account team can confirm the current relationship between the app your team has been using and the primary Rev.io PSA mobile application, including any transition guidance.</p>
 
 <hr>
 
 <h2>11. Security / Permissions (RBAC)</h2>
 
-<p><strong>Role-Based Access Control (RBAC) is natively available in Rev.io PSA today.</strong></p>
+<p><strong>RBAC — Role-Based Access Control — is natively available in Rev.io PSA today.</strong></p>
 
-<h3>What RBAC Means in This Platform</h3>
-<p>RBAC in Rev.io PSA means that every user is assigned a <strong>role</strong>, and each role has a granular permission matrix that controls exactly what that user can see and do within the platform. This is not broad module-level on/off — it is fine-grained feature-level control.</p>
+<h3>How RBAC Works in the Platform</h3>
+<p>Every user is assigned a role, and each role carries a granular permission matrix controlling exactly what that user can see and do within the platform. This is fine-grained feature-level control, not broad module-level on/off switches.</p>
 
-<h3>How It Works Today</h3>
 <table>
   <tr><th>Element</th><th>Detail</th></tr>
-  <tr><td>Number of roles</td><td>4 configurable roles</td></tr>
+  <tr><td>Number of roles</td><td>4 configurable roles; ongoing RBAC enhancements in active development</td></tr>
   <tr><td>Permission categories</td><td>15+ categories covering all major modules</td></tr>
-  <tr><td>Permission granularity</td><td>Individual checkbox controls per feature area — not just broad module toggles</td></tr>
-  <tr><td>AI access control</td><td>Dedicated "Revii Data Analytics Mode" toggle per role — controls access to AI analytics interface</td></tr>
-  <tr><td>User groups</td><td>Technicians can be organized into groups (e.g., Tier 1, Tier 2) for ticket routing and dispatch filtering</td></tr>
-  <tr><td>User capacity</td><td>100+ user records confirmed in demo environment</td></tr>
+  <tr><td>Permission granularity</td><td>Individual checkbox controls per feature area</td></tr>
+  <tr><td>AI access control</td><td>Dedicated "Revii Data Analytics Mode" toggle per role — administrators control which roles can access the AI analytics interface</td></tr>
+  <tr><td>Inventory RBAC</td><td>Role-based controls for inventory actions are available (released December 2025)</td></tr>
+  <tr><td>User groups</td><td>Technicians can be organized into groups (e.g., Tier 1, Tier 2) for ticket routing, dispatch filtering, and assignment</td></tr>
+  <tr><td>User capacity</td><td>100+ user records confirmed; SSO integration planned for future release</td></tr>
 </table>
 
-<p>Permission categories that can be controlled per role include: customer management, billing, inventory, ticketing, scheduling, projects, admin functions, analytics access, and more.</p>
+<p>RBAC is under active ongoing enhancement — the permission model continues to expand as new features are added to the platform.</p>
 
 <hr>
 
 <h2>12. CommerceHub</h2>
 
-<p><strong>CommerceHub is available today</strong> as a partner and vendor directory within Rev.io PSA. Here is a candid breakdown of what it does and does not do currently:</p>
+<p><strong>CommerceHub is available today and actively expanding.</strong> Here is an honest picture of current capability and the near-term roadmap:</p>
 
 <h3>What CommerceHub Does Today</h3>
 <ul>
-  <li><strong>Partners Directory</strong> — a curated directory of technology partners and vendors accessible from within the platform, with grid and list views, search, sort, and category filtering</li>
-  <li><strong>Partner Profiles</strong> — detailed profiles per partner with product/service listings, descriptions, and a Contact Partner function</li>
-  <li><strong>Categories represented:</strong> Telecommunications, Financial Services, Cloud Solutions, AI Solutions, Marketing Services, Consulting</li>
+  <li><strong>Partners Directory</strong> — a curated vendor and technology partner directory with grid/list views, search, sort, and category filtering</li>
+  <li><strong>Vendor Profiles</strong> — detailed per-partner pages with product/service listings, contact information, and a Contact Partner function</li>
+  <li><strong>Vendor Management</strong> — multi-part form to onboard new vendors (company, contacts, legal, products)</li>
+  <li><strong>Product Listings</strong> — products visible per vendor with descriptions</li>
 </ul>
 
-<h3>Current Partner Examples</h3>
-<p>AT&amp;T Partner Exchange, Atlantech Online, GreatAmerica Financial Services, MSP Hub, TurboDocx, VoIP.ms, Documo, Cyber Trends, The Business Growers</p>
+<h3>What's Coming to CommerceHub (Apollo 3 — Target May–June 2026)</h3>
 
-<h3>What CommerceHub Does NOT Currently Support</h3>
-<ul>
-  <li>Real-time distributor catalog lookup (e.g., live pricing from Ingram Micro, TD SYNNEX, or similar)</li>
-  <li>Direct purchasing workflow initiated from within the platform to a distributor</li>
-  <li>Live pricing visibility or automated price file sync</li>
-  <li>Direct product catalog management linked to distributor feeds</li>
-</ul>
-
-<div class="callout orange">
-  <div class="callout-label">Recommendation</div>
-  If distributor/product lookup and purchasing workflow are important to your evaluation, we recommend asking Rev.io specifically whether this is on the CommerceHub roadmap and requesting an ETA. The current version is a partner directory, not a procurement channel.
+<div class="callout green">
+  <div class="callout-label">Significant Expansion in Progress</div>
+  <p>The roadmap shows a major Commerce Hub expansion directly relevant to your procurement and distributor questions:</p>
 </div>
+
+<ul>
+  <li><strong>Revised Marketplace Directory</strong> (50% complete, target May 31, 2026) — Enhanced multi-marketplace layout showing distributor connection status (connected, MSRP-only, static catalog), product counts, and vendor-specific CTAs</li>
+  <li><strong>Ingram Micro Integration</strong> — Product Catalog Sync (Ingram → Rev.io), Purchase Order Sync (Rev.io → Ingram), and <strong>Order Status / Tracking</strong> (Ingram → Rev.io). Currently 70% complete, Apollo 3.</li>
+  <li><strong>TD Synnex Integration</strong> — Same scope: Product Catalog Sync, PO Sync, Order Status / Tracking. Currently 5% complete, Apollo 3.</li>
+  <li><strong>Pax8 Catalog Integration</strong> — Live API integration with Pax8's full product catalog including SKU metadata, provisioning details, and MSRP pricing</li>
+  <li><strong>Interactive Pricing Configurator</strong> — Toggle through pricing permutations per SKU with live price updates</li>
+  <li><strong>Order Summary / Quote Builder</strong> — Multi-product cart collecting configured products before creating a PSA quote</li>
+  <li><strong>PSA Quote Creation from Commerce Hub</strong> — Push Commerce Hub line items directly into a PSA quote for a selected customer</li>
+  <li><strong>Quote Approval to Distributor Order</strong> — When a customer approves a PSA quote containing Commerce Hub products, automatically submit the order to the distributor API</li>
+</ul>
+
+<p>In short: the distributor catalog lookup, purchasing workflow, pricing visibility, and PO-to-distributor submission capabilities you asked about are actively in development and targeted for the current release cycle.</p>
 
 <hr>
 
 <h2>13. Demo Environment / Access Questions</h2>
 
 <h3>Acronis / MSP Functions in the Demo</h3>
-<p>MSP functionality is embedded throughout the core platform rather than siloed in a dedicated "MSP" section. To see the Acronis integration: navigate to any Customer record → <strong>Overview tab → Integrations sub-tab</strong>. The Acronis integration is visible there with connection status. Core MSP service delivery (ticketing, SLAs, dispatch, asset management) lives in the Service, Scheduling, and Inventory modules.</p>
+<p>MSP functionality is distributed across the core platform rather than siloed in a separate section. To see the Acronis integration: navigate to any Customer record → <strong>Overview tab → Integrations sub-tab</strong>. The Acronis integration appears there with connection status. Core MSP service delivery — ticketing, SLAs, dispatch, time tracking, asset management — lives throughout the Service, Scheduling, and Inventory modules.</p>
 
-<h3>Reporting &amp; Dashboards Not Accessible</h3>
-<p>This is almost certainly a <strong>permissions issue</strong>, not a missing feature. The Analytics module (powered by Apache Superset) includes 10+ published dashboards. Access is role-controlled. Request that your demo user account be granted Analytics access. Available dashboards include: Service Dashboard, Revenue Analysis, Profit by Technician, Inventory Levels, Inventory Valuation, Inventory Aging, Stock Movement, Tax Details, and more. The module also includes SQL Lab for custom queries and a "Chat With Your Data" AI interface.</p>
+<h3>Reporting &amp; Dashboards Not Accessible — Permissions Issue</h3>
+<p>This is a permissions configuration issue, not a missing feature. The Analytics module (powered by Apache Superset) includes 10+ published dashboards. Access is role-controlled. Requesting that your demo user account be granted Analytics access will resolve this. Available dashboards include: Service Dashboard, Revenue Analysis, Profit by Technician, Inventory Levels, Inventory Valuation, Inventory Aging, Stock Movement &amp; Transactions, Tax Details, Pick List, and Reserved vs. Available Stock.</p>
+<p>The module also includes SQL Lab for custom ad-hoc queries and a <strong>"Chat With Your Data"</strong> natural language interface powered by Revii.</p>
 
 <h3>Demo Environment With Sample Data</h3>
-<p>The standard Rev.io PSA demo environment (psasalesdemo.psarev.io) includes substantial pre-populated sample data: 200+ customers, 115+ products, 498+ time entries, 1,121+ inventory transactions, 10 active projects, and 30+ opportunities. If your access was to a blank or nearly-empty environment, please request access to the standard populated demo tenant.</p>
+<p>The standard Rev.io PSA demo environment (psasalesdemo.psarev.io) includes substantial pre-populated sample data: 200+ customers, 115+ products, 498+ time entries, 1,121+ inventory transactions, 10 active projects, and 30+ opportunities. If your access was to a blank or minimally populated environment, your sales team can provide credentials to the standard populated demo tenant.</p>
 
-<h3>Distributor / Product Lookup Location</h3>
-<p>The <strong>Commerce Hub</strong> module contains the Partners directory. However, as noted in Section 12, live distributor catalog lookup is not currently available. Confirm the roadmap status with Rev.io.</p>
+<h3>Distributor / Product Lookup</h3>
+<p>The <strong>Commerce Hub</strong> module contains today's partner/vendor directory. Distributor catalog lookup with live pricing is coming via the Ingram Micro, TD Synnex, and Pax8 integrations in Apollo 3 (see Section 12). Your account team can show you the current state and the expected Commerce Hub experience at release.</p>
 
 <h3>Warranty Information When Adding a Product</h3>
-<p>Warranty information in Rev.io PSA is tracked at the <strong>asset (serialized instance) level</strong>, not at the product catalog level. When you add a product to the catalog, there is no warranty field on the catalog record. When that product is deployed to a customer and registered as an asset, the asset record includes Manufacturer Warranty Exp, Purchase Date, and related fields in the Manufacturer Info section.</p>
+<p>Warranty information in Rev.io PSA is tracked at the <strong>asset (serialized instance) level</strong>, not the product catalog level. The product catalog does not include a warranty field on the SKU record. When a product is deployed to a customer and registered as an asset, the asset record includes Manufacturer Warranty Exp, Purchase Date, and all related manufacturer fields in the Manufacturer Info section.</p>
 
 <h3>What Is a "Package"?</h3>
-<p>A Package is a bundled product grouping in Rev.io PSA. It allows you to combine multiple products — recurring services, one-time items, equipment — into a named bundle that can be quoted and sold as a unit. Packages are configured with a Bill Profile, Rate Deck Group (for metered/VoIP billing), and provider restrictions. Display can be set to "Bundled" (single line on quote/invoice) or "Itemized" (each component shown separately). Packages are commonly used for managed services bundles, connectivity packages, and equipment + service combinations.</p>
+<p>A Package is a bundled product grouping. It allows you to combine multiple products — recurring services, one-time items, equipment — into a named bundle that can be quoted and sold as a unit. Display can be set to <em>Bundled</em> (single line) or <em>Itemized</em> (each component visible). Packages are used for managed services bundles, connectivity packages, and equipment + service combinations. Package quantity support (entering "number of packages" with automatic quantity multiplication) is in active development.</p>
 
-<h3>What Are Macros and How Are They Used?</h3>
-<p>Macros are pre-configured ticket templates that allow technicians to populate a complete ticket in a single click, without manually filling in every field. Two types exist:</p>
+<h3>What Are Macros?</h3>
+<p>Macros are pre-configured ticket and activity templates that allow technicians to populate a complete ticket in a single click. Two types:</p>
 <ul>
-  <li><strong>New Ticket Macros</strong> — pre-fill ticket type, status, priority, description, tech group, and work requested at ticket creation. Current examples: Access Control Installation, Emergency On-Site, Network Down, New Security System Installation, Password Reset, UCaaS Deployment, VPN Access Issue.</li>
-  <li><strong>Activity Macros</strong> — pre-fill common activity entries on existing tickets for frequent actions.</li>
+  <li><strong>New Ticket Macros</strong> — pre-fill ticket type, status, priority, description, tech group, and work requested. Examples: Access Control Installation, Emergency On-Site, Network Down, Password Reset, UCaaS Deployment, VPN Access Issue.</li>
+  <li><strong>Activity Macros</strong> — pre-fill common note entries, status changes, tag additions, and technician reassignments on existing tickets.</li>
 </ul>
-<p>Macros are created and managed in Admin → System Settings → Macros. They are a significant time-saver for high-volume service desks.</p>
+<p>Macros are created and managed in Admin → System Settings → Macros.</p>
 
-<h3>Customer Portal Experience</h3>
-<p><strong>The Customer Portal is available today.</strong> It is a self-service web interface accessible to your customers with the following features:</p>
-<ul>
-  <li>View and pay invoices online</li>
-  <li>Update payment methods (credit cards / bank accounts) without calling your team</li>
-  <li>Submit new service tickets directly into your queue</li>
-  <li>View all open tickets with status, severity, and type visible</li>
-  <li>See public notes on active tickets for full transparency</li>
-</ul>
-<p>Portal features (Invoices, Tickets, Contacts) are individually toggle-enabled per customer in Admin settings, giving you control over what each customer can access.</p>
+<h3>Customer Portal</h3>
+<p><strong>Available today.</strong> The Customer Portal provides self-service capabilities including: view and pay invoices, update payment methods, submit new service tickets into your queue, view open ticket status and severity, and see public notes on active tickets. Portal features are individually toggled per customer. An <strong>Enhanced Customer Portal</strong> with configurable branding, announcements, and document management is on the roadmap (Viking 1).</p>
 
 <hr>
 
 <h2>14. Customer References</h2>
 
-<p>We are happy to connect you with customers who match Fusion Digital's profile. We will provide 2–3 references with one or more of the following characteristics:</p>
+<p>We are pleased to connect Fusion Digital with 2–3 customer references that align with your profile. We will prioritize organizations with one or more of the following characteristics:</p>
 <ul>
   <li>Migrated from Tigerpaw or legacy Rev.io environments</li>
   <li>Hybrid IT + service + project operations</li>
   <li>Hardware procurement / inventory complexity</li>
   <li>MSP operations</li>
 </ul>
-<p><em>[References to be provided by Rev.io account team — names, company, and contact information.]</em></p>
+<p><em>Reference contacts to be provided by your account team.</em></p>
 
 <hr>
 
-<h2>Summary: Items Requiring Follow-Up Confirmation</h2>
+<h2>Summary: Open Items for Account Team Confirmation</h2>
 
-<p>The following items require direct written clarification from Rev.io's account executive or product team before you can finalize your evaluation:</p>
-
-<table class="verify-table">
-  <tr>
-    <th>#</th>
-    <th>Item</th>
-    <th>What to Confirm</th>
-  </tr>
-  <tr><td>1</td><td>Commission reporting</td><td>Roadmap ETA — is it committed or subject to movement?</td></tr>
-  <tr><td>2</td><td>Report scheduling</td><td>Available today or roadmap? ETA?</td></tr>
-  <tr><td>2</td><td>Change orders</td><td>Formal support or workaround? ETA?</td></tr>
-  <tr><td>2</td><td>Vendor delivery tracking</td><td>Available on POs today?</td></tr>
-  <tr><td>3</td><td>Pricing / contract terms</td><td>All pricing questions need AE written response</td></tr>
-  <tr><td>4</td><td>QuickBooks Online</td><td>Field-by-field sync map — what moves in each direction</td></tr>
-  <tr><td>5</td><td>Tigerpaw migration</td><td>What migrates, what doesn't, ETA for automated tooling</td></tr>
-  <tr><td>6</td><td>N-able vs. Acronis depth</td><td>Exact functions synced per integration, ETA if incomplete</td></tr>
-  <tr><td>8</td><td>Ship-to on PO from ticket</td><td>Available today? If not, is it on roadmap?</td></tr>
-  <tr><td>9</td><td>RMA module roadmap</td><td>Formal RMA — ETA?</td></tr>
-  <tr><td>10</td><td>Barcode scanning ETA</td><td>Specific month target for release</td></tr>
-  <tr><td>10</td><td>PSA Field Service app</td><td>Relationship to current Rev.io mobile app — same product?</td></tr>
-  <tr><td>12</td><td>CommerceHub / distributor lookup</td><td>Real-time pricing / catalog roadmap and ETA</td></tr>
-  <tr><td>14</td><td>Customer references</td><td>2–3 names matching Fusion Digital's profile</td></tr>
+<table class="pending-table">
+  <tr><th>#</th><th>Topic</th><th>What Needs Confirmation</th></tr>
+  <tr><td>1</td><td>Commission reporting</td><td>Expected sprint / committed delivery date for Agents &amp; Commissions module</td></tr>
+  <tr><td>2</td><td>Report scheduling</td><td>Scheduled dashboard/report delivery — available today or roadmap?</td></tr>
+  <tr><td>2</td><td>Change orders</td><td>Formal change order workflow — supported today or roadmap item?</td></tr>
+  <tr><td>3</td><td>Pricing / contract terms</td><td>Full pricing responses required from sales leadership — see Section 3</td></tr>
+  <tr><td>4</td><td>QBO — additional fields</td><td>Vendor bills, products/items, GL coding, COGS, partial invoicing — in scope or not?</td></tr>
+  <tr><td>5</td><td>Tigerpaw migration</td><td>Expected timeline for tooling to reach production-ready state; what data elements are in scope</td></tr>
+  <tr><td>9</td><td>RMA module ETA</td><td>Expected Viking 1 release date / timeline</td></tr>
+  <tr><td>10</td><td>Mobile app clarification</td><td>Relationship between "PSA Field Service" app and current Rev.io mobile app</td></tr>
+  <tr><td>14</td><td>References</td><td>2–3 reference customers matching Fusion Digital's profile</td></tr>
 </table>
 
-<hr>
-<p style="font-size:9pt; color:#888; text-align:center;">Rev.io PSA — Confidential RFP Response for Fusion Digital | May 2026</p>
+<footer>Rev.io PSA — Confidential RFP Response for Fusion Digital | May 2026</footer>
+
 </body>
 </html>
