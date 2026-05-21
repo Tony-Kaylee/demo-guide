@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rev.io PSA | Telecom Provisioning Process Analysis</title>
+<style>
+  :root {
+    --revio-blue: #0066CC;
+    --revio-dark: #003366;
+    --revio-light: #E8F1FA;
+    --revio-accent: #00AAFF;
+    --green: #1a9e5c;
+    --green-light: #e6f7ef;
+    --yellow: #c97d00;
+    --yellow-light: #fff8e6;
+    --red: #c0392b;
+    --red-light: #fdf0ef;
+    --gray: #6b7280;
+    --border: #d1dde8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    background: #f4f7fb;
+    color: #1a2332;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .cover {
+    background: linear-gradient(135deg, var(--revio-dark) 0%, var(--revio-blue) 60%, var(--revio-accent) 100%);
+    color: white;
+    padding: 64px 48px;
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    right: 80px; bottom: -80px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .cover-logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 32px;
+    opacity: 0.95;
+  }
+  .cover-logo span { color: var(--revio-accent); }
+  .cover h1 { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+  .cover .subtitle { font-size: 18px; opacity: 0.85; margin-bottom: 24px; }
+  .cover .meta { font-size: 13px; opacity: 0.7; }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+  .section { background: white; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 28px; overflow: hidden; }
+  .section-header {
+    background: linear-gradient(90deg, var(--revio-dark) 0%, var(--revio-blue) 100%);
+    color: white;
+    padding: 18px 28px;
+    font-size: 17px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-header .icon { font-size: 20px; }
+  .section-body { padding: 28px; }
+
+  /* Executive Summary */
+  .exec-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .exec-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .exec-card.green { background: var(--green-light); border: 1px solid #a8dfc4; }
+  .exec-card.yellow { background: var(--yellow-light); border: 1px solid #f0c97a; }
+  .exec-card.red { background: var(--red-light); border: 1px solid #f4b8b3; }
+  .exec-card .number { font-size: 40px; font-weight: 800; margin-bottom: 4px; }
+  .exec-card.green .number { color: var(--green); }
+  .exec-card.yellow .number { color: var(--yellow); }
+  .exec-card.red .number { color: var(--red); }
+  .exec-card .label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); }
+
+  /* Capability table */
+  .cap-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .cap-table th {
+    background: var(--revio-light);
+    color: var(--revio-dark);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border);
+  }
+  .cap-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid #eef2f7;
+    vertical-align: top;
+    font-size: 13.5px;
+  }
+  .cap-table tr:last-child td { border-bottom: none; }
+  .cap-table tr:hover td { background: #f8fafc; }
+  .cap-table td.feature { font-weight: 600; color: #1a2332; min-width: 200px; }
+  .cap-table td.notes { color: #4a5568; }
+
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+  }
+  .badge.yes { background: var(--green-light); color: var(--green); border: 1px solid #a8dfc4; }
+  .badge.partial { background: var(--yellow-light); color: var(--yellow); border: 1px solid #f0c97a; }
+  .badge.no { background: var(--red-light); color: var(--red); border: 1px solid #f4b8b3; }
+
+  /* Process sections */
+  .process-block { margin-bottom: 28px; }
+  .process-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--revio-dark);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--revio-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .process-title .num {
+    background: var(--revio-blue);
+    color: white;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Inline comparison */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .compare-col { border-radius: 8px; padding: 16px; }
+  .compare-col.can { background: var(--green-light); border: 1px solid #a8dfc4; }
+  .compare-col.cannot { background: var(--red-light); border: 1px solid #f4b8b3; }
+  .compare-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .compare-col.can h4 { color: var(--green); }
+  .compare-col.cannot h4 { color: var(--red); }
+  .compare-col ul { padding-left: 16px; }
+  .compare-col ul li { margin-bottom: 6px; font-size: 13px; line-height: 1.5; }
+
+  /* Notes callout */
+  .callout {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .callout.info { background: var(--revio-light); border-left: 4px solid var(--revio-blue); color: var(--revio-dark); }
+  .callout.warning { background: var(--yellow-light); border-left: 4px solid #f0a500; color: #7a5000; }
+  .callout.success { background: var(--green-light); border-left: 4px solid var(--green); color: #145236; }
+  .callout strong { font-weight: 700; }
+
+  /* Mapping table */
+  .map-table { width: 100%; border-collapse: collapse; }
+  .map-table th {
+    background: var(--revio-dark);
+    color: white;
+    padding: 10px 14px;
+    font-size: 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .map-table td { padding: 11px 14px; border-bottom: 1px solid #eef2f7; font-size: 13px; vertical-align: top; }
+  .map-table tr:last-child td { border-bottom: none; }
+  .map-table tr:hover td { background: #f8fafc; }
+  .map-table td:first-child { font-weight: 600; color: var(--revio-dark); min-width: 180px; }
+  .map-table td:nth-child(2) { color: var(--gray); font-style: italic; min-width: 160px; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 32px 24px; color: var(--gray); font-size: 12px; }
+  .footer strong { color: var(--revio-blue); }
+
+  /* Intro text */
+  .intro-text { font-size: 14px; color: #4a5568; line-height: 1.7; margin-bottom: 16px; }
+
+  @media (max-width: 640px) {
+    .exec-grid { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .cover { padding: 40px 24px; }
+    .cover h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-logo">rev<span>.io</span> PSA</div>
+  <h1>Telecom Provisioning Process<br>Capability Analysis</h1>
+  <div class="subtitle">TIPS Circuit, Service Order &amp; Provider Order Process Mapping</div>
+  <div class="meta">Prepared for Prospect Review &nbsp;·&nbsp; May 2026</div>
+</div>
+
+<div class="container">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="section">
+    <div class="section-header"><span class="icon">📋</span> Executive Summary</div>
+    <div class="section-body">
+      <p class="intro-text">
+        This document analyzes your existing TIPS (Telecom Inventory and Provisioning System) workflow — including Circuit Entry, Service Order Creation, and Service Provider Order Management — and maps each capability to Rev.io PSA. Rev.io PSA is a purpose-built telecom BSS/PSA platform with native support for provisioning workflows, circuit inventory, purchase order management, and recurring billing. The majority of your core provisioning process can be replicated within Rev.io PSA, with a few gaps primarily in external accounting system integration.
+      </p>
+
+      <div class="exec-grid">
+        <div class="exec-card green">
+          <div class="number">22</div>
+          <div class="label">✅ Supported Natively</div>
+        </div>
+        <div class="exec-card yellow">
+          <div class="number">8</div>
+          <div class="label">⚙️ Supported with Configuration</div>
+        </div>
+        <div class="exec-card red">
+          <div class="number">5</div>
+          <div class="label">❌ Not Currently Supported</div>
+        </div>
+      </div>
+
+      <div class="callout success" style="margin-top:20px;">
+        <strong>Bottom line:</strong> Rev.io PSA can serve as a direct replacement for TIPS's circuit inventory, purchase order, and service provider order tracking functions. The primary gaps are integration with <strong>Great Plains (GP)</strong> accounting and <strong>TEOCO Bill Track on Demand</strong> — both handled through Rev.io's QuickBooks Online integration or via API. Salesforce and TaskRay functions are addressed through Rev.io's native project management, workflow automation, and the Rev.io–Salesforce integration.
+      </div>
+    </div>
+  </div>
+
+  <!-- SYSTEM FIELD MAPPING -->
+  <div class="section">
+    <div class="section-header"><span class="icon">🗺️</span> TIPS → Rev.io PSA Field Mapping</div>
+    <div class="section-body">
+      <p class="intro-text">The table below shows how each TIPS data object maps to its equivalent in Rev.io PSA.</p>
+
+      <table class="map-table">
+        <thead>
+          <tr>
+            <th>TIPS Object / Field</th>
+            <th>TIPS System</th>
+            <th>Rev.io PSA Equivalent</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Purchase Order (PO)</td>
+            <td>TIPS PO Record</td>
+            <td>Purchase Order module — native PO management with auto-generated PO number, order type, status, dates, and linked site</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Service Provider Order (SPO)</td>
+            <td>TIPS SPO Record</td>
+            <td>Service Ticket (type: Sales Order or custom ISP Order type) with status tracking, notes/chatter, and document attachments</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Circuit Inventory Record</td>
+            <td>TIPS Circuit Form</td>
+            <td>Asset record — Circuit Name, Type, Serial Number (Service ID), location, install date, custom fields for IP config, bandwidth, MRC/NRC</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>PO Name (auto-generated)</td>
+            <td>Period (.) triggers auto-number</td>
+            <td>PO auto-number generation on save — same behavior</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Order Type (New/Change/Disconnect)</td>
+            <td>PO / SPO field</td>
+            <td>Custom field on PO and Ticket — dropdown: New, Change, Disconnect</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>Requestor / Provisioner</td>
+            <td>PO assigned fields</td>
+            <td>Primary Technician (Provisioner) + Contact (Requestor) on ticket/PO</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Project Ticket / Project ID</td>
+            <td>TaskRay linked task</td>
+            <td>Rev.io PSA Projects module — Project ID, milestones, tasks, linked tickets</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Project Scope</td>
+            <td>TaskRay task description</td>
+            <td>Project description + ticket Work Requested field (rich text)</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Facility Site / Site ID</td>
+            <td>Auto-populated from PO</td>
+            <td>Customer record → Service Address — auto-linked to POs and tickets</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>DMARC Address</td>
+            <td>TIPS unique ID + address fields</td>
+            <td>Custom field on PO/Asset (Address, City, State, Zip + Unique ID)</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>DMARC Address auto-populate (PO → SPO)</td>
+            <td>Auto-populated from PO</td>
+            <td>Workflow automation can pre-fill linked fields when SPO is created from PO</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>Circuit Type (DIA, Satellite, Broadband, etc.)</td>
+            <td>TIPS dropdown</td>
+            <td>Asset Type field + configurable custom values (DIA-Ethernet, Satellite, Broadband, Fixed Wireless)</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>Service Provider Name</td>
+            <td>TIPS SPO field</td>
+            <td>Provider record in Rev.io Inventory → Providers module (linked to PO and asset)</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Service ID (Circuit identifier)</td>
+            <td>TIPS field — "treat like gold"</td>
+            <td>Serial Number field on Asset record (serialized inventory tracking)</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Upload / Download Bandwidth Mbps</td>
+            <td>TIPS circuit form</td>
+            <td>Custom fields on Asset record</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>MRC / NRC</td>
+            <td>TIPS billing fields</td>
+            <td>Product List Price (NRC) + Recurring Agreement pricing (MRC) — native billing fields</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Term Agreement / Term End Date</td>
+            <td>TIPS circuit form</td>
+            <td>Agreement module — contract start/end dates, term management</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>FOC (Firm Order Commitment)</td>
+            <td>TIPS "Onsite Install Activity" field</td>
+            <td>Custom date field on ticket/SPO + milestone on project</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>Billing Start / Last Activity / Bill End Date</td>
+            <td>TIPS service dates</td>
+            <td>Agreement Start/End dates + custom service date fields on asset</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>Billing Start PO / Vendor # (Billing Start)</td>
+            <td>TIPS fields</td>
+            <td>Custom fields on PO / Asset record</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>LAN/WAN Subnet, Gateway, Usable IPs, DNS</td>
+            <td>TIPS config fields</td>
+            <td>Asset record: IP Address, MAC, custom fields for LAN Subnet, Gateway, DNS 1/DNS 2, WAN details</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>Handoff Type / Connector</td>
+            <td>TIPS config fields</td>
+            <td>Custom fields on Asset (Copper/SMF/MMF; RJ45/SC/LC)</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>ISP DEMARC Location</td>
+            <td>TIPS config field</td>
+            <td>Custom field on Asset record</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td>Notes / Order Updates (Chatter)</td>
+            <td>TaskRay / TIPS Chatter</td>
+            <td>Notes tab + activity feed on Ticket, PO, and Asset records (time-stamped, user-attributed)</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Attachments (quotes, emails, SOWs, diagrams)</td>
+            <td>TIPS / Chatter attachments</td>
+            <td>Document upload on Ticket, PO, Asset, Project, and Customer records</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Order Status (In-Progress, On-Hold, Completed)</td>
+            <td>TIPS Status Reason field</td>
+            <td>Ticket Status (configurable: New, Open, In Progress, On Hold, Complete) + billing status</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Recurring Monthly Billing (MRC)</td>
+            <td>TIPS → Great Plains JE</td>
+            <td>Rev.io recurring billing engine — auto-generates invoices monthly, auto-pay, AR aging</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Invoice Audit &amp; Approval</td>
+            <td>Finance team manual review</td>
+            <td>Invoice review workflow — invoices generated in draft state for review before posting</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>TaskRay Checklist (network hardware, DMARC)</td>
+            <td>TaskRay task checklist</td>
+            <td>Ticket macros with configurable checklists + activity macros for standard steps</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>Salesforce Project Creation</td>
+            <td>Salesforce + TaskRay</td>
+            <td>Rev.io Projects module (native) OR Rev.io–Salesforce bidirectional integration (available)</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td>JEs to Great Plains (GP) / Month-End Close</td>
+            <td>GP accounting system</td>
+            <td><strong>Not supported.</strong> Rev.io integrates with QuickBooks Online (not Great Plains/Dynamics GP). GP integration would require custom API development.</td>
+            <td><span class="badge no">❌ Gap</span></td>
+          </tr>
+          <tr>
+            <td>Check Request / Payment to Telecom Provider</td>
+            <td>Great Plains AP</td>
+            <td><strong>Not native AP module.</strong> Integrates with QBO for AP/check writing. GP is not supported.</td>
+            <td><span class="badge no">❌ Gap</span></td>
+          </tr>
+          <tr>
+            <td>TEOCO Bill Track on Demand</td>
+            <td>3rd-party telecom bill audit</td>
+            <td><strong>No native integration.</strong> Could be replicated via Rev.io's invoice audit workflow + API export; TEOCO direct integration not available.</td>
+            <td><span class="badge no">❌ Gap</span></td>
+          </tr>
+          <tr>
+            <td>ISP Portal / Ordering System direct integration</td>
+            <td>Manual via portal/email</td>
+            <td>Order submission remains manual (ISP portal or email); Rev.io tracks the order record and all communications/attachments.</td>
+            <td><span class="badge no">❌ Gap</span></td>
+          </tr>
+          <tr>
+            <td>GL Coding per payment to provider</td>
+            <td>GP GL Coding on check request</td>
+            <td>G/L Code field on products/services (QBO GL coding H2 2026). Native GP GL coding not supported.</td>
+            <td><span class="badge no">❌ Gap</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PROCESS 1: CIRCUIT ENTRY -->
+  <div class="section">
+    <div class="section-header"><span class="icon">🔌</span> Process 1: Circuit Inventory Entry (TIPS Circuit Form)</div>
+    <div class="section-body">
+      <p class="intro-text">The TIPS Circuit Entry process captures all technical, billing, and configuration details for each active or disconnected telecom circuit. Here is how Rev.io PSA handles each step.</p>
+
+      <div class="compare-grid">
+        <div class="compare-col can">
+          <h4>✅ Rev.io PSA Can Do</h4>
+          <ul>
+            <li>Create and maintain circuit inventory records as <strong>Asset records</strong> with full lifecycle tracking</li>
+            <li>Store Circuit Name, Type, and Status (Active / Disconnected)</li>
+            <li>Track Service Provider using native <strong>Provider management</strong> module</li>
+            <li>Store Service ID as the <strong>Serial Number</strong> — serialized asset tracking with full movement history</li>
+            <li>Record Upload/Download Bandwidth, MRC, NRC via custom fields</li>
+            <li>Manage Term Agreement and Term End Date via the <strong>Agreements module</strong></li>
+            <li>Store LAN/WAN/IP configuration via Asset record's built-in device fields (IP Address, MAC, OS, custom fields for Gateway, Subnet, DNS)</li>
+            <li>Link circuit to customer site/facility via <strong>Customer Service Address</strong></li>
+            <li>Attach documents (vendor docs, config sheets, install confirmations) at the asset level</li>
+            <li>Notes and activity feed for ongoing updates and audit trail</li>
+            <li>Mark circuit as Active or Disconnected with status badges</li>
+            <li>Full inventory history — 1,100+ transaction audit log</li>
+            <li>Shared Circuit tracking via custom field</li>
+          </ul>
+        </div>
+        <div class="compare-col cannot">
+          <h4>⚙️ Requires Configuration / ❌ Gaps</h4>
+          <ul>
+            <li><em>Bandwidth Mbps, Handoff Type, Connector, ISP DEMARC</em> fields — need to be added as <strong>custom fields</strong> on the Asset module (easy config, no development needed)</li>
+            <li><em>Billing Start PO / Billing Vendor #</em> — custom fields required</li>
+            <li><em>Circuit Type dropdown values</em> (DIA-Ethernet, Satellite, Broadband, Fixed Wireless) — must be configured as Asset Types or custom dropdown values</li>
+            <li><em>TEOCO Bill Track on Demand integration</em> — ❌ not available. Invoice audit workflow can partially replace this manually.</li>
+            <li><em>Auto-population of DMARC from PO</em> — requires workflow automation configuration (not out-of-the-box)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <strong>Rev.io PSA Tip:</strong> The Asset module's "Convert to Asset" toggle means any product installed during a ticket can automatically generate a circuit asset record, linking the installation ticket to the circuit inventory entry without manual re-entry.
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS 2: SERVICE ORDER CREATION -->
+  <div class="section">
+    <div class="section-header"><span class="icon">📄</span> Process 2: Service Order (PO) Creation</div>
+    <div class="section-body">
+      <p class="intro-text">The TIPS Service Order process covers creating Purchase Orders for ISP provisioning requests — new installations, changes, and disconnects. Rev.io PSA has a native PO module purpose-built for this workflow.</p>
+
+      <div class="compare-grid">
+        <div class="compare-col can">
+          <h4>✅ Rev.io PSA Can Do</h4>
+          <ul>
+            <li><strong>Native Purchase Order module</strong> — create, track, and manage POs for any vendor/ISP</li>
+            <li>Auto-generated PO number on save (same "enter period to auto-assign" behavior)</li>
+            <li>Link PO to Provider (ISP/vendor record), Customer/Site, and Project</li>
+            <li>Status tracking: In Progress, On Hold, Completed, Closed</li>
+            <li>Requestor and Provisioner assignment on the PO record</li>
+            <li>Requested Due Date and Estimated Due Date fields</li>
+            <li>Telecom Service Type via custom field or product selection</li>
+            <li>Notes / chatter equivalent — time-stamped activity feed per PO</li>
+            <li>Document attachments (SOW, confirmations, emails) directly on PO</li>
+            <li>Link PO to service tickets and project for full traceability</li>
+            <li>Bulk export and reporting via Analytics dashboards</li>
+          </ul>
+        </div>
+        <div class="compare-col cannot">
+          <h4>⚙️ Requires Configuration / ❌ Gaps</h4>
+          <ul>
+            <li><em>Order Type (New / Change / Disconnect)</em> — custom field on PO (dropdown, easy config)</li>
+            <li><em>Project Ticket / Project ID reference</em> — custom field linking to project (PO ↔ Project linkage needs config)</li>
+            <li><em>Project Scope field</em> — custom text field on PO</li>
+            <li><em>Status Reason values</em> (In-Jeopardy, In-Progress, Hold-Construction) — configurable ticket/PO status values</li>
+            <li><em>DMARC Address on PO</em> — custom address fields required (DMARC Unique ID, Address, City, State, Zip)</li>
+            <li><em>TaskRay Chatter log from PO</em> — Rev.io Notes feed replaces this; no direct TaskRay integration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout success">
+        <strong>Process mapping:</strong> TIPS PO → Rev.io Purchase Order. The full PO lifecycle (create → in progress → pending TTU → closed) maps directly to Rev.io PO statuses. Vendors/ISPs are managed in Rev.io's Provider module (ADI, Lumen, Comcast, etc. already supported as Provider types).
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS 3: SERVICE PROVIDER ORDER -->
+  <div class="section">
+    <div class="section-header"><span class="icon">🌐</span> Process 3: Service Provider Order (SPO) Tracking</div>
+    <div class="section-body">
+      <p class="intro-text">The TIPS SPO process manages order tracking with ISPs from initial submission through FOC, installation, and close-out. Rev.io PSA handles this through its Service Ticket and Project workflow.</p>
+
+      <div class="compare-grid">
+        <div class="compare-col can">
+          <h4>✅ Rev.io PSA Can Do</h4>
+          <ul>
+            <li>Service Provider Order maps to a <strong>Service Ticket</strong> (type: Sales Order or custom "ISP Provisioning Order" type)</li>
+            <li>Auto-generated SPO number (ticket ID)</li>
+            <li>Order Issued Date and Estimated Due Date — native ticket date fields</li>
+            <li>Circuit Type and Service Provider — linked PO and provider record</li>
+            <li>Status tracking through the full order lifecycle (New → In Progress → Complete)</li>
+            <li><strong>Notes/activity feed</strong> for real-time ISP update logging with timestamps and user attribution</li>
+            <li>Document attachments: quotes, ISP order confirmations, emails, SOWs, design docs, signed contracts</li>
+            <li>Facility Site auto-linked from parent customer/PO</li>
+            <li>FOC date captured as custom field or milestone</li>
+            <li>Service Ready Date field (custom date field)</li>
+            <li>Milestone and task tracking via <strong>Projects module</strong></li>
+            <li>Project task creation and assignment on linked project</li>
+            <li>Workflow automation triggers on status changes (e.g., notify provisioner when FOC received)</li>
+            <li>Full audit trail — 3,600+ entry audit log</li>
+          </ul>
+        </div>
+        <div class="compare-col cannot">
+          <h4>⚙️ Requires Configuration / ❌ Gaps</h4>
+          <ul>
+            <li><em>FOC date as dedicated field</em> — custom date field on ticket (not out-of-box but simple config)</li>
+            <li><em>"Onsite Install Activity" field equivalent</em> — custom field or milestone date on project</li>
+            <li><em>Direct ISP portal / ordering system integration</em> — ❌ order submission still via ISP portal or email; Rev.io tracks the record, not the submission channel</li>
+            <li><em>Service Ready Date</em> — custom date field on ticket or asset</li>
+            <li><em>PO Closed / Pending TTU status</em> — configurable as PO status values</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <strong>Step-by-Step Mapping:</strong>
+      </div>
+
+      <table class="cap-table" style="margin-top:0;">
+        <thead>
+          <tr>
+            <th>TIPS SPO Step</th>
+            <th>Rev.io PSA Equivalent</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature">Prepare Order — review PO, gather docs</td>
+            <td class="notes">Review linked Purchase Order in Rev.io; gather attachments from PO record</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Submit order to ISP via portal/email</td>
+            <td class="notes">Manual submission (ISP portal/email) — Rev.io logs the submission date and all attached communications</td>
+            <td><span class="badge partial">⚙️ Manual + Track</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Log order in tracking system (TIPS)</td>
+            <td class="notes">Create/update Service Ticket in Rev.io PSA with all SPO fields</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Receive &amp; record FOC</td>
+            <td class="notes">Update custom FOC Date field on ticket; update linked project milestone</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Maintain notes &amp; status updates (Chatter)</td>
+            <td class="notes">Notes tab with Add Note — timestamped, type-tagged, high-priority flag available</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Manage attachments (confirmations, emails, SOWs)</td>
+            <td class="notes">Documents tab on ticket, PO, asset, and project — upload any file type</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Monitor order progress / follow up with ISP</td>
+            <td class="notes">Ticket status + SLA policy triggers + workflow automation alerts</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Confirm service completion, record Service Ready Date</td>
+            <td class="notes">Close ticket (status: Complete); record Service Ready Date custom field; trigger circuit asset creation</td>
+            <td><span class="badge partial">⚙️ Config</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Close order — update status, confirm audit trail</td>
+            <td class="notes">PO status → Closed; full audit log entry recorded automatically</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BILLING & FINANCE PROCESS -->
+  <div class="section">
+    <div class="section-header"><span class="icon">💰</span> Billing, Finance &amp; Accounting Process</div>
+    <div class="section-body">
+      <p class="intro-text">The flowchart shows a downstream finance process: invoices received from providers, audited, check requests sent to Great Plains (GP), JEs posted, and TEOCO used for bill tracking. Here is Rev.io's coverage.</p>
+
+      <table class="cap-table">
+        <thead>
+          <tr>
+            <th>Finance Function</th>
+            <th>Current Tool</th>
+            <th>Rev.io PSA Coverage</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature">Invoice received from provider</td>
+            <td>Manual / email</td>
+            <td class="notes">Attach incoming vendor invoices to PO or Project record as documents; notes log receipt date</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Invoice audited &amp; approved</td>
+            <td>Finance manual review</td>
+            <td class="notes">Rev.io billing engine holds invoices in draft state pending review/approval before posting</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Check request / payment to provider</td>
+            <td>Great Plains AP</td>
+            <td class="notes">Not native AP. Rev.io integrates with QuickBooks Online (QBO) for AP; Great Plains (GP / Dynamics GP) is <strong>not supported</strong></td>
+            <td><span class="badge no">❌ Gap (GP)</span></td>
+          </tr>
+          <tr>
+            <td class="feature">JEs posted for monthly telecom expense</td>
+            <td>Great Plains GL</td>
+            <td class="notes">G/L Code field on products (QBO GL coding integration H2 2026). GP journal entries not supported natively — would require custom integration</td>
+            <td><span class="badge no">❌ Gap (GP)</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Month-end close / telecom expense posting</td>
+            <td>GP + TEOCO</td>
+            <td class="notes">Rev.io billing reports + QBO integration can support month-end telecom expense tracking. Apache Superset dashboards provide revenue/billing analytics.</td>
+            <td><span class="badge partial">⚙️ Via QBO</span></td>
+          </tr>
+          <tr>
+            <td class="feature">TEOCO Bill Track on Demand (telecom bill audit)</td>
+            <td>TEOCO platform</td>
+            <td class="notes">No native TEOCO integration. Rev.io's invoice audit workflow + Analytics dashboards can partially cover internal audit functions. TEOCO would need to continue running in parallel or replaced by Rev.io's telecom billing analytics.</td>
+            <td><span class="badge no">❌ No Integration</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Recurring MRC billing (customer invoicing)</td>
+            <td>TIPS + GP</td>
+            <td class="notes">Rev.io native recurring billing — auto-generates invoices on schedule, processes auto-pay (card/ACH), full AR aging and collections workflow</td>
+            <td><span class="badge yes">✅ Native</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warning" style="margin-top:16px;">
+        <strong>Key Gap:</strong> Your current process sends check requests and JEs to <strong>Great Plains (Dynamics GP)</strong>. Rev.io PSA integrates with <strong>QuickBooks Online only</strong> — not GP. If your organization is committed to Great Plains for accounting, a custom API integration would be required, or Rev.io's data export (CSV/Excel) could be used to manually post to GP. This is the most significant gap to address in any implementation plan.
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-header"><span class="icon">🚀</span> Recommendations &amp; Implementation Path</div>
+    <div class="section-body">
+      <div class="process-block">
+        <div class="process-title"><span class="num">1</span>Configuration Required (No Development Needed)</div>
+        <p style="color:#4a5568; font-size:13px; margin-bottom:10px;">The following items require <strong>custom field setup</strong> in Rev.io PSA Admin → Custom Fields Manager. These are straightforward configurations an admin can complete during implementation:</p>
+        <ul style="padding-left:20px; color:#4a5568; font-size:13px; line-height:1.9;">
+          <li>Order Type (New / Change / Disconnect) — dropdown on PO and Ticket</li>
+          <li>DMARC Address (Unique ID, Address, City, State, Zip) — text/address fields on PO and Asset</li>
+          <li>FOC Date (Firm Order Commitment) — date field on Ticket</li>
+          <li>Service Ready Date — date field on Ticket or Asset</li>
+          <li>Billing Start Date, Billing Start PO, Billing Vendor # — date/text fields on Asset</li>
+          <li>Circuit bandwidth (Upload/Download Mbps) — numeric fields on Asset</li>
+          <li>Handoff Type (Copper/SMF/MMF), Connector (RJ45/SC/LC), ISP DEMARC — dropdown/text fields on Asset</li>
+          <li>Circuit Use — dropdown field on Asset</li>
+          <li>Circuit Type values (DIA-Ethernet, Satellite, Broadband, Fixed Wireless) — configurable Asset Type values</li>
+        </ul>
+      </div>
+
+      <div class="process-block">
+        <div class="process-title"><span class="num">2</span>Workflow Automation (Low Effort, High Value)</div>
+        <ul style="padding-left:20px; color:#4a5568; font-size:13px; line-height:1.9;">
+          <li>Auto-trigger circuit asset creation when SPO ticket is marked Complete</li>
+          <li>Auto-notify provisioner when PO status changes to "Pending TTU"</li>
+          <li>SLA policy on provisioning tickets to flag overdue FOC dates</li>
+          <li>Workflow to auto-populate DMARC address from PO onto linked SPO ticket</li>
+        </ul>
+      </div>
+
+      <div class="process-block">
+        <div class="process-title"><span class="num">3</span>Gaps That Require Resolution Before Go-Live</div>
+        <table class="cap-table" style="margin-top:0;">
+          <thead>
+            <tr><th>Gap</th><th>Options</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feature">Great Plains (GP) Integration</td>
+              <td class="notes">Option A: Migrate from GP to QuickBooks Online (QBO) — Rev.io integrates natively. Option B: Use Rev.io's CSV export to manually import into GP. Option C: Custom API integration (requires development).</td>
+            </tr>
+            <tr>
+              <td class="feature">TEOCO Bill Track on Demand</td>
+              <td class="notes">Continue TEOCO in parallel for telecom bill auditing. Rev.io's invoice audit workflow + Analytics can handle internal billing reconciliation for circuits provisioned in Rev.io.</td>
+            </tr>
+            <tr>
+              <td class="feature">ISP Portal Order Submission</td>
+              <td class="notes">Manual submission process unchanged. Rev.io tracks all order data, communications, and attachments. No change to current ISP portal/email submission flow.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout success">
+        <strong>Rev.io PSA replaces TIPS for 80%+ of the provisioning workflow</strong> — circuit inventory, PO creation, SPO tracking, project management, and recurring billing are all handled natively. The integration gap with Great Plains and TEOCO should be scoped during the discovery phase to determine the right migration path.
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p><strong>Rev.io PSA</strong> — Telecom Provisioning Process Analysis</p>
+    <p style="margin-top:6px;">Prepared by Rev.io Solutions Engineering &nbsp;·&nbsp; May 2026 &nbsp;·&nbsp; Confidential</p>
+  </div>
+
+</div>
+</body>
+</html>
