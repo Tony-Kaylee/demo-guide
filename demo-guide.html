@@ -183,7 +183,7 @@
   <div class="nav-section">
     <div class="nav-label">Deep Dives</div>
     <a class="nav-item" onclick="show('dd-analytics')"><span class="nav-step">A</span> Analytics &amp; Reporting</a>
-    <a class="nav-item" onclick="show('dd-workflows')"><span class="nav-step">B</span> Workflow Automation</a>
+    <a class="nav-item" onclick="show('dd-workflows')"><span class="nav-step">B</span> Flows &amp; Notifications</a>
     <a class="nav-item" onclick="show('dd-integrations')"><span class="nav-step">C</span> Integrations</a>
     <a class="nav-item" onclick="show('dd-projects')"><span class="nav-step">D</span> Project Management</a>
   </div>
@@ -221,23 +221,23 @@
       <thead><tr><th>Step</th><th>Area</th><th>Key Message</th></tr></thead>
       <tbody>
         <tr><td>1</td><td>Dashboard</td><td>Real-time visibility into the entire operation</td></tr>
-        <tr><td>2</td><td>Customer List</td><td>Fast, searchable customer management</td></tr>
+        <tr><td>2</td><td>Customer List</td><td>Fast customer lookup with tags, primary phone, and global search</td></tr>
         <tr><td>3</td><td>Customer View</td><td>Tags, contacts, AI-powered 90-day journal summary</td></tr>
         <tr><td>4</td><td>Opportunities &amp; Funnel</td><td>Pipeline visibility with the funnel view; work your deals from one screen</td></tr>
         <tr><td>5</td><td>Opportunity Detail &amp; Quote</td><td>Navigate into an opportunity with a pre-built quote attached</td></tr>
-        <tr><td>6</td><td>Quote Walkthrough</td><td>Recurring vs. one-time items, proposals — everything pre-built for demo speed</td></tr>
+        <tr><td>6</td><td>Quote Walkthrough</td><td>Recurring vs. one-time items, product images, package quantities, proposals</td></tr>
         <tr><td>7</td><td>Service Tab — Quote → Ticket</td><td>Accepted quote flows into a service ticket automatically</td></tr>
         <tr><td>8</td><td>Ticket View &amp; Activity</td><td>Full ticket detail, work requested, SLA timers, activity feed</td></tr>
         <tr><td>9</td><td>Rev.iize &amp; AI Notes</td><td>AI transforms rough notes into professional documentation instantly</td></tr>
-        <tr><td>10</td><td>Parts, Labor &amp; Inventory</td><td>Quote items on the ticket, inventory reservation, purchase orders</td></tr>
+        <tr><td>10</td><td>Parts, Labor &amp; Inventory</td><td>Quote items on the ticket, inventory reservation, job costing, purchase orders</td></tr>
         <tr><td>11</td><td>Dispatch Board</td><td>Drag-and-drop scheduling, calendar sync</td></tr>
         <tr><td>12</td><td>Tech Workflow &amp; Time Logging</td><td>Timer automation, Rev.ii voice tickets, ready-for-billing flow</td></tr>
         <tr><td>13</td><td>Billing &amp; Review</td><td>Billing queue, invoice creation — describe, don't click</td></tr>
         <tr><td>14</td><td>Customer Portal</td><td>Self-service invoices, payments, ticket submission</td></tr>
-        <tr><td>A</td><td>Analytics &amp; Reporting</td><td>10+ dashboards, SQL Lab, AI-powered "Chat With Your Data"</td></tr>
-        <tr><td>B</td><td>Workflow Automation</td><td>19 configurable workflows, SLA triggers, multi-channel reactions</td></tr>
-        <tr><td>C</td><td>Integrations</td><td>HubSpot, NinjaOne, N-able, Acronis, Hudu, Teams, Slack, COPS</td></tr>
-        <tr><td>D</td><td>Project Management</td><td>Gantt view, milestones, phases, job costing, activity tracking</td></tr>
+        <tr><td>A</td><td>Analytics &amp; Reporting</td><td>Operational, sales, and project dashboards; SQL Lab; scheduled sends and alerts</td></tr>
+        <tr><td>B</td><td>Flows &amp; Notifications</td><td>Structured flows, routing, gates, reusable actions, multi-channel notifications</td></tr>
+        <tr><td>C</td><td>Integrations</td><td>HubSpot, NinjaOne, N-able, Acronis, IT Glue, Hudu, Teams, Slack, COPS</td></tr>
+        <tr><td>D</td><td>Project Management</td><td>Gantt view, milestones, phases, job costing, analytics, activity tracking</td></tr>
       </tbody>
     </table>
     <div class="callout green">
@@ -326,22 +326,23 @@
     <div class="section-header">
       <div class="section-tag">Customers</div>
       <h2>Customer List</h2>
-      <p class="lead">Show how fast and clean the customer database is. One search bar, all your accounts.</p>
+      <p class="lead">Show how fast and clean the customer database is. Customer-list search, tags, and global search keep accounts and tickets easy to find.</p>
     </div>
     <div class="purpose">
       <div class="purpose-label">Purpose</div>
-      <p>Demonstrate how easy it is to find and manage customers from a single searchable list.</p>
+      <p>Demonstrate how easy it is to find and manage customers from a searchable list, then mention that global search now works across customers and tickets from the top toolbar.</p>
     </div>
     <h4>What to Show</h4>
     <ul>
       <li>Navigate to the <strong>Customer List</strong></li>
       <li>Use the <strong>search bar</strong> — show how fast it filters (223 accounts, finds in seconds)</li>
       <li>Point out <strong>Tags</strong> — VIP, Stage 2 - Quoting, Managed Services — versatile labels visible right on the list</li>
-      <li>Note the account types, statuses, and primary contacts all visible without clicking in</li>
+      <li>Mention the new <strong>Tags filter</strong> and broader <strong>global search</strong> for finding customers and tickets from the top toolbar</li>
+      <li>Note the account types, statuses, primary contacts, and primary phone visibility without clicking in</li>
     </ul>
     <div class="screenshot-wrap">
       <img src="demo-step2-customer-list.png" alt="Customer List">
-      <div class="screenshot-caption">Customer List — searchable, filterable, with tags visible inline</div>
+      <div class="screenshot-caption">Customer List — searchable, filterable, with tags visible inline; global search is now available from the top toolbar</div>
     </div>
     <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
@@ -510,16 +511,18 @@
     <div class="section-header">
       <div class="section-tag">Quoting</div>
       <h2>Quote Walkthrough</h2>
-      <p class="lead">Walk through the quote structure — products, recurring vs. one-time items, and the proposal section. Everything here is pre-built. You're narrating, not clicking through forms.</p>
+      <p class="lead">Walk through the quote structure — products, recurring vs. one-time items, package quantities, product images, and the proposal section. Everything here is pre-built. You're narrating, not clicking through forms.</p>
     </div>
     <div class="purpose">
       <div class="purpose-label">Purpose</div>
-      <p>Show how a quote is structured — recurring and non-recurring items, product packages, and how the total breaks down. Introduce proposals.</p>
+      <p>Show how a quote is structured — recurring and non-recurring items, product packages, product visuals, and how the total breaks down. Introduce proposals.</p>
     </div>
     <h4>What to Show</h4>
     <ul>
       <li><strong>Header totals</strong> — Monthly Recurring $35, One-Time $303, Tax $2.66, Total $340.66</li>
       <li><strong>Products and Services section</strong> — "Lobby" service package at 5929 Baker Road, 3 products, $338</li>
+      <li><strong>Package quantities</strong> — explain that package quantity changes can scale the included products proportionally on quotes</li>
+      <li><strong>Product catalog images</strong> — mention that product records now support an uploaded image for visual reference</li>
       <li><strong>Individual products</strong> — Hikvision 4K Camera (One-Time, $265), Honeywell Motion Sensor (One-Time, $38), Commercial Monitoring System (Recurring, $35)</li>
       <li>Point out the <strong>Recurring vs. One-Time distinction</strong> — recurring becomes a billing service, one-time becomes a ticket line item</li>
       <li>Scroll down to <strong>Proposals section</strong> — where the customer-facing proposal and signature capture live</li>
@@ -530,7 +533,7 @@
     </div>
     <div class="callout green">
       <div class="callout-label">Demo Speed Note</div>
-      <p><strong>Everything here is pre-built.</strong> You are not approving the quote or sending the proposal during the demo. Describe what would happen: "Once the customer signs, non-recurring items automatically create a service ticket and recurring items are added to their billing profile — let me show you what that looks like."</p>
+      <p><strong>Everything here is pre-built.</strong> You are not approving the quote or sending the proposal during the demo. Describe what would happen: "Once the customer signs, non-recurring items automatically create a service ticket and recurring items are added to their billing profile — let me show you what that looks like." If product visuals matter to the prospect, note that catalog images are now supported.</p>
     </div>
     <div class="script-label">Transition Line</div>
     <div class="script">"Once accepted, the non-recurring items become tickets and the recurring items go to recurring services — all visible in the Service tab. Let me show you the ticket that was created from this quote."</div>
@@ -538,7 +541,7 @@
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Build quotes with both MRC and NRC items in the same proposal. On acceptance, recurring charges route to the billing profile and one-time items create a service ticket — automatically.</p></div>
-        <div class="vp-card msp"><div class="vp-industry">💻 MSP</div><p>Sell managed services agreements with hardware add-ons in one quote. The platform handles the billing split automatically so finance never manually separates recurring from one-time charges.</p></div>
+        <div class="vp-card msp"><div class="vp-industry">💻 MSP</div><p>Sell managed services agreements with hardware add-ons in one quote. Package quantities scale bundled products cleanly, and the platform handles the billing split automatically.</p></div>
         <div class="vp-card integrator"><div class="vp-industry">🔒 Security Integrator</div><p>Quote hardware installation (one-time) and RMR monitoring (recurring) in a single proposal — the system handles the billing split on acceptance. No double-entry, no confusion.</p></div>
       </div>
     </div>
@@ -727,22 +730,23 @@ status Needs to be Scheduled.</pre>
     <div class="section-header">
       <div class="section-tag">Operations</div>
       <h2>Parts, Labor &amp; Inventory</h2>
-      <p class="lead">Show how the quote's products are already on the ticket — and how inventory management connects directly to the work order.</p>
+      <p class="lead">Show how the quote's products are already on the ticket — and how inventory, descriptions, and job costing connect directly to the work order.</p>
     </div>
     <div class="purpose">
       <div class="purpose-label">Purpose</div>
-      <p>Show Parts & Labor tab with quote items carried over, inventory reservation, and purchase order creation from the ticket.</p>
+      <p>Show Parts & Labor tab with quote items carried over, editable descriptions, inventory reservation, job costing, and purchase order creation from the ticket.</p>
     </div>
     <h4>What to Show</h4>
     <ul>
       <li><strong>Parts & Labor tab</strong> — Hikvision 4K Camera ($265) and Honeywell Motion Sensor ($38) already populated from the quote</li>
+      <li><strong>Editable product descriptions</strong> — ticket parts and labor descriptions can carry through to billing and invoices</li>
       <li><strong>Inventory reservation dropdown</strong> — "Main Warehouse (Qty Available: 4)" and "Truck 03 (Qty Available: 1)" — see exactly where stock is</li>
       <li><strong>Job Costing panel</strong> (right side) — Material Sales $303, Costs $159, Difference $144 margin — real-time profitability on the ticket</li>
       <li>Explain: reserve from warehouse or truck stock, or create a PO if not in inventory</li>
     </ul>
     <div class="screenshot-wrap">
       <img src="demo-step10-parts-labor.png" alt="Parts and Labor">
-      <div class="screenshot-caption">Parts & Labor tab — quote items carried over, inventory reservation showing warehouse and truck stock availability</div>
+      <div class="screenshot-caption">Parts & Labor tab — quote items carried over, inventory reservation showing warehouse and truck stock availability, with job costing visible on the ticket stage panel</div>
     </div>
     <div class="script-label">Transition Line</div>
     <div class="script">"Once items have been allocated, it's time to schedule this ticket — we can do that right from the Dispatch Board."</div>
@@ -771,7 +775,7 @@ The product ID is 5909. The client paid 150, and its cost was around 70 dollars.
         <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
-        <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Installation teams managing CPE inventory across multiple warehouses can see availability at each location and reserve stock directly from the work order — no separate inventory system needed.</p></div>
+        <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Installation teams managing CPE inventory across multiple warehouses can see availability at each location, reserve stock directly from the work order, and carry clean descriptions through to invoicing.</p></div>
         <div class="vp-card msp"><div class="vp-industry">💻 MSP</div><p>MSPs handling hardware procurement can track parts against tickets, see margin in real time, and know immediately whether to pull from stock or create a purchase order.</p></div>
         <div class="vp-card integrator"><div class="vp-industry">🔒 Security Integrator</div><p>Serialized equipment (cameras, access control panels, alarm systems) can be reserved from specific trucks or warehouses — and exact job margin is visible before the tech ever leaves the office.</p></div>
       </div>
@@ -895,7 +899,7 @@ Mar 20, 2026.</pre>
     <div class="section-header">
       <div class="section-tag">Billing</div>
       <h2>Billing Notification &amp; Review</h2>
-      <p class="lead">Show the billing team's side — automated notifications, a clear queue, and one-click invoice creation. Narrate this step; do not execute it live.</p>
+      <p class="lead">Show the billing team's side — automated notifications, a clear queue, one-click invoice creation, and invoice email sending. Narrate this step; do not execute it live.</p>
     </div>
     <div class="purpose">
       <div class="purpose-label">Purpose</div>
@@ -908,6 +912,7 @@ Mar 20, 2026.</pre>
       <li>Review ticket and all charges</li>
       <li>Point to <strong>Send to Billing</strong> button — describe what it does, <em>do not click</em></li>
       <li>Show <strong>Billing Tab with Unposted charges</strong> — explain invoice creation from here</li>
+      <li>Mention <strong>invoice email sending</strong> — invoices can be emailed from the invoice email screen using configured templates and suggested recipients</li>
     </ul>
     <div class="screenshot-wrap">
       <img src="demo-step13-billing.png" alt="Ticket List — Ready for Billing">
@@ -919,7 +924,7 @@ Mar 20, 2026.</pre>
     </div>
     <div class="callout">
       <div class="callout-label">What to Narrate</div>
-      <p>The billing team filters to <strong>Tickets Ready for Billing</strong> — every ticket the field team marked complete is right here, queued up. They review, click Send to Billing, and invoices are generated. The timer running in the top ribbon (00:03:26) is still tracking on Ticket #663 — it'll show up in this queue once the tech marks it done.</p>
+      <p>The billing team filters to <strong>Tickets Ready for Billing</strong> — every ticket the field team marked complete is right here, queued up. They review, click Send to Billing, and invoices are generated. From there, invoices can be emailed using the account's configured invoice template and suggested billing recipients. The timer running in the top ribbon (00:03:26) is still tracking on Ticket #663 — it'll show up in this queue once the tech marks it done.</p>
     </div>
     <div class="revii-callout">
       <div class="revii-header">
@@ -1049,7 +1054,7 @@ Mar 20, 2026.</pre>
     <div class="section-header">
       <div class="section-tag">Analytics</div>
       <h2>Analytics &amp; Reporting</h2>
-      <p class="lead">Rev.io includes a full analytics engine powered by Apache Superset — with pre-built dashboards, custom charts, SQL access, and an AI-powered natural language query interface.</p>
+      <p class="lead">Rev.io includes a full analytics engine powered by Apache Superset — with pre-built operational, sales, and project dashboards, custom charts, SQL access, scheduled sends, threshold alerts, and an AI-powered natural language query interface.</p>
     </div>
     <div class="purpose">
       <div class="purpose-label">Purpose</div>
@@ -1063,6 +1068,8 @@ Mar 20, 2026.</pre>
       <li><strong>Tax Details</strong> — detailed tax reporting for compliance</li>
       <li><strong>Inventory Dashboards (5)</strong> — levels, valuation, aging, movement/transactions, reserved vs. available stock</li>
       <li><strong>Pick List Dashboard</strong> — parts fulfillment tracking</li>
+      <li><strong>Opportunity Dashboards</strong> — pipeline overview, forecasting, sales rep performance, and deal aging</li>
+      <li><strong>Project Dashboards</strong> — portfolio overview, schedule health, labor and margin, labor variance, and inventory or PO risk</li>
     </ul>
     <h4>Advanced Capabilities</h4>
     <ul>
@@ -1071,13 +1078,15 @@ Mar 20, 2026.</pre>
       <li><strong>Saved Queries</strong> — save and reuse custom reports</li>
       <li><strong>Dataset Management</strong> — define and manage custom data sources</li>
       <li><strong>Chat With Your Data</strong> — ask natural language questions powered by the Revii AI engine</li>
+      <li><strong>Signal &amp; Send</strong> — schedule dashboard/chart emails or send conditional alerts only when thresholds are met</li>
+      <li><strong>Tags</strong> — organize dashboards and charts, including shared tags that grant view access to matching user groups</li>
     </ul>
     <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Telecom operators need granular revenue reporting across MRC, NRC, and usage-based billing. The Revenue Analysis dashboard and SQL Lab give finance teams the data they need for forecasting, audits, and regulatory reporting — without exporting to Excel.</p></div>
         <div class="vp-card msp"><div class="vp-industry">💻 MSP</div><p>MSPs use Profit by Technician to identify which clients and engineers are driving margin — and which aren't. "Chat With Your Data" lets non-technical managers ask questions in plain English and get instant answers without involving IT.</p></div>
-        <div class="vp-card integrator"><div class="vp-industry">🔒 Security Integrator</div><p>Security integrators managing RMR portfolios can track recurring revenue trends, inventory valuation of serialized equipment, and job profitability by project — all from pre-built dashboards ready on day one.</p></div>
+        <div class="vp-card integrator"><div class="vp-industry">🔒 Security Integrator</div><p>Security integrators managing RMR portfolios can track recurring revenue trends, inventory valuation of serialized equipment, project schedule health, and job profitability — all from pre-built dashboards ready on day one.</p></div>
       </div>
     </div>
     <div class="revii-callout">
@@ -1153,31 +1162,31 @@ Mar 20, 2026.</pre>
     </div>
         <div class="callout green">
       <div class="callout-label">RFP Talking Point</div>
-      <p>When an RFP asks "Does the platform include reporting and analytics?" — the answer isn't just yes. It's: <strong>10+ pre-built dashboards, a full SQL interface, custom chart builder, and AI-powered natural language queries.</strong> That's a complete BI layer, not a basic report viewer.</p>
+      <p>When an RFP asks "Does the platform include reporting and analytics?" — the answer isn't just yes. It's: <strong>pre-built operational, opportunity, and project dashboards; a full SQL interface; custom chart builder; scheduled sends; conditional alerts; and AI-powered natural language queries.</strong> That's a complete BI layer, not a basic report viewer.</p>
     </div>
     <div class="nav-buttons">
       <button class="btn" onclick="show('wrap')">← Wrap-Up</button>
-      <button class="btn primary" onclick="show('dd-workflows')">Deep Dive B: Workflow Automation →</button>
+      <button class="btn primary" onclick="show('dd-workflows')">Deep Dive B: Flows & Notifications →</button>
     </div>
   </div>
 
-  <!-- DEEP DIVE: WORKFLOWS -->
+  <!-- DEEP DIVE: FLOWS & NOTIFICATIONS -->
   <div id="dd-workflows" class="section">
     <div class="step-badge"><span>Deep Dive B</span></div>
     <div class="section-header">
       <div class="section-tag">Automation</div>
-      <h2>Workflow Automation</h2>
-      <p class="lead">Rev.io includes a powerful workflow engine that automates notifications, escalations, and actions across the platform — triggered by events, conditions, and SLA thresholds.</p>
+      <h2>Flows &amp; Notifications</h2>
+      <p class="lead">Rev.io includes structured Flows for multi-step process automation and Notifications for stakeholder updates — triggered by events, conditions, routing logic, and SLA thresholds.</p>
     </div>
     <div class="purpose">
       <div class="purpose-label">Purpose</div>
-      <p>Show prospects how Rev.io eliminates manual follow-up, ensures SLA compliance, and keeps every stakeholder informed automatically — without custom development.</p>
+      <p>Show prospects how Rev.io eliminates manual follow-up, ensures SLA compliance, routes work through clear gates, and keeps every stakeholder informed automatically — without custom development.</p>
     </div>
-    <h4>How Workflows Work</h4>
+    <h4>How Flows &amp; Notifications Work</h4>
     <ul>
-      <li><strong>Step 1 — Trigger:</strong> Choose what starts the workflow — SLA breach, ticket status change, new ticket created, calendar event (7+ trigger types)</li>
-      <li><strong>Step 2 — Conditions:</strong> Filter by 14+ fields with match-all / match-any / match-none logic</li>
-      <li><strong>Step 3 — Reactions:</strong> Send Email, SMS, In-app notification, or Microsoft Teams message — multiple reactions per workflow</li>
+      <li><strong>Structured Flows:</strong> Build multi-step automations with phases, reusable actions, routes, gate logic, ticket assignment, visual maps, and exports</li>
+      <li><strong>Notifications:</strong> Send Email, SMS, in-app notifications, or Microsoft Teams messages based on event and condition logic</li>
+      <li><strong>Routing:</strong> Use route selection and gate logic to guide tickets through the right operational path</li>
     </ul>
     <h4>What You Can Automate</h4>
     <ul>
@@ -1187,18 +1196,19 @@ Mar 20, 2026.</pre>
       <li><strong>Billing reminders</strong> — trigger notifications when tickets reach "Ready for Billing"</li>
       <li><strong>Escalation chains</strong> — auto-escalate high-priority tickets if not acknowledged</li>
       <li><strong>SMS opt-in compliance</strong> — built-in compliance controls for customer SMS</li>
+      <li><strong>Ticket assignment routes</strong> — assign and route work directly from the Flows tab</li>
     </ul>
     <div class="value-props">
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Telecom providers with contractual SLA obligations can automate escalation workflows that fire before breaches occur — ensuring the right manager is alerted with enough time to act. No manual monitoring required.</p></div>
-        <div class="vp-card msp"><div class="vp-industry">💻 MSP</div><p>MSPs can automate the entire "ticket assigned → tech notified → customer updated → billing alerted" chain without writing a single line of code. Fewer dropped balls, less management overhead, happier clients.</p></div>
+        <div class="vp-card msp"><div class="vp-industry">💻 MSP</div><p>MSPs can automate the entire "ticket assigned → routed through the right gate → tech notified → customer updated → billing alerted" chain without writing a single line of code. Fewer dropped balls, less management overhead, happier clients.</p></div>
         <div class="vp-card integrator"><div class="vp-industry">🔒 Security Integrator</div><p>When a security incident ticket is opened, a workflow instantly notifies the on-call tech via SMS, alerts the manager via Teams, and sends the customer a confirmation email — all in seconds, automatically.</p></div>
       </div>
     </div>
     <div class="callout">
       <div class="callout-label">By the Numbers</div>
-      <p>The demo environment includes <strong>19 active workflows</strong> — this is a production-ready automation engine, not a prototype feature.</p>
+      <p>The demo environment includes existing configured automation, and the product now separates structured Flows from Notifications. Position this as a maturing automation engine, not a prototype feature.</p>
     </div>
     <div class="nav-buttons">
       <button class="btn" onclick="show('dd-analytics')">← Deep Dive A</button>
@@ -1225,8 +1235,12 @@ Mar 20, 2026.</pre>
         <tr><td>CRM</td><td>HubSpot</td><td>Sync customers, contacts, and opportunities between Rev.io and HubSpot</td></tr>
         <tr><td>RMM</td><td>NinjaOne</td><td>Sync devices, alerts, and tickets between RMM and PSA</td></tr>
         <tr><td>RMM</td><td>N-able</td><td>Sync assets, alerts, and service tickets</td></tr>
-        <tr><td>RMM</td><td>Acronis</td><td>Backup and cyber protection status synced to Rev.io</td></tr>
-        <tr><td>Documentation</td><td>Hudu</td><td>Link documentation directly to customers and assets in Rev.io</td></tr>
+        <tr><td>RMM</td><td>Acronis</td><td>Create Acronis accounts and sync customer information one-way from Rev.io; more functionality is coming</td></tr>
+        <tr><td>RMM</td><td>ConnectWise RMM</td><td>Sync matched customer account data, with Rev.io as the authoritative source</td></tr>
+        <tr><td>Documentation</td><td>IT Glue</td><td>Link organizations, sync Flexible Assets bidirectionally, map traits, and access passwords from asset records</td></tr>
+        <tr><td>Documentation</td><td>Hudu</td><td>Link companies, sync assets bidirectionally, map custom fields, and access passwords from Rev.io PSA</td></tr>
+        <tr><td>Billing</td><td>CMS</td><td>Sync customer accounts and service addresses bidirectionally, including emergency contacts from CMS</td></tr>
+        <tr><td>Accounting</td><td>QuickBooks Desktop</td><td>Export customers, invoices, payments, and purchase orders as QuickBooks Desktop-formatted CSV files</td></tr>
         <tr><td>Calendar</td><td>Google Calendar</td><td>Two-way sync for scheduled tickets and dispatch items</td></tr>
         <tr><td>Calendar</td><td>Microsoft Outlook</td><td>Two-way sync for scheduled tickets and dispatch items</td></tr>
         <tr><td>Communication</td><td>Microsoft Teams</td><td>Workflow notifications and alerts directly in Teams channels</td></tr>
@@ -1244,8 +1258,8 @@ Mar 20, 2026.</pre>
       <div class="value-props-title">💡 Industry Value Propositions</div>
       <div class="vp-grid">
         <div class="vp-card telecom"><div class="vp-industry">📡 Telecom</div><p>Telecom providers already using HubSpot don't have to abandon it — the native integration keeps both systems in sync. Calendar sync with Outlook means dispatchers and field teams work from one source of truth.</p></div>
-        <div class="vp-card msp"><div class="vp-industry">💻 MSP</div><p>For MSPs, the RMM integrations (NinjaOne, N-able, Acronis) are the headline. Alerts from your RMM automatically create tickets in Rev.io — closing the gap between monitoring and service delivery without manual intervention.</p></div>
-        <div class="vp-card integrator"><div class="vp-industry">🔒 Security Integrator</div><p>The COPS Monitoring integration is purpose-built for security integrators — alarm events from the central station flow directly into Rev.io service tickets. Documentation in Hudu stays linked to the customer record.</p></div>
+        <div class="vp-card msp"><div class="vp-industry">💻 MSP</div><p>For MSPs, the RMM and documentation integrations are the headline. NinjaOne and N-able support service automation use cases, Acronis now starts with one-way customer sync, and IT Glue/Hudu keep documentation tied to customer and asset records.</p></div>
+        <div class="vp-card integrator"><div class="vp-industry">🔒 Security Integrator</div><p>The COPS Monitoring integration is purpose-built for security integrators — alarm events from the central station flow directly into Rev.io service tickets. Documentation in Hudu or IT Glue stays linked to the customer and asset record.</p></div>
       </div>
     </div>
     <div class="callout green">
@@ -1273,6 +1287,10 @@ Mar 20, 2026.</pre>
     <div class="callout yellow">
       <div class="callout-label">Note</div>
       <p>Project Management is currently in <strong>beta</strong>. Lead with what's available today and position ongoing development as a sign of active investment in the platform.</p>
+    </div>
+    <div class="callout green">
+      <div class="callout-label">Recent Release</div>
+      <p>Project analytics now include Portfolio Overview, Schedule Health, Labor &amp; Margin, Labor Variance, and Inventory &amp; PO Risk dashboards. Use this to connect project execution back to executive visibility.</p>
     </div>
     <h4>Key Capabilities</h4>
     <ul>
