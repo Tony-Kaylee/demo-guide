@@ -43,7 +43,7 @@
 
     .app {
       display: grid;
-      grid-template-columns: 300px minmax(0, 1fr);
+      grid-template-columns: 260px minmax(0, 1fr);
       min-height: 100vh;
     }
 
@@ -51,7 +51,7 @@
       position: sticky;
       top: 0;
       height: 100vh;
-      padding: 24px 20px;
+      padding: 24px 18px;
       border-right: 1px solid var(--line);
       background: #090f1b;
       color: #eef4fb;
@@ -170,9 +170,9 @@
     }
 
     main {
-      max-width: 1480px;
+      max-width: none;
       width: 100%;
-      padding: 32px;
+      padding: 32px 40px;
     }
 
     .hero {
@@ -233,8 +233,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
       margin-top: 24px;
     }
 
@@ -266,8 +266,8 @@
 
     .quick-list {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 10px;
       margin-top: 4px;
     }
 
@@ -276,11 +276,15 @@
       grid-template-columns: 20px minmax(0, 1fr);
       gap: 10px;
       align-items: start;
-      padding: 8px;
+      padding: 12px;
       border: 1px solid var(--line);
       border-radius: 7px;
       background: var(--panel-2);
-      min-height: 92px;
+      min-height: 96px;
+    }
+
+    .check:last-child {
+      grid-column: span 2;
     }
 
     .check input {
@@ -324,10 +328,10 @@
       gap: 14px;
     }
 
-    .weeks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .deep-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .scenario-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .cert-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .weeks { grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); }
+    .deep-grid { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
+    .scenario-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .cert-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
 
     .card {
       border: 1px solid var(--line);
@@ -427,7 +431,7 @@
 
     .demo-path {
       display: grid;
-      grid-template-columns: repeat(7, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 10px;
     }
 
@@ -489,7 +493,7 @@
       border-top: 1px solid var(--line);
       padding: 16px;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 14px;
     }
 
@@ -527,7 +531,7 @@
 
     .rubric {
       display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 10px;
       margin-top: 14px;
     }
@@ -563,15 +567,13 @@
       .app { grid-template-columns: 1fr; }
       aside { position: relative; height: auto; }
       nav { grid-template-columns: repeat(3, minmax(0, 1fr)); display: grid; }
-      .weeks, .deep-grid, .scenario-grid, .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .quick-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .demo-path { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .detail-body, .rubric { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      main { padding: 26px; }
     }
 
     @media (max-width: 720px) {
       main, aside { padding: 18px; }
       nav, .hero-grid, .quick-list, .weeks, .deep-grid, .scenario-grid, .cert-grid, .demo-path, .detail-body, .rubric { grid-template-columns: 1fr; }
+      .check:last-child { grid-column: auto; }
       h2 { font-size: 26px; }
       .section-head { display: block; }
     }
