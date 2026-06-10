@@ -19,21 +19,20 @@ By the end of onboarding, the SE can:
 
 ## Recommended Timeline
 
-The plan assumes a four-week ramp. A faster ramp can compress the observation and practice blocks, but the certification gates should stay intact.
+The plan assumes a 60-day ramp to demo-ready status. The first 30 days are about product foundation and controlled demo execution. The second 30 days are about depth, buyer-specific branching, objection handling, and certification. A faster ramp can compress the observation and practice blocks, but the certification gates should stay intact.
 
-### Week 1 - Product Map and Core Narrative
+### Days 1-7 - Foundation and Product Map
 
 Focus:
 - Understand what Rev.io PSA is and how the modules fit together.
-- Learn the end-to-end demo story.
 - Watch or review the existing 14-step demo guide.
 - Build a module map from the left navigation.
+- Learn the language of the major records: customer, opportunity, quote, ticket, project, asset, product, invoice, bill profile, agreement, service.
 
 Required outcomes:
 - Can explain the platform in under two minutes.
 - Can name the core modules and their business purpose.
-- Can narrate the quote-to-cash flow at a whiteboard level.
-- Can identify the best starting point for different prospect types.
+- Can explain what each module owns in the customer lifecycle.
 
 Core product areas:
 - Home and Revii
@@ -46,25 +45,43 @@ Core product areas:
 - Customer portal
 
 Practice exercise:
+- Build a one-page module map.
+- Explain each module without logging into the product.
+
+Gate:
+- Manager or mentor confirms the SE understands the product map and vocabulary.
+
+### Days 8-14 - Core Story Without Clicking
+
+Focus:
+- Learn the end-to-end demo story.
+- Explain why the connected workflow matters.
+- Understand the handoffs between sales, service, dispatch, inventory, field work, billing, and the customer portal.
+
+Required outcomes:
+- Can narrate the quote-to-cash flow at a whiteboard level.
+- Can identify the best starting point for different prospect types.
+- Can explain what happens after a quote is accepted.
+- Can explain why Rev.io reduces re-keying between sales, operations, and billing.
+
+Practice exercise:
 - Give a 10-minute verbal walkthrough without logging into the product.
-- Explain what happens after a quote is accepted.
-- Explain why Rev.io reduces re-keying between sales, operations, and billing.
+- Explain the same story for a telecom prospect and a security integrator prospect.
 
 Gate:
 - Manager or mentor confirms the SE can describe the full operating flow clearly.
 
-### Week 2 - Core Demo Execution
+### Days 15-21 - Guided Click Path
 
 Focus:
 - Learn the click path and timing for the primary demo.
-- Practice the standard demo until it is smooth.
 - Learn what to avoid clicking in the demo tenant.
+- Understand the safe records and recovery path if the demo changes.
 
 Required outcomes:
-- Can deliver the 30-45 minute full demo.
+- Can follow the full demo with notes.
 - Can recover if a record is not where expected.
-- Can use Revii prompts naturally during customer, ticket, inventory, and analytics moments.
-- Can explain the difference between recurring and one-time revenue flows.
+- Knows which billing and invoice actions should be narrated instead of executed.
 
 Core demo path:
 1. Dashboard and executive view
@@ -83,20 +100,112 @@ Core demo path:
 14. Customer portal and self-service
 
 Practice exercise:
-- Run the full demo twice: once from notes, once without notes.
-- Record a 15-minute compressed version for review.
+- Run the full demo once with a mentor.
+- Run the full demo once solo with notes.
 
 Gate:
 - SE can complete the demo without breaking the story or clicking destructive actions.
 
-### Week 3 - Deep Dives and Discovery Branching
+### Days 22-30 - Core Demo Repetition
 
 Focus:
-- Build depth in product feature sets.
+- Practice the standard demo until it is smooth.
+- Use Revii prompts naturally during customer, ticket, inventory, and analytics moments.
+- Explain the difference between recurring and one-time revenue flows.
+
+Required outcomes:
+- Can deliver the 30-45 minute full demo.
+- Can deliver a 15-minute compressed version.
+- Can explain transitions without sounding scripted.
+
+Practice exercise:
+- Run the full demo twice: once from notes, once without notes.
+- Record a 15-minute compressed version for review.
+
+Gate:
+- SE can run the full demo cleanly and receive targeted feedback on pace, product accuracy, and story clarity.
+
+### Days 31-38 - Operational Deep Dives
+
+Focus:
+- Build depth in operational product areas most likely to determine fit.
+- Connect feature detail to buyer pain.
+
+Primary tracks:
+- Service and Ticketing
+- Scheduling, Dispatch, and Mobile Field Work
+- Inventory, Products, Packages, and Purchasing
+- Project Management
+- Billing and Revenue Operations
+
+Practice exercise:
+- Pick one operational pain prompt and run a 10-minute branch from the core demo.
+
+Gate:
+- SE can go deep on at least two operational areas without losing the platform story.
+
+### Days 39-46 - Executive and Technical Depth
+
+Focus:
+- Build depth in executive, reporting, automation, integration, and admin conversations.
+
+Primary tracks:
+- Analytics, Revii, and Reporting
+- Automation, Flows, Notifications, and Macros
+- Integrations, API, and Admin
+
+Practice exercise:
+- Answer an executive reporting prompt.
+- Answer a technical integration prompt.
+- Explain API/custom integration positioning without overcommitting.
+
+Gate:
+- SE can separate packaged functionality from API-scoped or roadmap-sensitive work.
+
+### Days 47-54 - Buyer Scenarios and Discovery Branching
+
+Focus:
 - Learn how to branch based on prospect pain.
 - Learn proof points, language, and limitations for each feature area.
+- Practice vertical-specific demo emphasis for telecom, MSP, security integrator, and AV/field service prospects.
 
-Deep dive tracks:
+Practice exercise:
+- Run two buyer scenarios.
+- Handle five objection questions.
+- Write one RFP-style answer.
+
+Gate:
+- SE can choose the right deep dive based on a discovery prompt and speak for 10 minutes without losing the core story.
+
+### Days 55-60 - Certification and Shadow-Ready Status
+
+Focus:
+- Prove demo readiness.
+- Identify where the SE still needs support before fully owning live calls.
+
+Certification requirements:
+- 15-minute compressed demo
+- 45-minute full demo
+- One assigned deep dive
+- One surprise discovery branch
+- Five objection-handling questions
+- One written RFP-style answer
+
+Certification rubric:
+- Story clarity
+- Product accuracy
+- Click-path confidence
+- Discovery alignment
+- Business value articulation
+- Accurate limit/roadmap positioning
+- Recovery when the demo changes
+
+Gate:
+- Manager or mentor approves the SE as shadow-ready or demo-ready with specific coaching notes.
+
+## Deep Dive Tracks
+
+The deep dive tracks below support the second half of the 60-day ramp.
 
 #### Customer Management and CRM
 
@@ -284,17 +393,9 @@ SE should be able to answer:
 Demo exercise:
 - Show the integrations library, then show API key management and role permissions.
 
-Gate:
-- SE can choose the right deep dive based on a discovery prompt and speak for 10 minutes without losing the core story.
+## Buyer-Specific Scenario Tracks
 
-### Week 4 - Buyer-Specific Scenarios and Certification
-
-Focus:
-- Turn product knowledge into buyer-specific demo judgment.
-- Practice objection handling and RFP-style answers.
-- Certify demo readiness.
-
-Scenario tracks:
+These scenario tracks support Days 47-54 and the final certification work. The SE should learn how the same product story changes emphasis depending on the buyer's operating model.
 
 #### Telecom / UCaaS
 
@@ -356,7 +457,7 @@ Likely questions:
 - Can we manage project margin?
 - Can field techs complete work without accounting involvement?
 
-Certification requirements:
+Certification requirements, used during Days 55-60:
 - 15-minute compressed demo
 - 45-minute full demo
 - One assigned deep dive

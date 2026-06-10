@@ -6,21 +6,23 @@
   <title>Rev.io PSA SE Onboarding</title>
   <style>
     :root {
-      --bg: #f6f8fb;
-      --ink: #182235;
-      --muted: #66758a;
-      --quiet: #8a97aa;
-      --panel: #ffffff;
-      --panel-2: #f0f4f8;
-      --line: #d9e2ee;
-      --line-2: #c4d2e3;
-      --green: #18875b;
-      --blue: #2367d1;
-      --cyan: #08879a;
-      --gold: #a66d08;
-      --red: #bf3d38;
-      --violet: #7157c8;
-      --shadow: 0 14px 42px rgba(24, 34, 53, .08);
+      --bg: #070b12;
+      --bg-2: #0b111d;
+      --ink: #edf4ff;
+      --muted: #a5b4ca;
+      --quiet: #708198;
+      --panel: #111a29;
+      --panel-2: #0d1422;
+      --panel-3: #162236;
+      --line: #26364f;
+      --line-2: #334766;
+      --green: #4ade80;
+      --blue: #60a5fa;
+      --cyan: #22d3ee;
+      --gold: #fbbf24;
+      --red: #fb7185;
+      --violet: #a78bfa;
+      --shadow: 0 20px 60px rgba(0, 0, 0, .35);
     }
 
     * { box-sizing: border-box; }
@@ -28,7 +30,10 @@
     body {
       margin: 0;
       color: var(--ink);
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(34, 211, 238, .08), transparent 34vw),
+        radial-gradient(circle at top right, rgba(74, 222, 128, .08), transparent 30vw),
+        var(--bg);
       font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.45;
     }
@@ -48,7 +53,7 @@
       height: 100vh;
       padding: 24px 20px;
       border-right: 1px solid var(--line);
-      background: #101827;
+      background: #090f1b;
       color: #eef4fb;
       overflow-y: auto;
     }
@@ -254,14 +259,14 @@
     }
 
     .review-card {
-      padding: 24px;
+      padding: 20px;
       display: grid;
-      gap: 14px;
+      gap: 12px;
     }
 
     .quick-list {
       display: grid;
-      gap: 10px;
+      gap: 8px;
       margin-top: 4px;
     }
 
@@ -270,10 +275,10 @@
       grid-template-columns: 20px minmax(0, 1fr);
       gap: 10px;
       align-items: start;
-      padding: 10px;
+      padding: 8px;
       border: 1px solid var(--line);
       border-radius: 7px;
-      background: #fbfcfe;
+      background: var(--panel-2);
     }
 
     .check input {
@@ -294,6 +299,7 @@
       color: var(--muted);
       font-size: 12px;
       margin-top: 2px;
+      line-height: 1.25;
     }
 
     section {
@@ -316,7 +322,7 @@
       gap: 14px;
     }
 
-    .weeks { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .weeks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .deep-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .scenario-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .cert-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -324,7 +330,7 @@
     .card {
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #fbfcfe;
+      background: var(--panel-2);
       padding: 16px;
       min-height: 100%;
     }
@@ -347,10 +353,49 @@
       margin-bottom: 12px;
     }
 
-    .tag.blue { background: #e9f0ff; color: var(--blue); }
-    .tag.gold { background: #fff3da; color: var(--gold); }
-    .tag.violet { background: #f0edff; color: var(--violet); }
-    .tag.red { background: #ffeded; color: var(--red); }
+    .tag.blue { background: rgba(96, 165, 250, .14); color: var(--blue); }
+    .tag.gold { background: rgba(251, 191, 36, .14); color: var(--gold); }
+    .tag.violet { background: rgba(167, 139, 250, .16); color: var(--violet); }
+    .tag.red { background: rgba(251, 113, 133, .14); color: var(--red); }
+    .tag { background: rgba(74, 222, 128, .14); }
+
+    .phase {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015));
+    }
+
+    .phase-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: rgba(74, 222, 128, .13);
+      border: 1px solid rgba(74, 222, 128, .22);
+      color: var(--green);
+      font-weight: 900;
+      font-size: 24px;
+    }
+
+    .phase-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .phase-meta span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 8px;
+      color: var(--muted);
+      font-size: 11px;
+      background: rgba(255,255,255,.03);
+    }
 
     ul {
       margin: 10px 0 0;
@@ -387,7 +432,7 @@
     .step {
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #fbfcfe;
+      background: var(--panel-2);
       padding: 12px;
       min-height: 112px;
     }
@@ -413,7 +458,7 @@
     details {
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #fbfcfe;
+      background: var(--panel-2);
       overflow: hidden;
     }
 
@@ -447,7 +492,7 @@
     }
 
     .mini {
-      background: var(--panel-2);
+      background: var(--panel-3);
       border-radius: 7px;
       padding: 12px;
     }
@@ -487,7 +532,7 @@
 
     .rubric div {
       border: 1px solid var(--line);
-      background: #fbfcfe;
+      background: var(--panel-2);
       border-radius: 8px;
       padding: 12px;
       min-height: 74px;
@@ -570,12 +615,12 @@
         <div class="panel hero-main">
           <div class="eyebrow">Solutions Engineering Enablement</div>
           <h2>Rev.io PSA onboarding built around demo fluency.</h2>
-          <p>This site organizes the new SE ramp around the way prospects actually buy: understand the business problem, run the core quote-to-cash story, then branch into the right feature set when discovery creates an opening.</p>
+          <p>This site organizes the new SE ramp around the way prospects actually buy: understand the business problem, build product fluency, run the core quote-to-cash story, then branch into the right feature set when discovery creates an opening.</p>
           <div class="hero-grid">
-            <div class="metric"><strong>4</strong><span>Week ramp path</span></div>
+            <div class="metric"><strong>60</strong><span>Days to demo-ready</span></div>
             <div class="metric"><strong>14</strong><span>Core demo steps</span></div>
             <div class="metric"><strong>10</strong><span>Deep dive tracks</span></div>
-            <div class="metric"><strong>4</strong><span>Buyer scenarios</span></div>
+            <div class="metric"><strong>8</strong><span>Ramp phases</span></div>
           </div>
         </div>
 
@@ -587,7 +632,7 @@
           </div>
           <div class="quick-list">
             <label class="check"><input type="checkbox" data-check="story"><span>Core story feels right<small>Quote-to-cash is the anchor, with deep dives as branches.</small></span></label>
-            <label class="check"><input type="checkbox" data-check="timeline"><span>Ramp timeline is realistic<small>Four weeks, with gates instead of vague learning goals.</small></span></label>
+            <label class="check"><input type="checkbox" data-check="timeline"><span>Ramp timeline is realistic<small>Sixty days, with space for observation, practice, and certification.</small></span></label>
             <label class="check"><input type="checkbox" data-check="features"><span>Feature sets are complete<small>Customer, quoting, service, inventory, projects, billing, analytics, automation, integrations.</small></span></label>
             <label class="check"><input type="checkbox" data-check="scenarios"><span>Buyer scenarios match our deals<small>Telecom, MSP, security integrator, and AV/field service coverage.</small></span></label>
             <label class="check"><input type="checkbox" data-check="cert"><span>Certification gates are useful<small>Demo, deep dive, surprise branch, objection handling, written answer.</small></span></label>
@@ -599,34 +644,90 @@
         <div class="section-head">
           <div>
             <div class="eyebrow">Ramp Timeline</div>
-            <h3>Four-week path from product map to certified demo.</h3>
-            <p>The ramp can compress, but the gates should remain because they prove demo readiness.</p>
+            <h3>Sixty-day path from product map to demo-ready.</h3>
+            <p>The plan gives the new SE breathing room: foundation first, then controlled demo practice, then discovery-driven depth, then certification.</p>
           </div>
         </div>
         <div class="grid weeks">
-          <div class="card">
-            <div class="tag">Week 1</div>
-            <h4>Product Map and Narrative</h4>
-            <p>Understand what Rev.io PSA is, how the modules fit together, and how to tell the connected business story.</p>
-            <ul><li>Map the left navigation</li><li>Review the current 14-step demo guide</li><li>Explain quote-to-cash without clicking</li><li>Practice a 10-minute verbal walkthrough</li></ul>
+          <div class="card phase">
+            <div class="phase-num">1</div>
+            <div>
+              <div class="tag">Days 1-7</div>
+              <h4>Foundation and Product Map</h4>
+              <p>Learn the business purpose of the platform before worrying about every click.</p>
+              <div class="phase-meta"><span>Observe</span><span>Map modules</span><span>Build vocabulary</span></div>
+              <ul><li>Map the left navigation and major records</li><li>Review the current demo guide and product knowledge base</li><li>Explain what each module does in plain English</li></ul>
+            </div>
           </div>
-          <div class="card">
-            <div class="tag blue">Week 2</div>
-            <h4>Core Demo Execution</h4>
-            <p>Learn the click path, transitions, Revii moments, and safe-demo guardrails.</p>
-            <ul><li>Run the full demo twice</li><li>Record a compressed 15-minute version</li><li>Use tested Revii prompts</li><li>Avoid destructive billing actions</li></ul>
+          <div class="card phase">
+            <div class="phase-num">2</div>
+            <div>
+              <div class="tag blue">Days 8-14</div>
+              <h4>Core Story Without Clicking</h4>
+              <p>Make sure the SE can tell the story before they try to drive the product.</p>
+              <div class="phase-meta"><span>Whiteboard</span><span>Talk track</span><span>Handoffs</span></div>
+              <ul><li>Explain quote-to-cash from memory</li><li>Describe sales to service to billing handoffs</li><li>Practice a 10-minute verbal walkthrough</li></ul>
+            </div>
           </div>
-          <div class="card">
-            <div class="tag gold">Week 3</div>
-            <h4>Deep Dives and Branching</h4>
-            <p>Build enough depth to pivot based on discovery without losing the main story.</p>
-            <ul><li>Practice each feature set</li><li>Learn current limits and release notes</li><li>Connect features to buyer pain</li><li>Speak for 10 minutes on a chosen branch</li></ul>
+          <div class="card phase">
+            <div class="phase-num">3</div>
+            <div>
+              <div class="tag gold">Days 15-21</div>
+              <h4>Guided Click Path</h4>
+              <p>Drive the core demo slowly with notes, focusing on transitions and safe demo behavior.</p>
+              <div class="phase-meta"><span>Guided demo</span><span>Safe records</span><span>Recovery</span></div>
+              <ul><li>Run the 14-step demo with a mentor</li><li>Learn what not to click in billing and invoice areas</li><li>Practice recovering when a record is not where expected</li></ul>
+            </div>
           </div>
-          <div class="card">
-            <div class="tag violet">Week 4</div>
-            <h4>Scenarios and Certification</h4>
-            <p>Turn product knowledge into buyer-specific judgment and final demo readiness.</p>
-            <ul><li>Run vertical scenarios</li><li>Handle objections</li><li>Write an RFP-style answer</li><li>Pass final capstone</li></ul>
+          <div class="card phase">
+            <div class="phase-num">4</div>
+            <div>
+              <div class="tag violet">Days 22-30</div>
+              <h4>Core Demo Repetition</h4>
+              <p>Move from guided execution to a clean, repeatable demo with fewer notes.</p>
+              <div class="phase-meta"><span>Practice</span><span>Record</span><span>Refine</span></div>
+              <ul><li>Record a 15-minute compressed demo</li><li>Run a 30-45 minute full demo internally</li><li>Get feedback on pace, transitions, and clarity</li></ul>
+            </div>
+          </div>
+          <div class="card phase">
+            <div class="phase-num">5</div>
+            <div>
+              <div class="tag">Days 31-38</div>
+              <h4>Operational Deep Dives</h4>
+              <p>Build depth in the areas most likely to decide operational fit.</p>
+              <div class="phase-meta"><span>Service</span><span>Inventory</span><span>Projects</span></div>
+              <ul><li>Practice ticketing, dispatch, mobile, and billing handoff</li><li>Show inventory reservations, serial tracking, and POs</li><li>Explain projects, milestones, Gantt, and job costing</li></ul>
+            </div>
+          </div>
+          <div class="card phase">
+            <div class="phase-num">6</div>
+            <div>
+              <div class="tag blue">Days 39-46</div>
+              <h4>Executive and Technical Depth</h4>
+              <p>Round out the story with analytics, Revii, automation, integrations, API, and admin.</p>
+              <div class="phase-meta"><span>Analytics</span><span>Automation</span><span>Integrations</span></div>
+              <ul><li>Use Revii and analytics prompts intentionally</li><li>Explain flows, notifications, and macros</li><li>Separate packaged integrations from custom API work</li></ul>
+            </div>
+          </div>
+          <div class="card phase">
+            <div class="phase-num">7</div>
+            <div>
+              <div class="tag gold">Days 47-54</div>
+              <h4>Buyer Scenario Practice</h4>
+              <p>Tailor the demo for the types of rooms we actually sell into.</p>
+              <div class="phase-meta"><span>Telecom</span><span>MSP</span><span>Security / AV</span></div>
+              <ul><li>Run vertical scenario drills</li><li>Handle discovery pivots and objections</li><li>Write one RFP-style answer from the product story</li></ul>
+            </div>
+          </div>
+          <div class="card phase">
+            <div class="phase-num">8</div>
+            <div>
+              <div class="tag red">Days 55-60</div>
+              <h4>Certification and Shadow-Ready</h4>
+              <p>Prove demo readiness and define where the SE still needs live-call support.</p>
+              <div class="phase-meta"><span>Capstone</span><span>Feedback</span><span>Next steps</span></div>
+              <ul><li>Deliver the full demo with one assigned deep dive</li><li>Handle one surprise discovery branch</li><li>Review scorecard and approve shadow-ready status</li></ul>
+            </div>
           </div>
         </div>
       </section>
