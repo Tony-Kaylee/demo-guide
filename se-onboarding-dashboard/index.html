@@ -177,7 +177,7 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.5fr) 420px;
+      grid-template-columns: 1fr;
       gap: 20px;
       align-items: start;
     }
@@ -227,7 +227,7 @@
     }
 
     .hero-main p {
-      max-width: 860px;
+      max-width: 1040px;
       font-size: 15px;
     }
 
@@ -266,6 +266,7 @@
 
     .quick-list {
       display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 8px;
       margin-top: 4px;
     }
@@ -279,6 +280,7 @@
       border: 1px solid var(--line);
       border-radius: 7px;
       background: var(--panel-2);
+      min-height: 92px;
     }
 
     .check input {
@@ -561,15 +563,15 @@
       .app { grid-template-columns: 1fr; }
       aside { position: relative; height: auto; }
       nav { grid-template-columns: repeat(3, minmax(0, 1fr)); display: grid; }
-      .hero { grid-template-columns: 1fr; }
       .weeks, .deep-grid, .scenario-grid, .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .quick-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .demo-path { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .detail-body, .rubric { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 720px) {
       main, aside { padding: 18px; }
-      nav, .hero-grid, .weeks, .deep-grid, .scenario-grid, .cert-grid, .demo-path, .detail-body, .rubric { grid-template-columns: 1fr; }
+      nav, .hero-grid, .quick-list, .weeks, .deep-grid, .scenario-grid, .cert-grid, .demo-path, .detail-body, .rubric { grid-template-columns: 1fr; }
       h2 { font-size: 26px; }
       .section-head { display: block; }
     }
@@ -615,12 +617,12 @@
         <div class="panel hero-main">
           <div class="eyebrow">Solutions Engineering Enablement</div>
           <h2>Rev.io PSA onboarding built around demo fluency.</h2>
-          <p>This site organizes the new SE ramp around the way prospects actually buy: understand the business problem, build product fluency, run the core quote-to-cash story, then branch into the right feature set when discovery creates an opening.</p>
+          <p>This site organizes the new SE ramp around the way prospects actually buy: understand the business problem, build product fluency, shadow live demos early, run the core quote-to-cash story, then branch into the right feature set when discovery creates an opening.</p>
           <div class="hero-grid">
-            <div class="metric"><strong>60</strong><span>Days to demo-ready</span></div>
+            <div class="metric"><strong>14</strong><span>Days to shadow-ready</span></div>
+            <div class="metric"><strong>60</strong><span>Days to lead-demo approval</span></div>
             <div class="metric"><strong>14</strong><span>Core demo steps</span></div>
             <div class="metric"><strong>10</strong><span>Deep dive tracks</span></div>
-            <div class="metric"><strong>8</strong><span>Ramp phases</span></div>
           </div>
         </div>
 
@@ -632,7 +634,7 @@
           </div>
           <div class="quick-list">
             <label class="check"><input type="checkbox" data-check="story"><span>Core story feels right<small>Quote-to-cash is the anchor, with deep dives as branches.</small></span></label>
-            <label class="check"><input type="checkbox" data-check="timeline"><span>Ramp timeline is realistic<small>Sixty days, with space for observation, practice, and certification.</small></span></label>
+            <label class="check"><input type="checkbox" data-check="timeline"><span>Ramp timeline is realistic<small>Shadow-ready by week 2, lead-demo approval by day 60.</small></span></label>
             <label class="check"><input type="checkbox" data-check="features"><span>Feature sets are complete<small>Customer, quoting, service, inventory, projects, billing, analytics, automation, integrations.</small></span></label>
             <label class="check"><input type="checkbox" data-check="scenarios"><span>Buyer scenarios match our deals<small>Telecom, MSP, security integrator, and AV/field service coverage.</small></span></label>
             <label class="check"><input type="checkbox" data-check="cert"><span>Certification gates are useful<small>Demo, deep dive, surprise branch, objection handling, written answer.</small></span></label>
@@ -644,8 +646,8 @@
         <div class="section-head">
           <div>
             <div class="eyebrow">Ramp Timeline</div>
-            <h3>Sixty-day path from product map to demo-ready.</h3>
-            <p>The plan gives the new SE breathing room: foundation first, then controlled demo practice, then discovery-driven depth, then certification.</p>
+            <h3>Shadow-ready by week 2, lead-demo approval by day 60.</h3>
+            <p>The new SE should be able to sit in on demos early, learn from live calls, and build toward approval to lead their own demos at the 60-day gate.</p>
           </div>
         </div>
         <div class="grid weeks">
@@ -663,10 +665,10 @@
             <div class="phase-num">2</div>
             <div>
               <div class="tag blue">Days 8-14</div>
-              <h4>Core Story Without Clicking</h4>
-              <p>Make sure the SE can tell the story before they try to drive the product.</p>
-              <div class="phase-meta"><span>Whiteboard</span><span>Talk track</span><span>Handoffs</span></div>
-              <ul><li>Explain quote-to-cash from memory</li><li>Describe sales to service to billing handoffs</li><li>Practice a 10-minute verbal walkthrough</li></ul>
+              <h4>Shadow-Ready Observation Gate</h4>
+              <p>Prepare the SE to join live demos as an observer and understand what they are watching.</p>
+              <div class="phase-meta"><span>Shadow demos</span><span>Talk track</span><span>Handoffs</span></div>
+              <ul><li>Explain quote-to-cash from memory</li><li>Describe sales to service to billing handoffs</li><li>Join live demos with a structured observation checklist</li></ul>
             </div>
           </div>
           <div class="card phase">
@@ -723,10 +725,10 @@
             <div class="phase-num">8</div>
             <div>
               <div class="tag red">Days 55-60</div>
-              <h4>Certification and Shadow-Ready</h4>
-              <p>Prove demo readiness and define where the SE still needs live-call support.</p>
+              <h4>Certification and Lead-Demo Approval</h4>
+              <p>Prove readiness to lead demos, with clear notes on where support is still needed.</p>
               <div class="phase-meta"><span>Capstone</span><span>Feedback</span><span>Next steps</span></div>
-              <ul><li>Deliver the full demo with one assigned deep dive</li><li>Handle one surprise discovery branch</li><li>Review scorecard and approve shadow-ready status</li></ul>
+              <ul><li>Deliver the full demo with one assigned deep dive</li><li>Handle one surprise discovery branch</li><li>Review scorecard and approve lead-demo status</li></ul>
             </div>
           </div>
         </div>

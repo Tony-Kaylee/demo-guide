@@ -19,7 +19,9 @@ By the end of onboarding, the SE can:
 
 ## Recommended Timeline
 
-The plan assumes a 60-day ramp to demo-ready status. The first 30 days are about product foundation and controlled demo execution. The second 30 days are about depth, buyer-specific branching, objection handling, and certification. A faster ramp can compress the observation and practice blocks, but the certification gates should stay intact.
+The plan assumes a 60-day ramp to approval for leading demos. The new SE should be shadow-ready by the end of week 2, meaning they can sit in on live demos, understand the story, take useful notes, and begin learning from real prospect interactions. They should not lead their own demos until they pass the 60-day approval gate.
+
+The first 30 days are about product foundation, shadowing, and controlled demo execution. The second 30 days are about depth, buyer-specific branching, objection handling, and certification. A faster ramp can compress the observation and practice blocks, but the certification gates should stay intact.
 
 ### Days 1-7 - Foundation and Product Map
 
@@ -51,25 +53,29 @@ Practice exercise:
 Gate:
 - Manager or mentor confirms the SE understands the product map and vocabulary.
 
-### Days 8-14 - Core Story Without Clicking
+### Days 8-14 - Shadow-Ready Observation Gate
 
 Focus:
 - Learn the end-to-end demo story.
 - Explain why the connected workflow matters.
 - Understand the handoffs between sales, service, dispatch, inventory, field work, billing, and the customer portal.
+- Become ready to sit in on Tony's demos as an observer and active learner.
 
 Required outcomes:
 - Can narrate the quote-to-cash flow at a whiteboard level.
 - Can identify the best starting point for different prospect types.
 - Can explain what happens after a quote is accepted.
 - Can explain why Rev.io reduces re-keying between sales, operations, and billing.
+- Can shadow live demos with a structured observation checklist.
+- Understands they are observing and learning, not leading demos yet.
 
 Practice exercise:
 - Give a 10-minute verbal walkthrough without logging into the product.
 - Explain the same story for a telecom prospect and a security integrator prospect.
+- Shadow at least one live or recorded demo and write down the prospect pain, modules shown, and follow-up items.
 
 Gate:
-- Manager or mentor confirms the SE can describe the full operating flow clearly.
+- Manager or mentor confirms the SE is shadow-ready for live demos by the end of week 2.
 
 ### Days 15-21 - Guided Click Path
 
@@ -177,7 +183,7 @@ Practice exercise:
 Gate:
 - SE can choose the right deep dive based on a discovery prompt and speak for 10 minutes without losing the core story.
 
-### Days 55-60 - Certification and Shadow-Ready Status
+### Days 55-60 - Certification and Lead-Demo Approval
 
 Focus:
 - Prove demo readiness.
@@ -201,7 +207,7 @@ Certification rubric:
 - Recovery when the demo changes
 
 Gate:
-- Manager or mentor approves the SE as shadow-ready or demo-ready with specific coaching notes.
+- Manager or mentor approves the SE to lead demos or provides specific coaching notes before approval.
 
 ## Deep Dive Tracks
 
