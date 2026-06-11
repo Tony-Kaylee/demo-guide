@@ -36,10 +36,33 @@
         var(--bg);
       font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.45;
+      overflow-x: hidden;
     }
 
     a { color: inherit; }
     button, input { font: inherit; }
+
+    .app,
+    main,
+    aside,
+    section,
+    .panel,
+    .card,
+    .check,
+    .resource-link {
+      min-width: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    .check span,
+    .check small,
+    .resource-link {
+      overflow-wrap: anywhere;
+    }
 
     .app {
       display: grid;
@@ -233,7 +256,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
       gap: 14px;
       margin-top: 24px;
     }
@@ -264,9 +287,10 @@
       gap: 12px;
     }
 
-    .quick-list {
+    .quick-list,
+    .resource-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
       gap: 10px;
       margin-top: 4px;
     }
@@ -308,6 +332,67 @@
       line-height: 1.25;
     }
 
+    .tracker-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .tracker-actions a,
+    .resource-link {
+      min-height: 36px;
+      border: 1px solid var(--line-2);
+      border-radius: 7px;
+      background: rgba(96, 165, 250, .12);
+      color: var(--ink);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .resource-link {
+      justify-content: flex-start;
+      min-height: 100%;
+      background: var(--panel-2);
+    }
+
+    .resource-link span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .status-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .status-pill,
+    .milestone-link {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 2px 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-decoration: none;
+      background: rgba(255,255,255,.04);
+    }
+
+    .status-pill.approved { color: var(--green); border-color: rgba(74, 222, 128, .35); }
+    .status-pill.review { color: var(--gold); border-color: rgba(251, 191, 36, .35); }
+    .status-pill.coaching { color: var(--red); border-color: rgba(251, 113, 133, .35); }
+    .milestone-link { color: var(--blue); }
+
     section {
       margin-top: 24px;
       padding: 24px;
@@ -328,10 +413,10 @@
       gap: 14px;
     }
 
-    .weeks { grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); }
-    .deep-grid { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
-    .scenario-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .cert-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .weeks { grid-template-columns: repeat(auto-fit, minmax(min(500px, 100%), 1fr)); }
+    .deep-grid { grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); }
+    .scenario-grid { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
+    .cert-grid { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
 
     .card {
       border: 1px solid var(--line);
@@ -431,7 +516,7 @@
 
     .demo-path {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
       gap: 10px;
     }
 
@@ -493,7 +578,7 @@
       border-top: 1px solid var(--line);
       padding: 16px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
       gap: 14px;
     }
 
@@ -531,7 +616,7 @@
 
     .rubric {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
       gap: 10px;
       margin-top: 14px;
     }
@@ -571,10 +656,59 @@
     }
 
     @media (max-width: 720px) {
+      body,
+      .app,
+      aside,
+      main {
+        width: 100vw;
+        max-width: 100vw;
+      }
+
+      .app {
+        display: block;
+        overflow-x: hidden;
+      }
+
+      .panel,
+      .hero-main,
+      .review-card,
+      section {
+        width: 100%;
+        max-width: calc(100vw - 36px);
+      }
+
       main, aside { padding: 18px; }
+      .hero-main,
+      .review-card,
+      section {
+        padding: 16px;
+      }
+
+      .hero-main > *,
+      .review-card > *,
+      section > * {
+        max-width: 100%;
+      }
+
+      aside > *,
+      main > * {
+        max-width: min(100%, 354px);
+      }
+
       nav, .hero-grid, .quick-list, .weeks, .deep-grid, .scenario-grid, .cert-grid, .demo-path, .detail-body, .rubric { grid-template-columns: 1fr; }
       .check:last-child { grid-column: auto; }
-      h2 { font-size: 26px; }
+      h2 {
+        font-size: 20px;
+        line-height: 1.18;
+        max-width: min(100%, 280px);
+      }
+
+      .hero-main p,
+      .section-head p,
+      .review-card p {
+        max-width: min(100%, 290px);
+      }
+
       .section-head { display: block; }
     }
   </style>
@@ -592,14 +726,15 @@
 
       <div class="review-box">
         <strong id="progress-number">0%</strong>
-        <span>Review checklist complete</span>
+        <span>Tony approvals marked locally</span>
         <div class="progress"><span id="progress-bar"></span></div>
       </div>
 
       <nav>
-        <a href="#review">Review First</a>
+        <a href="#approvals">Tony Approvals</a>
         <a href="#timeline">Ramp Timeline</a>
         <a href="#demo">End-to-End Demo</a>
+        <a href="#resources">Training Resources</a>
         <a href="#deep-dives">Feature Deep Dives</a>
         <a href="#scenarios">Buyer Scenarios</a>
         <a href="#revii">Revii Moments</a>
@@ -608,7 +743,8 @@
 
       <div class="side-actions">
         <button onclick="window.print()">Print / Save PDF</button>
-        <button onclick="resetChecks()">Reset Review Checks</button>
+        <button onclick="resetChecks()">Reset Local Milestones</button>
+        <a href="https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5">Open Notion Tracker</a>
         <a href="resources/revio-psa-se-onboarding-plan.md">Open Full Markdown Plan</a>
         <a href="/demo-guide.html">Open Existing Demo Guide</a>
       </div>
@@ -628,19 +764,17 @@
           </div>
         </div>
 
-        <div class="panel review-card" id="review">
+        <div class="panel review-card" id="approvals">
           <div>
-            <div class="eyebrow">Review First</div>
-            <h3>Tony review checklist</h3>
-            <p>Use these checks to quickly mark what feels right and what needs revision.</p>
+            <div class="eyebrow">Tony Approval Milestones</div>
+            <h3>Reusable approval gates for every SE ramp.</h3>
+            <p>Use the local marks for quick working sessions. The official employee status, approval dates, evidence, and coaching notes live in the Notion tracker.</p>
           </div>
-          <div class="quick-list">
-            <label class="check"><input type="checkbox" data-check="story"><span>Core story feels right<small>Quote-to-cash is the anchor, with deep dives as branches.</small></span></label>
-            <label class="check"><input type="checkbox" data-check="timeline"><span>Ramp timeline is realistic<small>Shadow-ready by week 2, lead-demo approval by day 60.</small></span></label>
-            <label class="check"><input type="checkbox" data-check="features"><span>Feature sets are complete<small>Customer, quoting, service, inventory, projects, billing, analytics, automation, integrations.</small></span></label>
-            <label class="check"><input type="checkbox" data-check="scenarios"><span>Buyer scenarios match our deals<small>Telecom, MSP, security integrator, and AV/field service coverage.</small></span></label>
-            <label class="check"><input type="checkbox" data-check="cert"><span>Certification gates are useful<small>Demo, deep dive, surprise branch, objection handling, written answer.</small></span></label>
+          <div class="tracker-actions">
+            <a href="https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5">Open SE Onboarding Tracker</a>
+            <a href="https://app.notion.com/p/Solutions-Engineer-fd8a4277e8b647a5995db09c3aeadfa3">Open Solutions Engineer Page</a>
           </div>
+          <div class="quick-list" id="milestone-list"></div>
         </div>
       </div>
 
@@ -748,6 +882,17 @@
         <div class="callout">Core talk track: sales, service, dispatch, inventory, field work, billing, and customer self-service are not separate stories. They are one connected workflow.</div>
       </section>
 
+      <section class="panel" id="resources">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Training Resources</div>
+            <h3>Detailed pages for the employee and Tony.</h3>
+            <p>The dashboard stays clean; detailed write-ups, coaching notes, and product-depth material live in linked Notion pages.</p>
+          </div>
+        </div>
+        <div class="resource-grid" id="resource-grid"></div>
+      </section>
+
       <section class="panel" id="deep-dives">
         <div class="section-head">
           <div>
@@ -814,7 +959,7 @@
         </div>
       </section>
 
-      <div class="footer">Rev.io PSA SE Onboarding - generated from Rev.io PSA demo guide, product knowledge base, and release notes - 2026-06-10</div>
+      <div class="footer">Rev.io PSA SE Onboarding - connected to the Solutions Engineer Notion tracker - 2026-06-11</div>
     </main>
   </div>
 
@@ -834,6 +979,24 @@
       ["Billing Review", "Ready for Billing and invoice handoff"],
       ["Customer Portal", "Self-service tickets, invoices, and visibility"],
       ["Close", "One connected quote-to-cash platform"]
+    ];
+
+    const approvalMilestones = [
+      ["foundation", "Foundation and Product Map Approval", "Days 1-7", "Explain the platform, modules, major records, and business purpose without relying on the UI."],
+      ["shadow", "Shadow-Ready Approval", "Days 8-14", "Tony approves the SE to sit in on live demos as an observer and active learner."],
+      ["clickpath", "Guided Click Path Approval", "Days 15-21", "Run the core demo slowly with notes, safe records, and recovery awareness."],
+      ["core-demo", "Core Demo Repetition Approval", "Days 22-30", "Deliver compressed and full internal demos with useful pacing, transitions, and accuracy."],
+      ["ops-depth", "Operational Deep Dive Approval", "Days 31-38", "Go deep on service, dispatch, mobile, inventory, projects, and billing handoff."],
+      ["exec-tech", "Executive and Technical Depth Approval", "Days 39-46", "Handle analytics, Revii, automation, integrations, API, admin, and roadmap-sensitive positioning."],
+      ["buyer-scenarios", "Buyer Scenario Approval", "Days 47-54", "Branch the demo based on telecom, MSP, security, AV, or field-service discovery prompts."],
+      ["lead-demo", "Lead-Demo Approval", "Days 55-60", "Tony approves the SE to lead demos after capstone, surprise branch, objections, and written response."]
+    ];
+
+    const resourceLinks = [
+      ["Core Demo Path", "14-step quote-to-cash talk track, safe records, practice prompts, and coaching notes.", "https://app.notion.com/p/SE-Onboarding-Core-Demo-Path-37ca59b7e7b28167a471f52fed26965f"],
+      ["Product Depth Topics", "Module-level write-ups for CRM, quoting, service, dispatch, inventory, projects, billing, analytics, automation, and admin.", "https://app.notion.com/p/SE-Onboarding-Product-Depth-Topics-37ca59b7e7b2816791e2c624f571c682"],
+      ["Buyer Scenarios", "Telecom, MSP, security, AV, and field-service branches with discovery prompts and proof points.", "https://app.notion.com/p/SE-Onboarding-Buyer-Scenarios-37ca59b7e7b281c0b63fe7fef0b11f9d"],
+      ["Certification Prep", "Capstone requirements, objection handling, written response, scorecard, and final lead-demo approval criteria.", "https://app.notion.com/p/SE-Onboarding-Certification-Prep-37ca59b7e7b2814a8372fad8bac855ff"]
     ];
 
     const deepDives = [
@@ -930,6 +1093,47 @@
       `).join("");
     }
 
+    function statusClass(status) {
+      if (status === "Approved") return "approved";
+      if (status === "Ready for Review") return "review";
+      if (status === "Needs Coaching") return "coaching";
+      return "";
+    }
+
+    function renderMilestones(items = approvalMilestones) {
+      const target = document.getElementById("milestone-list");
+      target.innerHTML = items.map(item => {
+        const key = item.key || item[0];
+        const title = item.name || item[1];
+        const phase = item.phase || item[2];
+        const notes = item.notes || item[3];
+        const status = item.status || "Not Started";
+        const url = item.url || "https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5";
+        return `
+        <label class="check">
+          <input type="checkbox" data-check="${key}">
+          <span>
+            ${title}
+            <small>${phase} - ${notes}</small>
+            <span class="status-line">
+              <span class="status-pill ${statusClass(status)}">${status}</span>
+              <a class="milestone-link" href="${url}" onclick="event.stopPropagation()">Open Notion row</a>
+            </span>
+          </span>
+        </label>
+      `}).join("");
+    }
+
+    function renderResources() {
+      const target = document.getElementById("resource-grid");
+      target.innerHTML = resourceLinks.map(item => `
+        <a class="resource-link" href="${item[2]}">
+          <strong>${item[0]}</strong>
+          <span>${item[1]}</span>
+        </a>
+      `).join("");
+    }
+
     function renderDeepDives() {
       const target = document.getElementById("deep-grid");
       target.innerHTML = deepDives.map((item, index) => `
@@ -976,9 +1180,27 @@
       updateProgress();
     }
 
+    function loadNotionSnapshot() {
+      fetch("data/notion-tracker-snapshot.json")
+        .then(response => response.ok ? response.json() : null)
+        .then(snapshot => {
+          if (!snapshot || !Array.isArray(snapshot.items)) return;
+          const items = snapshot.items.map((item, index) => ({
+            ...item,
+            key: item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `milestone-${index + 1}`
+          }));
+          renderMilestones(items);
+          loadChecks();
+        })
+        .catch(() => {});
+    }
+
     renderDemoPath();
+    renderMilestones();
+    renderResources();
     renderDeepDives();
     loadChecks();
+    loadNotionSnapshot();
   </script>
 </body>
 </html>
