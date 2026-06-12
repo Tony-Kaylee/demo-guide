@@ -1079,7 +1079,6 @@
 
       <nav>
         <a href="#access">Access Verification</a>
-        <a href="#approvals">Tony Approvals</a>
         <a href="#timeline">Ramp Timeline</a>
         <a href="#demo">End-to-End Demo</a>
         <a href="#resources">Training Resources</a>
@@ -1088,6 +1087,7 @@
         <a href="#revii">Revii Moments</a>
         <a href="#certification">Certification</a>
         <a href="#call-reviews">Call Reviews</a>
+        <a href="#approvals">Tony Approvals</a>
       </nav>
 
       <div class="side-actions">
@@ -1128,23 +1128,6 @@
           </div>
         </div>
 
-        <div class="panel review-card" id="approvals">
-          <div>
-            <div class="eyebrow">Tony Approval Milestones</div>
-            <h3>Reusable approval gates for every SE ramp.</h3>
-            <p>Use the status controls as the working tracker. Notion remains the back-end source of truth; exported changes can be applied server-side without exposing the Notion token in the browser.</p>
-          </div>
-          <div class="tracker-actions">
-            <a href="https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5">Open SE Onboarding Tracker</a>
-            <a href="https://app.notion.com/p/Solutions-Engineer-fd8a4277e8b647a5995db09c3aeadfa3">Open Solutions Engineer Page</a>
-            <button type="button" onclick="exportStatusChanges()">Export Status Changes</button>
-          </div>
-          <div class="sync-panel">
-            <p>Pending status changes are saved in this browser and can be synced to Notion by running the server-side status script with a Notion token.</p>
-            <textarea class="sync-output" id="status-sync-output" readonly placeholder="No pending status changes yet."></textarea>
-          </div>
-          <div class="quick-list" id="milestone-list"></div>
-        </div>
       </div>
 
       <section class="panel access-panel" id="access">
@@ -1416,6 +1399,24 @@
             <div class="segment-list" id="segment-score-list"></div>
           </div>
         </div>
+      </section>
+
+      <section class="panel review-card" id="approvals">
+        <div>
+          <div class="eyebrow">Tony Approval Milestones</div>
+          <h3>Reusable approval gates for every SE ramp.</h3>
+          <p>Use the status controls as the working tracker. Notion remains the back-end source of truth; exported changes can be applied server-side without exposing the Notion token in the browser.</p>
+        </div>
+        <div class="tracker-actions">
+          <a href="https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5">Open SE Onboarding Tracker</a>
+          <a href="https://app.notion.com/p/Solutions-Engineer-fd8a4277e8b647a5995db09c3aeadfa3">Open Solutions Engineer Page</a>
+          <button type="button" onclick="exportStatusChanges()">Export Status Changes</button>
+        </div>
+        <div class="sync-panel">
+          <p>Pending status changes are saved in this browser and can be synced to Notion by running the server-side status script with a Notion token.</p>
+          <textarea class="sync-output" id="status-sync-output" readonly placeholder="No pending status changes yet."></textarea>
+        </div>
+        <div class="quick-list" id="milestone-list"></div>
       </section>
 
       <div class="footer">Rev.io SE Onboarding - connected to the Solutions Engineer Notion tracker - 2026-06-11</div>
