@@ -1157,6 +1157,10 @@
               </select>
             </label>
             <label>
+              Transcript Scope
+              <select class="score-select" id="review-scope"></select>
+            </label>
+            <label>
               Transcript File
               <input class="review-input" id="transcript-file" type="file" accept=".txt,.md,.vtt,.srt">
             </label>
@@ -1184,7 +1188,7 @@
             <div>
               <div class="eyebrow">Demo Segment Scorecard</div>
               <h4>Initial transcript score plus Tony final approval.</h4>
-              <p class="review-note">Grade the transcript first to populate initial segment scores and notes. Tony's final score and approval remain manual.</p>
+              <p class="review-note">Grade the full demo, the complete scorecard, or one selected segment/deep dive. Tony's final score and approval remain manual.</p>
             </div>
             <div class="segment-list" id="segment-score-list"></div>
           </div>
@@ -1564,6 +1568,34 @@
       ["close", "connected", "quote-to-cash", "platform", "workflow", "recap"]
     ];
 
+    const signalStopWords = new Set(["and", "the", "for", "with", "from", "into", "how", "what", "when", "can", "does", "use", "show", "explain"]);
+
+    const scorecardItems = [
+      ...demoSteps.map((step, index) => ({
+        key: `demo-${index + 1}`,
+        type: "Demo Flow",
+        step: index + 1,
+        name: step[0],
+        description: step[1],
+        signals: demoSegmentSignals[index]
+      })),
+      ...deepDives.map((item, index) => ({
+        key: `deep-dive-${index + 1}`,
+        type: "Feature Deep Dive",
+        step: demoSteps.length + index + 1,
+        name: item.title,
+        description: item.summary,
+        signals: [
+          item.tag,
+          item.title,
+          item.summary,
+          ...item.master,
+          ...item.answer,
+          ...item.practice
+        ].join(" ").toLowerCase().split(/[^a-z0-9]+/).filter(term => term.length > 2 && !signalStopWords.has(term))
+      }))
+    ];
+
     function scoreRubric(text, terms) {
       const normalized = text.toLowerCase();
       const hits = terms.filter(term => normalized.includes(term));
@@ -1582,12 +1614,34 @@
     }
 
     function segmentKey(index) {
-      return `segment-${index + 1}`;
+      return scorecardItems[index]?.key || `segment-${index + 1}`;
     }
 
-    function segmentInitialScore(text, index) {
+    function selectedReviewScope() {
+      return document.getElementById("review-scope")?.value || "demo-flow";
+    }
+
+    function renderReviewScopeOptions() {
+      const target = document.getElementById("review-scope");
+      if (!target) return;
+      const selected = target.value || "demo-flow";
+      target.innerHTML = `
+        <option value="demo-flow">Full demo dry run - 14 demo flow segments</option>
+        <option value="complete-scorecard">Complete scorecard - demo flow and deep dives</option>
+        ${scorecardItems.map(item => `<option value="${item.key}">${item.type}: ${item.name}</option>`).join("")}
+      `;
+      target.value = [...target.options].some(option => option.value === selected) ? selected : "demo-flow";
+    }
+
+    function scorecardItemsForScope(scope) {
+      if (scope === "demo-flow") return scorecardItems.filter(item => item.type === "Demo Flow");
+      if (scope === "complete-scorecard") return scorecardItems;
+      return scorecardItems.filter(item => item.key === scope);
+    }
+
+    function segmentInitialScore(text, item) {
       const normalized = text.toLowerCase();
-      const signals = demoSegmentSignals[index] || demoSteps[index].join(" ").toLowerCase().split(/\W+/).filter(Boolean);
+      const signals = item.signals || item.name.toLowerCase().split(/\W+/).filter(Boolean);
       const hits = [...new Set(signals.filter(term => normalized.includes(term)))];
       let score = Math.min(5, hits.length + 1);
       if (!text.trim()) score = 0;
@@ -1598,8 +1652,9 @@
     }
 
     function currentSegmentReviews(initialSegments = null) {
-      return demoSteps.map((step, index) => {
-        const key = segmentKey(index);
+      const initialByKey = initialSegments || {};
+      return scorecardItems.map(item => {
+        const key = item.key;
         const initialScoreField = document.querySelector(`[data-initial-score="${key}"]`);
         let renderedSignals = [];
         try {
@@ -1607,16 +1662,17 @@
         } catch {
           renderedSignals = [];
         }
-        const initial = initialSegments?.[index] || {
+        const initial = initialByKey[key] || {
           score: Number(initialScoreField?.value || 0),
           notes: document.querySelector(`[data-initial-notes="${key}"]`)?.value || "Grade transcript to populate initial notes.",
           hits: renderedSignals
         };
         return {
           key,
-          step: index + 1,
-          name: step[0],
-          description: step[1],
+          type: item.type,
+          step: item.step,
+          name: item.name,
+          description: item.description,
           initialScore: initial.score,
           initialNotes: initial.notes,
           initialSignals: initial.hits || [],
@@ -1637,7 +1693,7 @@
         <div class="segment-row">
           <div>
             <strong>${row.step}. ${escapeHtml(row.name)}</strong>
-            <small>${escapeHtml(row.description)}</small>
+            <small>${escapeHtml(row.type)} - ${escapeHtml(row.description)}</small>
           </div>
           <label>
             Initial
@@ -1667,6 +1723,7 @@
       const text = document.getElementById("transcript-text").value.trim();
       const rep = document.getElementById("review-rep").value.trim();
       const callType = document.getElementById("review-type").value;
+      const reviewScope = selectedReviewScope();
       const evidenceUrl = document.getElementById("evidence-link").value.trim();
       const reviewerNotes = document.getElementById("review-notes").value.trim();
       const scores = transcriptRubric.map(item => {
@@ -1683,6 +1740,7 @@
         reviewedAt: new Date().toISOString(),
         rep,
         callType,
+        reviewScope,
         evidenceUrl,
         reviewerNotes,
         transcriptCharacters: text.length,
@@ -1700,16 +1758,19 @@
         target.innerHTML = `<div class="score-card"><strong>No transcript yet</strong><p class="review-note">Paste transcript text or upload a transcript file before grading.</p></div>`;
         return;
       }
-      const segmentScores = demoSteps.map((_, index) => segmentInitialScore(text, index));
+      const segmentScores = Object.fromEntries(
+        scorecardItemsForScope(selectedReviewScope()).map(item => [item.key, segmentInitialScore(text, item)])
+      );
       renderSegmentScorecard(segmentScores);
       const payload = currentReviewPayload();
+      const gradedCount = Object.keys(segmentScores).length;
       target.innerHTML = `
         <div class="score-card">
           <strong>Initial Score: ${payload.averageScore.toFixed(1)} / 5</strong>
           <div class="score-meter"><span style="width: ${(payload.averageScore / 5) * 100}%"></span></div>
           <p class="review-note">${escapeHtml(payload.rep || "Unassigned SE")} - ${escapeHtml(payload.callType)} - ${payload.transcriptCharacters.toLocaleString()} transcript characters</p>
           <p class="review-note">Coaching focus: ${payload.coachingFocus.map(escapeHtml).join(", ")}</p>
-          <p class="review-note">Demo segment scorecard updated below. Add Tony final scores and approvals before exporting.</p>
+          <p class="review-note">${gradedCount} scorecard item${gradedCount === 1 ? "" : "s"} updated below. Add Tony final scores and approvals before exporting.</p>
         </div>
         ${payload.scores.map(item => `
           <div class="score-card">
@@ -1768,6 +1829,7 @@
     renderMilestones(currentMilestones);
     renderResources();
     renderDeepDives();
+    renderReviewScopeOptions();
     renderSegmentScorecard();
     loadChecks();
     loadNotionSnapshot();
