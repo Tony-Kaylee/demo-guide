@@ -17,6 +17,12 @@ const colors = {
   white: "#ffffff"
 };
 
+const page = {
+  left: 54,
+  right: 54,
+  contentWidth: 504
+};
+
 const docs = [
   {
     file: "se-onboarding-full-plan.pdf",
@@ -125,6 +131,7 @@ function footer(doc) {
 
 function renderLine(doc, rawLine) {
   const line = rawLine.trim();
+  doc.x = page.left;
   if (!line) {
     doc.moveDown(0.35);
     return;
@@ -152,37 +159,42 @@ function renderLine(doc, rawLine) {
 
 function heading(doc, text, size, rule = false) {
   doc.moveDown(0.5);
-  doc.font("Helvetica-Bold").fontSize(size).fillColor(colors.brand).text(text, {
+  doc.font("Helvetica-Bold").fontSize(size).fillColor(colors.brand).text(text, page.left, doc.y, {
+    width: page.contentWidth,
     lineGap: 2
   });
   if (rule) {
     const y = doc.y + 5;
-    doc.moveTo(54, y).lineTo(doc.page.width - 54, y).strokeColor(colors.rule).lineWidth(0.7).stroke();
+    doc.moveTo(page.left, y).lineTo(doc.page.width - page.right, y).strokeColor(colors.rule).lineWidth(0.7).stroke();
     doc.y = y + 8;
   }
 }
 
 function label(doc, text) {
   doc.moveDown(0.15);
-  doc.font("Helvetica-Bold").fontSize(10).fillColor(colors.accent).text(text);
+  doc.font("Helvetica-Bold").fontSize(10).fillColor(colors.accent).text(text, page.left, doc.y, {
+    width: page.contentWidth,
+    lineGap: 2
+  });
 }
 
 function paragraph(doc, text, options = {}) {
-  doc.font("Helvetica").fontSize(10).fillColor(colors.ink).text(text, {
-    width: doc.page.width - 108,
+  doc.font("Helvetica").fontSize(10).fillColor(colors.ink).text(text, page.left, doc.y, {
+    width: page.contentWidth,
     lineGap: 3,
     ...options
   });
 }
 
 function bullet(doc, text) {
-  const x = doc.x;
+  const x = page.left;
   const y = doc.y;
   doc.circle(x + 3, y + 6, 2).fill(colors.accent);
   doc.font("Helvetica").fontSize(10).fillColor(colors.ink).text(text, x + 14, y, {
-    width: doc.page.width - 122,
+    width: page.contentWidth - 14,
     lineGap: 3
   });
+  doc.x = page.left;
 }
 
 function ensureSpace(doc, height) {
