@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rev.io PSA SE Onboarding</title>
+  <title>Rev.io SE Onboarding</title>
   <style>
     :root {
       --bg: #070b12;
@@ -318,6 +318,96 @@
 
     .schedule-alert strong {
       color: var(--ink);
+    }
+
+    .access-panel {
+      display: grid;
+      gap: 18px;
+    }
+
+    .access-summary {
+      display: grid;
+      gap: 9px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(34, 211, 238, .12), rgba(74, 222, 128, .08)),
+        var(--panel-2);
+    }
+
+    .access-summary-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .access-summary strong {
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .access-summary span,
+    .access-summary small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+      gap: 14px;
+    }
+
+    .access-group {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+    }
+
+    .access-group h4 {
+      margin-bottom: 0;
+    }
+
+    .access-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .access-item {
+      display: grid;
+      grid-template-columns: 20px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      min-height: 44px;
+      padding: 9px 10px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 7px;
+      background: rgba(255,255,255,.03);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .access-item input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--green);
+    }
+
+    .access-item:has(input:checked) {
+      border-color: rgba(74, 222, 128, .34);
+      background: rgba(74, 222, 128, .08);
+    }
+
+    .access-item:has(input:checked) span {
+      color: #d8fbe4;
     }
 
     .review-card {
@@ -948,7 +1038,7 @@
         max-width: min(100%, 354px);
       }
 
-      nav, .hero-grid, .quick-list, .weeks, .deep-grid, .scenario-grid, .cert-grid, .demo-path, .detail-body, .rubric, .review-layout, .milestone-controls, .segment-row { grid-template-columns: 1fr; }
+      nav, .hero-grid, .quick-list, .access-grid, .weeks, .deep-grid, .scenario-grid, .cert-grid, .demo-path, .detail-body, .rubric, .review-layout, .milestone-controls, .segment-row { grid-template-columns: 1fr; }
       .check:last-child { grid-column: auto; }
       h2 {
         font-size: 20px;
@@ -976,7 +1066,7 @@
       <div class="brand">
         <img class="mark" src="assets/revio-green-glyph.png" alt="Rev.io">
         <div>
-          <h1>Rev.io PSA SE Onboarding</h1>
+          <h1>Rev.io SE Onboarding</h1>
           <p>Reviewable curriculum website</p>
         </div>
       </div>
@@ -988,6 +1078,7 @@
       </div>
 
       <nav>
+        <a href="#access">Access Verification</a>
         <a href="#approvals">Tony Approvals</a>
         <a href="#timeline">Ramp Timeline</a>
         <a href="#demo">End-to-End Demo</a>
@@ -1014,7 +1105,7 @@
       <div class="hero">
         <div class="panel hero-main">
           <div class="eyebrow">Solutions Engineering Enablement</div>
-          <h2>Rev.io PSA onboarding built around demo fluency.</h2>
+          <h2>Rev.io onboarding built around demo fluency.</h2>
           <p>This site organizes the new SE ramp around the way prospects actually buy: understand the business problem, build product fluency, shadow live demos early, run the core quote-to-cash story, then branch into the right feature set when discovery creates an opening.</p>
           <div class="hero-grid">
             <div class="metric"><strong id="kpi-shadow-days">14</strong><span id="kpi-shadow-label">Days to shadow-ready</span></div>
@@ -1055,6 +1146,27 @@
           <div class="quick-list" id="milestone-list"></div>
         </div>
       </div>
+
+      <section class="panel access-panel" id="access">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Access Readiness</div>
+            <h3>Software and hardware needed before the ramp can move cleanly.</h3>
+            <p>Use this as the day-one readiness check. Each item stays saved in this browser so setup progress is visible between working sessions.</p>
+          </div>
+        </div>
+        <div class="access-summary">
+          <div class="access-summary-row">
+            <div>
+              <strong id="access-progress-number">0%</strong>
+              <span id="access-progress-label">0 of 0 items verified</span>
+            </div>
+            <small>Setup completion</small>
+          </div>
+          <div class="progress"><span id="access-progress-bar"></span></div>
+        </div>
+        <div class="access-grid" id="access-checklist"></div>
+      </section>
 
       <section class="panel" id="timeline">
         <div class="section-head">
@@ -1306,7 +1418,7 @@
         </div>
       </section>
 
-      <div class="footer">Rev.io PSA SE Onboarding - connected to the Solutions Engineer Notion tracker - 2026-06-11</div>
+      <div class="footer">Rev.io SE Onboarding - connected to the Solutions Engineer Notion tracker - 2026-06-11</div>
     </main>
   </div>
 
@@ -1443,6 +1555,26 @@
 
     const statusOptions = ["Not Started", "In Progress", "Approved"];
     const onboardingProfileKey = "se-onboarding-profile";
+    const accessChecklistKey = "se-onboarding-access-verification";
+    const accessChecklist = [
+      {
+        group: "Software Verification",
+        items: [
+          "Microsoft Account (for Outlook, Teams, Office, etc.)",
+          "Outreach Login",
+          "Salesforce Login",
+          "Notion Access",
+          "PSA + Billing Global Admin Access",
+          "Discord (New Account - Work email setup)"
+        ]
+      },
+      {
+        group: "Hardware Verification",
+        items: [
+          "Laptop Delivered & Setup"
+        ]
+      }
+    ];
     const phaseSchedule = {
       foundation: { startDay: 1, endDay: 7 },
       shadow: { startDay: 8, endDay: 14 },
@@ -1520,6 +1652,80 @@
 
     function writeOnboardingProfile(profile) {
       localStorage.setItem(onboardingProfileKey, JSON.stringify(profile));
+    }
+
+    function accessItemKey(group, item) {
+      return `${group}:${item}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    }
+
+    function readAccessChecklist() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(accessChecklistKey) || "{}");
+        return stored && typeof stored === "object" ? stored : {};
+      } catch {
+        localStorage.removeItem(accessChecklistKey);
+        return {};
+      }
+    }
+
+    function writeAccessChecklist(state) {
+      localStorage.setItem(accessChecklistKey, JSON.stringify(state));
+    }
+
+    function renderAccessChecklist() {
+      const target = document.getElementById("access-checklist");
+      if (!target) return;
+      const state = readAccessChecklist();
+      target.innerHTML = accessChecklist.map(group => `
+        <div class="access-group">
+          <h4>${group.group}</h4>
+          <div class="access-list">
+            ${group.items.map(item => {
+              const key = accessItemKey(group.group, item);
+              return `
+                <label class="access-item">
+                  <input type="checkbox" data-access-check="${key}" ${state[key] ? "checked" : ""}>
+                  <span>${item}</span>
+                </label>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `).join("");
+
+      target.querySelectorAll("[data-access-check]").forEach(check => {
+        check.addEventListener("change", () => {
+          const nextState = readAccessChecklist();
+          nextState[check.dataset.accessCheck] = check.checked;
+          writeAccessChecklist(nextState);
+          updateAccessProgress();
+        });
+      });
+      updateAccessProgress();
+    }
+
+    function updateAccessProgress() {
+      const checks = Array.from(document.querySelectorAll("[data-access-check]"));
+      const done = checks.filter(check => check.checked).length;
+      const pct = checks.length ? Math.round((done / checks.length) * 100) : 0;
+      const number = document.getElementById("access-progress-number");
+      const label = document.getElementById("access-progress-label");
+      const bar = document.getElementById("access-progress-bar");
+      if (number) number.textContent = pct + "%";
+      if (label) label.textContent = `${done} of ${checks.length} item${checks.length === 1 ? "" : "s"} verified`;
+      if (bar) bar.style.width = pct + "%";
+    }
+
+    function currentAccessVerification() {
+      const state = readAccessChecklist();
+      return accessChecklist.flatMap(group => group.items.map(item => {
+        const key = accessItemKey(group.group, item);
+        return {
+          group: group.group,
+          item,
+          verified: Boolean(state[key])
+        };
+      }));
     }
 
     function phaseKeyForMilestone(item) {
@@ -2178,6 +2384,7 @@
         generatedAt: new Date().toISOString(),
         source: "SE Onboarding Dashboard",
         onboardingProfile,
+        accessVerification: currentAccessVerification(),
         milestonePlan: currentMilestonePlan(),
         milestoneStatusChanges: pendingStatusChanges(),
         callReview: currentReviewPayload()
@@ -2221,6 +2428,7 @@
     }));
     renderDemoPath();
     loadOnboardingProfile();
+    renderAccessChecklist();
     renderMilestones(currentMilestones);
     renderResources();
     renderDeepDives();
