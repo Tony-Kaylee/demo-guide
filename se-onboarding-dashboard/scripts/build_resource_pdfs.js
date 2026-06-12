@@ -88,6 +88,7 @@ function extract(start, end) {
 function buildPdf(config) {
   const doc = new PDFDocument({
     size: "LETTER",
+    bufferPages: true,
     margins: { top: 54, bottom: 54, left: 54, right: 54 },
     info: {
       Title: config.title,
@@ -100,6 +101,7 @@ function buildPdf(config) {
   cover(doc, config);
   config.sections.join("\n\n").split(/\r?\n/).forEach(line => renderLine(doc, line));
   footer(doc);
+  doc.flushPages();
   doc.end();
   console.log(`Wrote ${path.relative(process.cwd(), output)}`);
 }
@@ -122,9 +124,9 @@ function footer(doc) {
     doc.switchToPage(i);
     doc.font("Helvetica").fontSize(8).fillColor(colors.muted).text(
       `Rev.io PSA SE Onboarding - ${i + 1}`,
-      54,
-      doc.page.height - 38,
-      { width: doc.page.width - 108, align: "right" }
+      page.left,
+      doc.page.height - 64,
+      { width: page.contentWidth, align: "right", lineBreak: false }
     );
   }
 }

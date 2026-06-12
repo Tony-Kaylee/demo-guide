@@ -411,9 +411,16 @@
     }
 
     .resource-link {
+      display: grid;
+      gap: 6px;
       justify-content: flex-start;
       min-height: 100%;
       background: var(--panel-2);
+    }
+
+    .resource-link strong {
+      display: block;
+      line-height: 1.2;
     }
 
     .resource-link span {
@@ -421,7 +428,7 @@
       color: var(--muted);
       font-size: 12px;
       font-weight: 500;
-      margin-top: 4px;
+      line-height: 1.35;
     }
 
     .status-line {
