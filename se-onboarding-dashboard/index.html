@@ -728,6 +728,41 @@
       gap: 8px;
     }
 
+    .scorecard-progress {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .scorecard-progress strong {
+      font-size: 16px;
+    }
+
+    .scorecard-progress .progress {
+      height: 8px;
+      margin: 0;
+    }
+
+    .scorecard-progress small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .segment-group {
+      border: 1px solid var(--line-2);
+      border-radius: 8px;
+      background: #0a111d;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      padding: 9px 10px;
+      text-transform: uppercase;
+    }
+
     .segment-row {
       display: grid;
       grid-template-columns: minmax(180px, 1fr) 82px 1.25fr 86px 1.25fr 86px;
@@ -1179,9 +1214,10 @@
             <div class="tracker-actions">
               <button type="button" onclick="gradeTranscript()">Grade Transcript</button>
               <button type="button" onclick="exportReviewJson()">Export Review JSON</button>
+              <button type="button" onclick="exportNotionSyncPayload()">Sync to Notion</button>
               <button type="button" onclick="clearTranscriptReview()">Clear Review</button>
             </div>
-            <p class="review-note">This is an initial coaching score, not final approval. Transcript text stays local in the browser; export JSON if the review should be attached to Notion.</p>
+            <p class="review-note">This is an initial coaching score, not final approval. Transcript text stays local in the browser; Sync to Notion prepares one server-side payload for posterity.</p>
           </div>
           <div class="review-results" id="review-results"></div>
           <div class="card segment-scorecard">
@@ -1189,6 +1225,11 @@
               <div class="eyebrow">Demo Segment Scorecard</div>
               <h4>Initial transcript score plus Tony final approval.</h4>
               <p class="review-note">Grade the full demo, the complete scorecard, or one selected segment/deep dive. Tony's final score and approval remain manual.</p>
+            </div>
+            <div class="scorecard-progress">
+              <strong id="scorecard-progress-number">0%</strong>
+              <div class="progress"><span id="scorecard-progress-bar"></span></div>
+              <small id="scorecard-progress-label">0 of 24 scorecard items approved.</small>
             </div>
             <div class="segment-list" id="segment-score-list"></div>
           </div>
@@ -1631,6 +1672,11 @@
         ${scorecardItems.map(item => `<option value="${item.key}">${item.type}: ${item.name}</option>`).join("")}
       `;
       target.value = [...target.options].some(option => option.value === selected) ? selected : "demo-flow";
+      target.addEventListener("change", () => {
+        if (document.getElementById("transcript-text").value.trim()) {
+          gradeTranscript();
+        }
+      });
     }
 
     function scorecardItemsForScope(scope) {
@@ -1689,7 +1735,12 @@
       const target = document.getElementById("segment-score-list");
       if (!target) return;
       const rows = currentSegmentReviews(initialSegments);
-      target.innerHTML = rows.map(row => `
+      let lastType = "";
+      target.innerHTML = rows.map(row => {
+        const header = row.type !== lastType ? `<div class="segment-group">${escapeHtml(row.type)}</div>` : "";
+        lastType = row.type;
+        return `
+        ${header}
         <div class="segment-row">
           <div>
             <strong>${row.step}. ${escapeHtml(row.name)}</strong>
@@ -1716,7 +1767,26 @@
             Approved
           </label>
         </div>
-      `).join("");
+      `}).join("");
+      target.querySelectorAll("[data-final-score], [data-final-notes], [data-approved]").forEach(input => {
+        input.addEventListener("input", updateScorecardProgress);
+        input.addEventListener("change", updateScorecardProgress);
+      });
+      updateScorecardProgress();
+    }
+
+    function updateScorecardProgress() {
+      const reviews = currentSegmentReviews();
+      const approved = reviews.filter(row => row.approved).length;
+      const scored = reviews.filter(row => row.finalScore !== null).length;
+      const pct = reviews.length ? Math.round((approved / reviews.length) * 100) : 0;
+      const finalScores = reviews.map(row => row.finalScore).filter(score => score !== null);
+      const avg = finalScores.length
+        ? (finalScores.reduce((sum, score) => sum + score, 0) / finalScores.length).toFixed(1)
+        : "0.0";
+      document.getElementById("scorecard-progress-number").textContent = pct + "%";
+      document.getElementById("scorecard-progress-bar").style.width = pct + "%";
+      document.getElementById("scorecard-progress-label").textContent = `${approved} of ${reviews.length} scorecard items approved. ${scored} final score${scored === 1 ? "" : "s"} entered. Average final score: ${avg}/5.`;
     }
 
     function currentReviewPayload() {
@@ -1800,6 +1870,22 @@
       URL.revokeObjectURL(link.href);
     }
 
+    function exportNotionSyncPayload() {
+      const payload = {
+        generatedAt: new Date().toISOString(),
+        source: "SE Onboarding Dashboard",
+        milestoneStatusChanges: pendingStatusChanges(),
+        callReview: currentReviewPayload()
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2) + "\n"], { type: "application/json" });
+      const link = document.createElement("a");
+      const repSlug = (payload.callReview.rep || "se").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      link.href = URL.createObjectURL(blob);
+      link.download = `se-onboarding-notion-sync-${repSlug || "review"}.json`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
     function clearTranscriptReview() {
       document.getElementById("review-rep").value = "";
       document.getElementById("transcript-file").value = "";
@@ -1808,6 +1894,7 @@
       document.getElementById("review-notes").value = "";
       document.getElementById("review-results").innerHTML = "";
       renderSegmentScorecard();
+      updateScorecardProgress();
     }
 
     document.getElementById("transcript-file").addEventListener("change", event => {

@@ -16,7 +16,7 @@ Open `index.html` directly in a browser. No build step is required.
 
 ## Call Reviews
 
-Use pasted transcript text or upload a `.txt`, `.md`, `.vtt`, or `.srt` transcript file for first-pass scoring. Add a transcript or recording URL only as an evidence link; the static dashboard does not upload, store, or transcribe recordings. Choose whether the transcript grades the full demo flow, the complete scorecard, or one selected demo/deep-dive segment. Grade the transcript to populate initial rubric scores and initial notes, then enter Tony's final score, notes, and approval flag manually. Export the review JSON when the scorecard, coaching focus, and evidence link should be attached to Notion.
+Use pasted transcript text or upload a `.txt`, `.md`, `.vtt`, or `.srt` transcript file for first-pass scoring. Add a transcript or recording URL only as an evidence link; the static dashboard does not upload, store, or transcribe recordings. Choose whether the transcript grades the full demo flow, the complete scorecard, or one selected demo/deep-dive segment. Grade the transcript to populate initial rubric scores and initial notes, then enter Tony's final score, notes, and approval flag manually. Use `Sync to Notion` to export one server-side sync payload containing milestone status changes and the current review scorecard.
 
 Refresh the linked PDF resources from the markdown source with:
 
