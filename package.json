@@ -1,0 +1,23 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gen-pdf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tony-Kaylee/demo-guide.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tony-Kaylee/demo-guide/issues"
+  },
+  "homepage": "https://github.com/Tony-Kaylee/demo-guide#readme",
+  "dependencies": {
+    "pdfkit": "^0.18.0"
+  }
+}

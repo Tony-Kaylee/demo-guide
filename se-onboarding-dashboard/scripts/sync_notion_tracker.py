@@ -89,6 +89,7 @@ def main() -> None:
         props = page.get("properties", {})
         items.append(
             {
+                "id": page.get("id"),
                 "name": title_from(props),
                 "phase": property_value(props, "Phase"),
                 "status": property_value(props, "Status"),

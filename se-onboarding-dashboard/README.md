@@ -6,10 +6,23 @@ Files:
 
 - `index.html` - interactive onboarding dashboard and curriculum navigator
 - `resources/revio-psa-se-onboarding-plan.md` - detailed written onboarding plan
+- `resources/pdfs/` - generated PDF versions of the training plan and resource sections
 - `data/notion-tracker-snapshot.json` - static snapshot of the Notion approval tracker
 - `scripts/sync_notion_tracker.py` - local/server-side Notion snapshot refresh script
+- `scripts/apply_status_updates.py` - server-side Notion status update script for exported dashboard changes
+- `scripts/build_resource_pdfs.js` - PDF resource builder
 
 Open `index.html` directly in a browser. No build step is required.
+
+## Call Reviews
+
+Use pasted transcript text or upload a `.txt`, `.md`, `.vtt`, or `.srt` transcript file for first-pass scoring. Add a transcript or recording URL only as an evidence link; the static dashboard does not upload, store, or transcribe recordings. Grade the transcript to populate initial rubric scores and initial notes for each demo segment, then enter Tony's final score, notes, and approval flag manually. Export the review JSON when the scorecard, coaching focus, and evidence link should be attached to Notion.
+
+Refresh the linked PDF resources from the markdown source with:
+
+```bash
+node se-onboarding-dashboard/scripts/build_resource_pdfs.js
+```
 
 ## Notion Integration
 
@@ -27,4 +40,11 @@ The dashboard reads the static JSON snapshot when hosted. Refresh it locally wit
 NOTION_TOKEN=... python3 se-onboarding-dashboard/scripts/sync_notion_tracker.py
 ```
 
-Do not put the Notion token in the public HTML or client-side JavaScript.
+The dashboard can export pending milestone status changes as JSON. Apply those changes to Notion server-side with:
+
+```bash
+python3 se-onboarding-dashboard/scripts/apply_status_updates.py --dry-run se-onboarding-status-updates.json
+NOTION_TOKEN=... python3 se-onboarding-dashboard/scripts/apply_status_updates.py se-onboarding-status-updates.json
+```
+
+Run the dry run first to validate page IDs and status values without calling Notion. Do not put the Notion token in the public HTML or client-side JavaScript.

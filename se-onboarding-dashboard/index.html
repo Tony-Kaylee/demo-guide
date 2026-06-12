@@ -40,7 +40,7 @@
     }
 
     a { color: inherit; }
-    button, input { font: inherit; }
+    button, input, select, textarea { font: inherit; }
 
     .app,
     main,
@@ -192,6 +192,10 @@
       font-weight: 700;
     }
 
+    .side-actions .secondary {
+      background: transparent;
+    }
+
     main {
       max-width: none;
       width: 100%;
@@ -339,7 +343,57 @@
       margin-top: 4px;
     }
 
+    .milestone-body {
+      display: grid;
+      gap: 8px;
+    }
+
+    .milestone-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .status-select,
+    .score-select,
+    .review-input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line-2);
+      border-radius: 7px;
+      background: #0a111d;
+      color: var(--ink);
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .status-select {
+      font-weight: 800;
+    }
+
+    .sync-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .sync-panel p {
+      font-size: 12px;
+    }
+
+    .sync-output {
+      min-height: 86px;
+      resize: vertical;
+      color: #dbeafe;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
     .tracker-actions a,
+    .tracker-actions button,
     .resource-link {
       min-height: 36px;
       border: 1px solid var(--line-2);
@@ -353,6 +407,7 @@
       padding: 8px 11px;
       font-size: 12px;
       font-weight: 800;
+      cursor: pointer;
     }
 
     .resource-link {
@@ -389,8 +444,8 @@
     }
 
     .status-pill.approved { color: var(--green); border-color: rgba(74, 222, 128, .35); }
-    .status-pill.review { color: var(--gold); border-color: rgba(251, 191, 36, .35); }
-    .status-pill.coaching { color: var(--red); border-color: rgba(251, 113, 133, .35); }
+    .status-pill.progress { color: var(--gold); border-color: rgba(251, 191, 36, .35); }
+    .status-pill.changed { color: var(--cyan); border-color: rgba(34, 211, 238, .35); }
     .milestone-link { color: var(--blue); }
 
     section {
@@ -631,6 +686,117 @@
       font-size: 12px;
     }
 
+    .review-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .6fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .review-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .review-form label {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .review-form textarea {
+      min-height: 220px;
+      resize: vertical;
+      line-height: 1.35;
+    }
+
+    .review-results {
+      display: grid;
+      gap: 10px;
+    }
+
+    .segment-scorecard {
+      grid-column: 1 / -1;
+      display: grid;
+      gap: 10px;
+    }
+
+    .segment-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .segment-row {
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) 82px 1.25fr 86px 1.25fr 86px;
+      gap: 8px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+      padding: 10px;
+    }
+
+    .segment-row strong {
+      font-size: 13px;
+    }
+
+    .segment-row small {
+      color: var(--muted);
+      display: block;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .segment-row label {
+      color: var(--muted);
+      display: grid;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .segment-row .approved-label {
+      align-items: center;
+      display: flex;
+      gap: 7px;
+      justify-content: center;
+    }
+
+    .score-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+      padding: 12px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .score-card strong {
+      font-size: 14px;
+    }
+
+    .score-meter {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      overflow: hidden;
+    }
+
+    .score-meter span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--green);
+    }
+
+    .review-note {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
     .footer {
       margin: 24px 0 8px;
       color: var(--quiet);
@@ -695,7 +861,7 @@
         max-width: min(100%, 354px);
       }
 
-      nav, .hero-grid, .quick-list, .weeks, .deep-grid, .scenario-grid, .cert-grid, .demo-path, .detail-body, .rubric { grid-template-columns: 1fr; }
+      nav, .hero-grid, .quick-list, .weeks, .deep-grid, .scenario-grid, .cert-grid, .demo-path, .detail-body, .rubric, .review-layout, .milestone-controls, .segment-row { grid-template-columns: 1fr; }
       .check:last-child { grid-column: auto; }
       h2 {
         font-size: 20px;
@@ -739,14 +905,16 @@
         <a href="#scenarios">Buyer Scenarios</a>
         <a href="#revii">Revii Moments</a>
         <a href="#certification">Certification</a>
+        <a href="#call-reviews">Call Reviews</a>
       </nav>
 
       <div class="side-actions">
         <button onclick="window.print()">Print / Save PDF</button>
-        <button onclick="resetChecks()">Reset Local Milestones</button>
+        <button onclick="resetMilestoneStatus()">Reset Local Milestones</button>
+        <button class="secondary" onclick="exportStatusChanges()">Export Status Changes</button>
         <a href="https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5">Open Notion Tracker</a>
-        <a href="resources/revio-psa-se-onboarding-plan.md">Open Full Markdown Plan</a>
-        <a href="/demo-guide.html">Open Existing Demo Guide</a>
+        <a href="resources/pdfs/se-onboarding-full-plan.pdf">Open Full Training PDF</a>
+        <a href="../demo-guide.html">Open Existing Demo Guide</a>
       </div>
     </aside>
 
@@ -768,11 +936,16 @@
           <div>
             <div class="eyebrow">Tony Approval Milestones</div>
             <h3>Reusable approval gates for every SE ramp.</h3>
-            <p>Use the local marks for quick working sessions. The official employee status, approval dates, evidence, and coaching notes live in the Notion tracker.</p>
+            <p>Use the status controls as the working tracker. Notion remains the back-end source of truth; exported changes can be applied server-side without exposing the Notion token in the browser.</p>
           </div>
           <div class="tracker-actions">
             <a href="https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5">Open SE Onboarding Tracker</a>
             <a href="https://app.notion.com/p/Solutions-Engineer-fd8a4277e8b647a5995db09c3aeadfa3">Open Solutions Engineer Page</a>
+            <button type="button" onclick="exportStatusChanges()">Export Status Changes</button>
+          </div>
+          <div class="sync-panel">
+            <p>Pending status changes are saved in this browser and can be synced to Notion by running the server-side status script with a Notion token.</p>
+            <textarea class="sync-output" id="status-sync-output" readonly placeholder="No pending status changes yet."></textarea>
           </div>
           <div class="quick-list" id="milestone-list"></div>
         </div>
@@ -887,7 +1060,7 @@
           <div>
             <div class="eyebrow">Training Resources</div>
             <h3>Detailed pages for the employee and Tony.</h3>
-            <p>The dashboard stays clean; detailed write-ups, coaching notes, and product-depth material live in linked Notion pages.</p>
+            <p>The dashboard stays clean while detailed write-ups live as polished PDFs. Notion can remain the private working back end.</p>
           </div>
         </div>
         <div class="resource-grid" id="resource-grid"></div>
@@ -959,6 +1132,65 @@
         </div>
       </section>
 
+      <section class="panel" id="call-reviews">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Call Reviews</div>
+            <h3>Transcript and recording review workspace.</h3>
+            <p>Paste or upload a text transcript for first-pass rubric scoring. Add a transcript or recording link as evidence when the source file lives in Gong, Zoom, Drive, Notion, or another private system.</p>
+          </div>
+        </div>
+        <div class="review-layout">
+          <div class="card review-form">
+            <label>
+              Rep / Employee
+              <input class="review-input" id="review-rep" placeholder="New SE name">
+            </label>
+            <label>
+              Call Type
+              <select class="score-select" id="review-type">
+                <option>Shadow notes</option>
+                <option>Compressed demo</option>
+                <option>Full demo</option>
+                <option>Deep dive</option>
+                <option>Certification capstone</option>
+              </select>
+            </label>
+            <label>
+              Transcript File
+              <input class="review-input" id="transcript-file" type="file" accept=".txt,.md,.vtt,.srt">
+            </label>
+            <label>
+              Transcript / Recording Link
+              <input class="review-input" id="evidence-link" type="url" placeholder="https://...">
+            </label>
+            <label>
+              Transcript
+              <textarea id="transcript-text" placeholder="Paste transcript text here, or upload a transcript file above."></textarea>
+            </label>
+            <label>
+              Reviewer Notes
+              <textarea id="review-notes" placeholder="Optional coaching notes or follow-up items."></textarea>
+            </label>
+            <div class="tracker-actions">
+              <button type="button" onclick="gradeTranscript()">Grade Transcript</button>
+              <button type="button" onclick="exportReviewJson()">Export Review JSON</button>
+              <button type="button" onclick="clearTranscriptReview()">Clear Review</button>
+            </div>
+            <p class="review-note">This is an initial coaching score, not final approval. Transcript text stays local in the browser; export JSON if the review should be attached to Notion.</p>
+          </div>
+          <div class="review-results" id="review-results"></div>
+          <div class="card segment-scorecard">
+            <div>
+              <div class="eyebrow">Demo Segment Scorecard</div>
+              <h4>Initial transcript score plus Tony final approval.</h4>
+              <p class="review-note">Grade the transcript first to populate initial segment scores and notes. Tony's final score and approval remain manual.</p>
+            </div>
+            <div class="segment-list" id="segment-score-list"></div>
+          </div>
+        </div>
+      </section>
+
       <div class="footer">Rev.io PSA SE Onboarding - connected to the Solutions Engineer Notion tracker - 2026-06-11</div>
     </main>
   </div>
@@ -993,10 +1225,11 @@
     ];
 
     const resourceLinks = [
-      ["Core Demo Path", "14-step quote-to-cash talk track, safe records, practice prompts, and coaching notes.", "https://app.notion.com/p/SE-Onboarding-Core-Demo-Path-37ca59b7e7b28167a471f52fed26965f"],
-      ["Product Depth Topics", "Module-level write-ups for CRM, quoting, service, dispatch, inventory, projects, billing, analytics, automation, and admin.", "https://app.notion.com/p/SE-Onboarding-Product-Depth-Topics-37ca59b7e7b2816791e2c624f571c682"],
-      ["Buyer Scenarios", "Telecom, MSP, security, AV, and field-service branches with discovery prompts and proof points.", "https://app.notion.com/p/SE-Onboarding-Buyer-Scenarios-37ca59b7e7b281c0b63fe7fef0b11f9d"],
-      ["Certification Prep", "Capstone requirements, objection handling, written response, scorecard, and final lead-demo approval criteria.", "https://app.notion.com/p/SE-Onboarding-Certification-Prep-37ca59b7e7b2814a8372fad8bac855ff"]
+      ["Full Training Plan", "60-day ramp, gates, deep dives, buyer scenarios, Revii usage, and capstone criteria.", "resources/pdfs/se-onboarding-full-plan.pdf"],
+      ["Core Demo Path", "14-step quote-to-cash talk track, safe records, practice prompts, and coaching notes.", "resources/pdfs/se-onboarding-core-demo-path.pdf"],
+      ["Product Depth Topics", "Module-level write-ups for CRM, quoting, service, dispatch, inventory, projects, billing, analytics, automation, and admin.", "resources/pdfs/se-onboarding-product-depth-topics.pdf"],
+      ["Buyer Scenarios", "Telecom, MSP, security, AV, and field-service branches with discovery prompts and proof points.", "resources/pdfs/se-onboarding-buyer-scenarios.pdf"],
+      ["Certification Prep", "Capstone requirements, objection handling, written response, scorecard, and final lead-demo approval criteria.", "resources/pdfs/se-onboarding-certification-prep.pdf"]
     ];
 
     const deepDives = [
@@ -1093,11 +1326,26 @@
       `).join("");
     }
 
+    const statusOptions = ["Not Started", "In Progress", "Approved"];
+
     function statusClass(status) {
       if (status === "Approved") return "approved";
-      if (status === "Ready for Review") return "review";
-      if (status === "Needs Coaching") return "coaching";
+      if (status === "In Progress") return "progress";
       return "";
+    }
+
+    function localStatusKey(key) {
+      return "se-onboarding-status-" + key;
+    }
+
+    function pendingStatusKey(key) {
+      return "se-onboarding-pending-" + key;
+    }
+
+    function notionPageIdFromUrl(url) {
+      const match = String(url || "").match(/([a-f0-9]{32})(?:[?#/]*)?$/i);
+      if (!match) return "";
+      return match[1].replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5");
     }
 
     function renderMilestones(items = approvalMilestones) {
@@ -1107,20 +1355,30 @@
         const title = item.name || item[1];
         const phase = item.phase || item[2];
         const notes = item.notes || item[3];
-        const status = item.status || "Not Started";
+        const originalStatus = item.status || "Not Started";
+        const status = localStorage.getItem(localStatusKey(key)) || originalStatus;
         const url = item.url || "https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5";
+        const pageId = item.id || notionPageIdFromUrl(url);
+        const changed = status !== originalStatus;
+        if (!changed) localStorage.removeItem(pendingStatusKey(key));
         return `
-        <label class="check">
-          <input type="checkbox" data-check="${key}">
-          <span>
-            ${title}
+        <div class="check" data-milestone="${key}" data-title="${title}" data-page-id="${pageId}" data-original-status="${originalStatus}">
+          <input type="checkbox" data-check="${key}" ${status === "Approved" ? "checked" : ""} aria-label="Approved">
+          <div class="milestone-body">
+            <span>${title}</span>
             <small>${phase} - ${notes}</small>
+            <div class="milestone-controls">
+              <select class="status-select" data-status="${key}" aria-label="Approval status">
+                ${statusOptions.map(option => `<option value="${option}" ${option === status ? "selected" : ""}>${option}</option>`).join("")}
+              </select>
+              <a class="milestone-link" href="${url}">Open Notion row</a>
+            </div>
             <span class="status-line">
               <span class="status-pill ${statusClass(status)}">${status}</span>
-              <a class="milestone-link" href="${url}" onclick="event.stopPropagation()">Open Notion row</a>
+              ${changed ? `<span class="status-pill changed">Unsynced</span>` : ""}
             </span>
-          </span>
-        </label>
+          </div>
+        </div>
       `}).join("");
     }
 
@@ -1137,7 +1395,7 @@
     function renderDeepDives() {
       const target = document.getElementById("deep-grid");
       target.innerHTML = deepDives.map((item, index) => `
-        <details ${index < 2 ? "open" : ""}>
+        <details>
           <summary>
             <div>
               <div class="tag ${index % 4 === 1 ? "blue" : index % 4 === 2 ? "gold" : index % 4 === 3 ? "violet" : ""}">${item.tag}</div>
@@ -1156,28 +1414,90 @@
     }
 
     function updateProgress() {
-      const checks = Array.from(document.querySelectorAll("[data-check]"));
-      const done = checks.filter(check => check.checked).length;
-      const pct = checks.length ? Math.round((done / checks.length) * 100) : 0;
+      const statuses = Array.from(document.querySelectorAll("[data-status]"));
+      const done = statuses.filter(select => select.value === "Approved").length;
+      const pct = statuses.length ? Math.round((done / statuses.length) * 100) : 0;
       document.getElementById("progress-number").textContent = pct + "%";
       document.getElementById("progress-bar").style.width = pct + "%";
-      checks.forEach(check => localStorage.setItem("se-onboarding-" + check.dataset.check, check.checked ? "1" : "0"));
+      updateSyncOutput();
     }
 
     function loadChecks() {
+      document.querySelectorAll("[data-status]").forEach(select => {
+        select.addEventListener("change", event => {
+          const key = event.target.dataset.status;
+          const card = document.querySelector(`[data-milestone="${key}"]`);
+          const originalStatus = card.dataset.originalStatus || "Not Started";
+          const checkbox = document.querySelector(`[data-check="${key}"]`);
+          checkbox.checked = event.target.value === "Approved";
+          localStorage.setItem(localStatusKey(key), event.target.value);
+          if (event.target.value === originalStatus) {
+            localStorage.removeItem(pendingStatusKey(key));
+          } else {
+            localStorage.setItem(pendingStatusKey(key), JSON.stringify({
+              key,
+              pageId: card.dataset.pageId || null,
+              title: card.dataset.title,
+              from: originalStatus,
+              to: event.target.value
+            }));
+          }
+          renderMilestones(currentMilestones);
+          loadChecks();
+        });
+      });
       document.querySelectorAll("[data-check]").forEach(check => {
-        check.checked = localStorage.getItem("se-onboarding-" + check.dataset.check) === "1";
-        check.addEventListener("change", updateProgress);
+        check.addEventListener("change", event => {
+          const key = event.target.dataset.check;
+          const select = document.querySelector(`[data-status="${key}"]`);
+          select.value = event.target.checked ? "Approved" : "In Progress";
+          select.dispatchEvent(new Event("change"));
+        });
       });
       updateProgress();
     }
 
-    function resetChecks() {
-      document.querySelectorAll("[data-check]").forEach(check => {
-        check.checked = false;
-        localStorage.removeItem("se-onboarding-" + check.dataset.check);
-      });
+    function resetMilestoneStatus() {
+      Object.keys(localStorage)
+        .filter(key => key.startsWith("se-onboarding-status-") || key.startsWith("se-onboarding-pending-"))
+        .forEach(key => localStorage.removeItem(key));
+      renderMilestones(currentMilestones);
+      loadChecks();
       updateProgress();
+    }
+
+    function pendingStatusChanges() {
+      return Object.keys(localStorage)
+        .filter(key => key.startsWith("se-onboarding-pending-"))
+        .map(key => {
+          try {
+            return JSON.parse(localStorage.getItem(key));
+          } catch {
+            localStorage.removeItem(key);
+            return null;
+          }
+        })
+        .filter(change => change && change.to);
+    }
+
+    function updateSyncOutput() {
+      const output = document.getElementById("status-sync-output");
+      if (!output) return;
+      const changes = pendingStatusChanges();
+      output.value = changes.length ? JSON.stringify({ changes }, null, 2) : "";
+      output.placeholder = changes.length ? "" : "No pending status changes yet.";
+    }
+
+    function exportStatusChanges() {
+      const changes = pendingStatusChanges();
+      updateSyncOutput();
+      if (!changes.length) return;
+      const blob = new Blob([JSON.stringify({ changes }, null, 2) + "\n"], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "se-onboarding-status-updates.json";
+      link.click();
+      URL.revokeObjectURL(link.href);
     }
 
     function loadNotionSnapshot() {
@@ -1189,16 +1509,266 @@
             ...item,
             key: item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `milestone-${index + 1}`
           }));
+          currentMilestones = items;
           renderMilestones(items);
           loadChecks();
         })
         .catch(() => {});
     }
 
+    const transcriptRubric = [
+      {
+        name: "Story clarity",
+        terms: ["workflow", "quote to cash", "customer lifecycle", "handoff", "connect", "platform", "process"]
+      },
+      {
+        name: "Product accuracy",
+        terms: ["customer", "opportunity", "quote", "ticket", "dispatch", "inventory", "billing", "portal", "project"]
+      },
+      {
+        name: "Click-path confidence",
+        terms: ["show", "click", "open", "navigate", "screen", "tab", "demo", "walk through"]
+      },
+      {
+        name: "Discovery alignment",
+        terms: ["pain", "currently", "today", "how do you", "what happens", "tell me", "discovery"]
+      },
+      {
+        name: "Business value",
+        terms: ["reduce", "visibility", "margin", "revenue", "time", "manual", "re-key", "efficiency"]
+      },
+      {
+        name: "Limits and roadmap",
+        terms: ["currently", "roadmap", "confirm", "validate", "api", "custom", "not overcommit", "limit"]
+      },
+      {
+        name: "Demo recovery",
+        terms: ["if", "instead", "backup", "safe", "recover", "narrate", "avoid", "prepared"]
+      }
+    ];
+
+    const demoSegmentSignals = [
+      ["dashboard", "executive", "visibility", "analytics", "metrics", "kpi"],
+      ["customer list", "search", "tags", "hierarchy", "account list", "customers"],
+      ["customer profile", "contacts", "billing", "tickets", "assets", "account context", "summary"],
+      ["opportunity", "pipeline", "stage", "forecast", "sales process", "owner"],
+      ["quote", "one-time", "recurring", "package", "proposal", "signature", "line item"],
+      ["accepted", "quote to ticket", "operational work", "handoff", "convert"],
+      ["ticket", "sla", "activity", "work requested", "stage", "priority", "severity"],
+      ["revii", "ai", "summary", "note cleanup", "ticket action", "assistant"],
+      ["parts", "labor", "inventory", "job costing", "po", "purchase order", "description"],
+      ["dispatch", "unscheduled", "calendar", "technician", "schedule", "assign"],
+      ["mobile", "field", "timer", "travel", "completion", "technician"],
+      ["ready for billing", "invoice", "billing review", "handoff", "billable"],
+      ["portal", "self-service", "customer portal", "invoices", "tickets", "visibility"],
+      ["close", "connected", "quote-to-cash", "platform", "workflow", "recap"]
+    ];
+
+    function scoreRubric(text, terms) {
+      const normalized = text.toLowerCase();
+      const hits = terms.filter(term => normalized.includes(term));
+      const score = Math.min(5, hits.length + 1);
+      return { score, hits };
+    }
+
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function segmentKey(index) {
+      return `segment-${index + 1}`;
+    }
+
+    function segmentInitialScore(text, index) {
+      const normalized = text.toLowerCase();
+      const signals = demoSegmentSignals[index] || demoSteps[index].join(" ").toLowerCase().split(/\W+/).filter(Boolean);
+      const hits = [...new Set(signals.filter(term => normalized.includes(term)))];
+      let score = Math.min(5, hits.length + 1);
+      if (!text.trim()) score = 0;
+      const notes = hits.length
+        ? `Transcript signals found: ${hits.slice(0, 5).join(", ")}.`
+        : "No clear transcript signal found for this segment.";
+      return { score, notes, hits };
+    }
+
+    function currentSegmentReviews(initialSegments = null) {
+      return demoSteps.map((step, index) => {
+        const key = segmentKey(index);
+        const initialScoreField = document.querySelector(`[data-initial-score="${key}"]`);
+        let renderedSignals = [];
+        try {
+          renderedSignals = JSON.parse(initialScoreField?.dataset.initialSignals || "[]");
+        } catch {
+          renderedSignals = [];
+        }
+        const initial = initialSegments?.[index] || {
+          score: Number(initialScoreField?.value || 0),
+          notes: document.querySelector(`[data-initial-notes="${key}"]`)?.value || "Grade transcript to populate initial notes.",
+          hits: renderedSignals
+        };
+        return {
+          key,
+          step: index + 1,
+          name: step[0],
+          description: step[1],
+          initialScore: initial.score,
+          initialNotes: initial.notes,
+          initialSignals: initial.hits || [],
+          finalScore: document.querySelector(`[data-final-score="${key}"]`)?.value
+            ? Number(document.querySelector(`[data-final-score="${key}"]`).value)
+            : null,
+          finalNotes: document.querySelector(`[data-final-notes="${key}"]`)?.value || "",
+          approved: Boolean(document.querySelector(`[data-approved="${key}"]`)?.checked)
+        };
+      });
+    }
+
+    function renderSegmentScorecard(initialSegments = null) {
+      const target = document.getElementById("segment-score-list");
+      if (!target) return;
+      const rows = currentSegmentReviews(initialSegments);
+      target.innerHTML = rows.map(row => `
+        <div class="segment-row">
+          <div>
+            <strong>${row.step}. ${escapeHtml(row.name)}</strong>
+            <small>${escapeHtml(row.description)}</small>
+          </div>
+          <label>
+            Initial
+            <input class="review-input" data-initial-score="${row.key}" data-initial-signals="${escapeHtml(JSON.stringify(row.initialSignals))}" type="number" min="0" max="5" step="1" value="${escapeHtml(row.initialScore)}" readonly>
+          </label>
+          <label>
+            Initial Notes
+            <input class="review-input" data-initial-notes="${row.key}" value="${escapeHtml(row.initialNotes)}" readonly>
+          </label>
+          <label>
+            Tony Final
+            <input class="review-input" data-final-score="${row.key}" type="number" min="1" max="5" step="1" value="${escapeHtml(row.finalScore)}">
+          </label>
+          <label>
+            Tony Notes
+            <input class="review-input" data-final-notes="${row.key}" value="${escapeHtml(row.finalNotes)}">
+          </label>
+          <label class="approved-label">
+            <input data-approved="${row.key}" type="checkbox" ${row.approved ? "checked" : ""}>
+            Approved
+          </label>
+        </div>
+      `).join("");
+    }
+
+    function currentReviewPayload() {
+      const text = document.getElementById("transcript-text").value.trim();
+      const rep = document.getElementById("review-rep").value.trim();
+      const callType = document.getElementById("review-type").value;
+      const evidenceUrl = document.getElementById("evidence-link").value.trim();
+      const reviewerNotes = document.getElementById("review-notes").value.trim();
+      const scores = transcriptRubric.map(item => {
+        const result = scoreRubric(text, item.terms);
+        return {
+          name: item.name,
+          score: result.score,
+          hits: result.hits,
+          missingSignals: item.terms.filter(term => !result.hits.includes(term))
+        };
+      });
+      const average = scores.reduce((sum, item) => sum + item.score, 0) / scores.length;
+      return {
+        reviewedAt: new Date().toISOString(),
+        rep,
+        callType,
+        evidenceUrl,
+        reviewerNotes,
+        transcriptCharacters: text.length,
+        averageScore: Number(average.toFixed(1)),
+        scores,
+        segmentReviews: currentSegmentReviews(),
+        coachingFocus: [...scores].sort((a, b) => a.score - b.score).slice(0, 3).map(item => item.name)
+      };
+    }
+
+    function gradeTranscript() {
+      const text = document.getElementById("transcript-text").value.trim();
+      const target = document.getElementById("review-results");
+      if (!text) {
+        target.innerHTML = `<div class="score-card"><strong>No transcript yet</strong><p class="review-note">Paste transcript text or upload a transcript file before grading.</p></div>`;
+        return;
+      }
+      const segmentScores = demoSteps.map((_, index) => segmentInitialScore(text, index));
+      renderSegmentScorecard(segmentScores);
+      const payload = currentReviewPayload();
+      target.innerHTML = `
+        <div class="score-card">
+          <strong>Initial Score: ${payload.averageScore.toFixed(1)} / 5</strong>
+          <div class="score-meter"><span style="width: ${(payload.averageScore / 5) * 100}%"></span></div>
+          <p class="review-note">${escapeHtml(payload.rep || "Unassigned SE")} - ${escapeHtml(payload.callType)} - ${payload.transcriptCharacters.toLocaleString()} transcript characters</p>
+          <p class="review-note">Coaching focus: ${payload.coachingFocus.map(escapeHtml).join(", ")}</p>
+          <p class="review-note">Demo segment scorecard updated below. Add Tony final scores and approvals before exporting.</p>
+        </div>
+        ${payload.scores.map(item => `
+          <div class="score-card">
+            <strong>${item.name}: ${item.score} / 5</strong>
+            <div class="score-meter"><span style="width: ${(item.score / 5) * 100}%"></span></div>
+            <p class="review-note">Signals found: ${item.hits.length ? item.hits.map(escapeHtml).join(", ") : "None yet"}</p>
+            <p class="review-note">Signals to listen for: ${item.missingSignals.slice(0, 4).map(escapeHtml).join(", ")}</p>
+          </div>
+        `).join("")}
+      `;
+    }
+
+    function exportReviewJson() {
+      const text = document.getElementById("transcript-text").value.trim();
+      const target = document.getElementById("review-results");
+      if (!text) {
+        target.innerHTML = `<div class="score-card"><strong>No transcript yet</strong><p class="review-note">Paste transcript text or upload a transcript file before exporting.</p></div>`;
+        return;
+      }
+      const payload = currentReviewPayload();
+      const blob = new Blob([JSON.stringify(payload, null, 2) + "\n"], { type: "application/json" });
+      const link = document.createElement("a");
+      const repSlug = (payload.rep || "se").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      link.href = URL.createObjectURL(blob);
+      link.download = `se-call-review-${repSlug || "review"}.json`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
+    function clearTranscriptReview() {
+      document.getElementById("review-rep").value = "";
+      document.getElementById("transcript-file").value = "";
+      document.getElementById("evidence-link").value = "";
+      document.getElementById("transcript-text").value = "";
+      document.getElementById("review-notes").value = "";
+      document.getElementById("review-results").innerHTML = "";
+      renderSegmentScorecard();
+    }
+
+    document.getElementById("transcript-file").addEventListener("change", event => {
+      const file = event.target.files[0];
+      if (!file) return;
+      file.text().then(text => {
+        document.getElementById("transcript-text").value = text;
+      });
+    });
+
+    let currentMilestones = approvalMilestones.map(item => ({
+      key: item[0],
+      name: item[1],
+      phase: item[2],
+      notes: item[3],
+      status: "Not Started"
+    }));
     renderDemoPath();
-    renderMilestones();
+    renderMilestones(currentMilestones);
     renderResources();
     renderDeepDives();
+    renderSegmentScorecard();
     loadChecks();
     loadNotionSnapshot();
   </script>
