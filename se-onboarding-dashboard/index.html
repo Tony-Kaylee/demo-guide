@@ -281,6 +281,45 @@
       font-size: 12px;
     }
 
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .profile-grid label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .profile-grid input {
+      width: 100%;
+      border: 1px solid var(--line-2);
+      border-radius: 7px;
+      background: #0a111d;
+      color: var(--ink);
+      padding: 9px 10px;
+      font-size: 13px;
+    }
+
+    .schedule-alert {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 12px;
+      padding: 11px 12px;
+    }
+
+    .schedule-alert strong {
+      color: var(--ink);
+    }
+
     .review-card {
       padding: 20px;
       display: grid;
@@ -449,6 +488,9 @@
     .status-pill.approved { color: var(--green); border-color: rgba(74, 222, 128, .35); }
     .status-pill.progress { color: var(--gold); border-color: rgba(251, 191, 36, .35); }
     .status-pill.changed { color: var(--cyan); border-color: rgba(34, 211, 238, .35); }
+    .status-pill.overdue { color: var(--red); border-color: rgba(251, 113, 133, .4); }
+    .status-pill.due-soon { color: var(--gold); border-color: rgba(251, 191, 36, .42); }
+    .status-pill.on-track { color: var(--green); border-color: rgba(74, 222, 128, .35); }
     .milestone-link { color: var(--blue); }
 
     section {
@@ -544,6 +586,13 @@
       color: var(--muted);
       font-size: 11px;
       background: rgba(255,255,255,.03);
+    }
+
+    .phase-date {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 800;
+      margin: -3px 0 8px;
     }
 
     ul {
@@ -968,10 +1017,23 @@
           <h2>Rev.io PSA onboarding built around demo fluency.</h2>
           <p>This site organizes the new SE ramp around the way prospects actually buy: understand the business problem, build product fluency, shadow live demos early, run the core quote-to-cash story, then branch into the right feature set when discovery creates an opening.</p>
           <div class="hero-grid">
-            <div class="metric"><strong>14</strong><span>Days to shadow-ready</span></div>
-            <div class="metric"><strong>60</strong><span>Days to lead-demo approval</span></div>
-            <div class="metric"><strong>14</strong><span>Core demo steps</span></div>
-            <div class="metric"><strong>10</strong><span>Deep dive tracks</span></div>
+            <div class="metric"><strong id="kpi-shadow-days">14</strong><span id="kpi-shadow-label">Days to shadow-ready</span></div>
+            <div class="metric"><strong id="kpi-lead-days">60</strong><span id="kpi-lead-label">Days to lead-demo approval</span></div>
+            <div class="metric"><strong id="kpi-overdue-count">0</strong><span id="kpi-overdue-label">Tasks behind schedule</span></div>
+            <div class="metric"><strong id="kpi-next-due">Set start</strong><span id="kpi-next-due-label">Next due milestone</span></div>
+          </div>
+          <div class="profile-grid">
+            <label>
+              Rep Name
+              <input id="onboarding-rep" type="text" placeholder="New SE name" autocomplete="name">
+            </label>
+            <label>
+              Start Date
+              <input id="onboarding-start-date" type="date">
+            </label>
+          </div>
+          <div class="schedule-alert" id="schedule-alert">
+            <strong>No start date set.</strong> Add the rep start date to calculate live due dates, KPI timing, and schedule alerts.
           </div>
         </div>
 
@@ -1380,11 +1442,114 @@
     }
 
     const statusOptions = ["Not Started", "In Progress", "Approved"];
+    const onboardingProfileKey = "se-onboarding-profile";
+    const phaseSchedule = {
+      foundation: { startDay: 1, endDay: 7 },
+      shadow: { startDay: 8, endDay: 14 },
+      clickpath: { startDay: 15, endDay: 21 },
+      "core-demo": { startDay: 22, endDay: 30 },
+      "ops-depth": { startDay: 31, endDay: 38 },
+      "exec-tech": { startDay: 39, endDay: 46 },
+      "buyer-scenarios": { startDay: 47, endDay: 54 },
+      "lead-demo": { startDay: 55, endDay: 60 }
+    };
+    const milestoneNameToPhaseKey = {
+      "Foundation and Product Map Approval": "foundation",
+      "Shadow-Ready Approval": "shadow",
+      "Guided Click Path Approval": "clickpath",
+      "Core Demo Repetition Approval": "core-demo",
+      "Operational Deep Dive Approval": "ops-depth",
+      "Executive and Technical Depth Approval": "exec-tech",
+      "Buyer Scenario Approval": "buyer-scenarios",
+      "Lead-Demo Approval": "lead-demo"
+    };
 
     function statusClass(status) {
       if (status === "Approved") return "approved";
       if (status === "In Progress") return "progress";
       return "";
+    }
+
+    function todayDateOnly() {
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    }
+
+    function parseDateOnly(value) {
+      if (!value) return null;
+      const parts = String(value).split("-").map(Number);
+      if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+      return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    function formatDateOnly(date) {
+      if (!date) return "";
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function shortDate(date) {
+      if (!date) return "";
+      return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    }
+
+    function addDays(date, days) {
+      const next = new Date(date);
+      next.setDate(next.getDate() + days);
+      return next;
+    }
+
+    function daysBetween(start, end) {
+      return Math.round((end - start) / 86400000);
+    }
+
+    function readOnboardingProfile() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(onboardingProfileKey) || "{}");
+        return {
+          rep: String(stored.rep || "").trim(),
+          startDate: String(stored.startDate || "").trim()
+        };
+      } catch {
+        localStorage.removeItem(onboardingProfileKey);
+        return { rep: "", startDate: "" };
+      }
+    }
+
+    function writeOnboardingProfile(profile) {
+      localStorage.setItem(onboardingProfileKey, JSON.stringify(profile));
+    }
+
+    function phaseKeyForMilestone(item) {
+      if (item.phaseKey) return item.phaseKey;
+      if (item.key && phaseSchedule[item.key]) return item.key;
+      return milestoneNameToPhaseKey[item.name || item[1]] || "";
+    }
+
+    function dueDateForPhaseKey(phaseKey) {
+      const startDate = parseDateOnly(readOnboardingProfile().startDate);
+      const schedule = phaseSchedule[phaseKey];
+      if (!startDate || !schedule) return null;
+      return addDays(startDate, schedule.endDay - 1);
+    }
+
+    function scheduleState(status, dueDate) {
+      if (!dueDate || status === "Approved") return "";
+      const daysLeft = daysBetween(todayDateOnly(), dueDate);
+      if (daysLeft < 0) return "overdue";
+      if (daysLeft <= 3) return "due-soon";
+      return "on-track";
+    }
+
+    function scheduleLabel(status, dueDate) {
+      if (!dueDate) return "";
+      if (status === "Approved") return `Due ${shortDate(dueDate)}`;
+      const daysLeft = daysBetween(todayDateOnly(), dueDate);
+      if (daysLeft < 0) return `${Math.abs(daysLeft)} day${Math.abs(daysLeft) === 1 ? "" : "s"} overdue`;
+      if (daysLeft === 0) return "Due today";
+      return `Due ${shortDate(dueDate)} (${daysLeft} day${daysLeft === 1 ? "" : "s"})`;
     }
 
     function localStatusKey(key) {
@@ -1412,10 +1577,15 @@
         const status = localStorage.getItem(localStatusKey(key)) || originalStatus;
         const url = item.url || "https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5";
         const pageId = item.id || notionPageIdFromUrl(url);
+        const phaseKey = phaseKeyForMilestone(item);
+        const dueDate = dueDateForPhaseKey(phaseKey) || parseDateOnly(item.dueDate);
+        const dueIso = formatDateOnly(dueDate);
+        const dueState = scheduleState(status, dueDate);
+        const dueText = scheduleLabel(status, dueDate);
         const changed = status !== originalStatus;
         if (!changed) localStorage.removeItem(pendingStatusKey(key));
         return `
-        <div class="check" data-milestone="${key}" data-title="${title}" data-page-id="${pageId}" data-original-status="${originalStatus}">
+        <div class="check" data-milestone="${key}" data-title="${title}" data-phase-key="${phaseKey}" data-page-id="${pageId}" data-due-date="${dueIso}" data-original-status="${originalStatus}">
           <input type="checkbox" data-check="${key}" ${status === "Approved" ? "checked" : ""} aria-label="Approved">
           <div class="milestone-body">
             <span>${title}</span>
@@ -1428,6 +1598,7 @@
             </div>
             <span class="status-line">
               <span class="status-pill ${statusClass(status)}">${status}</span>
+              ${dueText ? `<span class="status-pill ${dueState}">${dueText}</span>` : ""}
               ${changed ? `<span class="status-pill changed">Unsynced</span>` : ""}
             </span>
           </div>
@@ -1473,6 +1644,127 @@
       document.getElementById("progress-number").textContent = pct + "%";
       document.getElementById("progress-bar").style.width = pct + "%";
       updateSyncOutput();
+      updateDashboardSchedule();
+    }
+
+    function currentMilestonePlan() {
+      const profile = readOnboardingProfile();
+      return currentMilestones.map(item => {
+        const key = item.key || item[0];
+        const title = item.name || item[1];
+        const phaseKey = phaseKeyForMilestone(item);
+        const dueDate = formatDateOnly(dueDateForPhaseKey(phaseKey)) || item.dueDate || "";
+        const card = document.querySelector(`[data-milestone="${key}"]`);
+        const status = document.querySelector(`[data-status="${key}"]`)?.value || item.status || "Not Started";
+        return {
+          key,
+          pageId: card?.dataset.pageId || item.id || notionPageIdFromUrl(item.url),
+          title,
+          phase: item.phase || item[2],
+          phaseKey,
+          employee: profile.rep,
+          dueDate,
+          status
+        };
+      });
+    }
+
+    function nextOpenMilestone(plan) {
+      return plan
+        .filter(item => item.status !== "Approved" && item.dueDate)
+        .map(item => ({ ...item, due: parseDateOnly(item.dueDate) }))
+        .filter(item => item.due)
+        .sort((a, b) => a.due - b.due)[0] || null;
+    }
+
+    function updateDashboardSchedule() {
+      const profile = readOnboardingProfile();
+      const startDate = parseDateOnly(profile.startDate);
+      const alert = document.getElementById("schedule-alert");
+      const plan = currentMilestonePlan();
+      const today = todayDateOnly();
+      const overdue = plan.filter(item => item.status !== "Approved" && item.dueDate && parseDateOnly(item.dueDate) < today);
+      const next = nextOpenMilestone(plan);
+      const shadowDue = dueDateForPhaseKey("shadow");
+      const leadDue = dueDateForPhaseKey("lead-demo");
+
+      updateTimelineSchedule(startDate);
+      document.getElementById("kpi-overdue-count").textContent = overdue.length;
+      document.getElementById("kpi-overdue-label").textContent = overdue.length === 1 ? "Task behind schedule" : "Tasks behind schedule";
+      document.getElementById("kpi-next-due").textContent = next ? shortDate(next.due) : (startDate ? "Clear" : "Set start");
+      document.getElementById("kpi-next-due-label").textContent = next ? next.title : "Next due milestone";
+
+      if (startDate && shadowDue && leadDue) {
+        document.getElementById("kpi-shadow-days").textContent = Math.max(0, daysBetween(today, shadowDue));
+        document.getElementById("kpi-shadow-label").textContent = `Days left to shadow-ready (${shortDate(shadowDue)})`;
+        document.getElementById("kpi-lead-days").textContent = Math.max(0, daysBetween(today, leadDue));
+        document.getElementById("kpi-lead-label").textContent = `Days left to lead-demo approval (${shortDate(leadDue)})`;
+      } else {
+        document.getElementById("kpi-shadow-days").textContent = "14";
+        document.getElementById("kpi-shadow-label").textContent = "Days to shadow-ready";
+        document.getElementById("kpi-lead-days").textContent = "60";
+        document.getElementById("kpi-lead-label").textContent = "Days to lead-demo approval";
+      }
+
+      if (!alert) return;
+      if (!startDate) {
+        alert.innerHTML = `<strong>No start date set.</strong> Add the rep start date to calculate live due dates, KPI timing, and schedule alerts.`;
+      } else if (overdue.length) {
+        alert.innerHTML = `<strong>${overdue.length} task${overdue.length === 1 ? "" : "s"} behind schedule.</strong> Next recovery focus: ${escapeHtml(overdue[0].title)} was due ${shortDate(parseDateOnly(overdue[0].dueDate))}.`;
+      } else if (next) {
+        alert.innerHTML = `<strong>${escapeHtml(profile.rep || "New SE")} is on schedule.</strong> Next milestone: ${escapeHtml(next.title)} due ${shortDate(next.due)}.`;
+      } else {
+        alert.innerHTML = `<strong>${escapeHtml(profile.rep || "New SE")} has no open dated milestones.</strong> All scheduled approval gates are complete.`;
+      }
+    }
+
+    function updateTimelineSchedule(startDate) {
+      const phaseKeys = Object.keys(phaseSchedule);
+      document.querySelectorAll(".phase").forEach((phase, index) => {
+        const body = phase.querySelector(".phase-num + div");
+        if (!body) return;
+        let dateNode = body.querySelector(".phase-date");
+        if (!dateNode) {
+          dateNode = document.createElement("div");
+          dateNode.className = "phase-date";
+          const tag = body.querySelector(".tag");
+          if (tag) tag.insertAdjacentElement("afterend", dateNode);
+        }
+        const schedule = phaseSchedule[phaseKeys[index]];
+        if (!startDate || !schedule) {
+          dateNode.textContent = "Set start date for real due dates";
+          return;
+        }
+        const start = addDays(startDate, schedule.startDay - 1);
+        const end = addDays(startDate, schedule.endDay - 1);
+        dateNode.textContent = `${shortDate(start)}-${shortDate(end)} due ${shortDate(end)}`;
+      });
+    }
+
+    function loadOnboardingProfile() {
+      const profile = readOnboardingProfile();
+      const repInput = document.getElementById("onboarding-rep");
+      const startInput = document.getElementById("onboarding-start-date");
+      if (!repInput || !startInput) return;
+      repInput.value = profile.rep;
+      startInput.value = profile.startDate;
+      [repInput, startInput].forEach(input => {
+        input.addEventListener("input", () => {
+          const nextProfile = {
+            rep: repInput.value.trim(),
+            startDate: startInput.value
+          };
+          writeOnboardingProfile(nextProfile);
+          const reviewRep = document.getElementById("review-rep");
+          if (reviewRep && (!reviewRep.value.trim() || reviewRep.dataset.syncedFromProfile === "true")) {
+            reviewRep.value = nextProfile.rep;
+            reviewRep.dataset.syncedFromProfile = "true";
+          }
+          renderMilestones(currentMilestones);
+          loadChecks();
+          updateDashboardSchedule();
+        });
+      });
     }
 
     function loadChecks() {
@@ -1491,6 +1783,8 @@
               key,
               pageId: card.dataset.pageId || null,
               title: card.dataset.title,
+              employee: readOnboardingProfile().rep,
+              dueDate: card.dataset.dueDate || null,
               from: originalStatus,
               to: event.target.value
             }));
@@ -1799,7 +2093,7 @@
 
     function currentReviewPayload() {
       const text = document.getElementById("transcript-text").value.trim();
-      const rep = document.getElementById("review-rep").value.trim();
+      const rep = document.getElementById("review-rep").value.trim() || readOnboardingProfile().rep;
       const callType = document.getElementById("review-type").value;
       const reviewScope = selectedReviewScope();
       const evidenceUrl = document.getElementById("evidence-link").value.trim();
@@ -1879,9 +2173,12 @@
     }
 
     function exportNotionSyncPayload() {
+      const onboardingProfile = readOnboardingProfile();
       const payload = {
         generatedAt: new Date().toISOString(),
         source: "SE Onboarding Dashboard",
+        onboardingProfile,
+        milestonePlan: currentMilestonePlan(),
         milestoneStatusChanges: pendingStatusChanges(),
         callReview: currentReviewPayload()
       };
@@ -1895,7 +2192,9 @@
     }
 
     function clearTranscriptReview() {
-      document.getElementById("review-rep").value = "";
+      const reviewRep = document.getElementById("review-rep");
+      reviewRep.value = readOnboardingProfile().rep;
+      reviewRep.dataset.syncedFromProfile = "true";
       document.getElementById("transcript-file").value = "";
       document.getElementById("evidence-link").value = "";
       document.getElementById("transcript-text").value = "";
@@ -1921,6 +2220,7 @@
       status: "Not Started"
     }));
     renderDemoPath();
+    loadOnboardingProfile();
     renderMilestones(currentMilestones);
     renderResources();
     renderDeepDives();
