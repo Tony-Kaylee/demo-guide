@@ -2,3 +2,6 @@
 *.log
 *.tmp
 .last-sync
+sessions/
+logs_*.sqlite*
+__pycache__/

@@ -518,6 +518,16 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
+    .sync-message {
+      min-height: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .sync-message.ok { color: var(--green); }
+    .sync-message.error { color: var(--red); }
+
     .tracker-actions a,
     .tracker-actions button,
     .resource-link {
@@ -1096,6 +1106,7 @@
         <button onclick="resetMilestoneStatus()">Reset Local Milestones</button>
         <button class="secondary" onclick="exportStatusChanges()">Export Status Changes</button>
         <button onclick="exportNotionSyncPayload()">Sync to Notion</button>
+        <button class="secondary" onclick="downloadNotionSyncPayload()">Download Sync JSON</button>
         <a href="https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5">Open Notion Tracker</a>
         <a href="resources/pdfs/se-onboarding-full-plan.pdf">Open Full Training PDF</a>
         <a href="../demo-guide.html">Open Existing Demo Guide</a>
@@ -1412,10 +1423,12 @@
           <a href="https://app.notion.com/p/37ca59b7e7b2815c86d1f8a033b623d5">Open SE Onboarding Tracker</a>
           <a href="https://app.notion.com/p/Solutions-Engineer-fd8a4277e8b647a5995db09c3aeadfa3">Open Solutions Engineer Page</a>
           <button type="button" onclick="exportStatusChanges()">Export Status Changes</button>
+          <button type="button" onclick="downloadNotionSyncPayload()">Download Sync JSON</button>
         </div>
         <div class="sync-panel">
-          <p>Pending status changes are saved in this browser and can be synced to Notion by running the server-side status script with a Notion token.</p>
+          <p>Pending status changes are saved in this browser. Sync to Notion sends the full onboarding payload to the secure server-side OpenClaw sync route.</p>
           <textarea class="sync-output" id="status-sync-output" readonly placeholder="No pending status changes yet."></textarea>
+          <div class="sync-message" id="notion-sync-message" aria-live="polite"></div>
         </div>
         <div class="quick-list" id="milestone-list"></div>
       </section>
@@ -1558,6 +1571,8 @@
     const statusOptions = ["Not Started", "In Progress", "Approved"];
     const onboardingProfileKey = "se-onboarding-profile";
     const accessChecklistKey = "se-onboarding-access-verification";
+    const notionSyncEndpointKey = "se-onboarding-notion-sync-endpoint";
+    const defaultNotionSyncEndpoint = "https://kaylee-revio.msappproxy.net/plugins/se-onboarding/notion-sync";
     const accessChecklist = [
       {
         group: "Software Verification",
@@ -2055,6 +2070,18 @@
       URL.revokeObjectURL(link.href);
     }
 
+    function notionSyncEndpoint() {
+      const override = localStorage.getItem(notionSyncEndpointKey);
+      return override || defaultNotionSyncEndpoint;
+    }
+
+    function setNotionSyncMessage(message, type = "") {
+      const target = document.getElementById("notion-sync-message");
+      if (!target) return;
+      target.textContent = message;
+      target.className = `sync-message ${type}`.trim();
+    }
+
     function loadNotionSnapshot() {
       fetch("data/notion-tracker-snapshot.json")
         .then(response => response.ok ? response.json() : null)
@@ -2380,9 +2407,9 @@
       URL.revokeObjectURL(link.href);
     }
 
-    function exportNotionSyncPayload() {
+    function notionSyncPayload() {
       const onboardingProfile = readOnboardingProfile();
-      const payload = {
+      return {
         generatedAt: new Date().toISOString(),
         source: "SE Onboarding Dashboard",
         onboardingProfile,
@@ -2391,6 +2418,10 @@
         milestoneStatusChanges: pendingStatusChanges(),
         callReview: currentReviewPayload()
       };
+    }
+
+    function downloadNotionSyncPayload() {
+      const payload = notionSyncPayload();
       const blob = new Blob([JSON.stringify(payload, null, 2) + "\n"], { type: "application/json" });
       const link = document.createElement("a");
       const repSlug = (payload.callReview.rep || "se").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -2398,6 +2429,30 @@
       link.download = `se-onboarding-notion-sync-${repSlug || "review"}.json`;
       link.click();
       URL.revokeObjectURL(link.href);
+    }
+
+    async function exportNotionSyncPayload() {
+      const payload = notionSyncPayload();
+      if (!payload.onboardingProfile.rep && !payload.callReview.rep) {
+        setNotionSyncMessage("Add the SE name before syncing to Notion.", "error");
+        return;
+      }
+      setNotionSyncMessage("Syncing to Notion...");
+      try {
+        const response = await fetch(notionSyncEndpoint(), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json().catch(() => null);
+        if (!response.ok || !result?.ok) {
+          throw new Error(result?.error || `Sync failed with HTTP ${response.status}.`);
+        }
+        const changed = (result.updated || 0) + (result.created || 0);
+        setNotionSyncMessage(`Synced ${changed} Notion row/page operation${changed === 1 ? "" : "s"} for ${result.employee}.`, "ok");
+      } catch (error) {
+        setNotionSyncMessage(`${error.message || error} Download Sync JSON is still available as a fallback.`, "error");
+      }
     }
 
     function clearTranscriptReview() {

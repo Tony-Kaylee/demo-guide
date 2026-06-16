@@ -1,0 +1,12 @@
+{
+  "id": "se-onboarding-notion-sync",
+  "name": "SE Onboarding Notion Sync",
+  "description": "Accepts SE onboarding dashboard payloads and syncs them to Notion server-side.",
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  }
+}

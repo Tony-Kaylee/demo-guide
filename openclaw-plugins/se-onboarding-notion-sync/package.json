@@ -1,0 +1,13 @@
+{
+  "name": "se-onboarding-notion-sync",
+  "version": "1.0.0",
+  "type": "module",
+  "openclaw": {
+    "extensions": ["./index.js"],
+    "runtimeExtensions": ["./index.js"],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    }
+  }
+}
