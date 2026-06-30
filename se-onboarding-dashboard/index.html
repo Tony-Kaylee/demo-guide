@@ -2441,6 +2441,7 @@
       try {
         const response = await fetch(notionSyncEndpoint(), {
           method: "POST",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
