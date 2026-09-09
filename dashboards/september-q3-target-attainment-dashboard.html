@@ -1,0 +1,192 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>September + Q3 Target Attainment</title>
+<style>
+:root{--bg:#07120d;--panel:#0d1c14;--panel2:#10261a;--text:#eafff2;--muted:#8ab69a;--line:#1d3c2a;--green:#00ff88;--red:#ff4d4d;--yellow:#ffd700}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0%,#123d29 0,#07120d 38%,#050806 100%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial;color:var(--text)}
+.wrap{max-width:1320px;margin:0 auto;padding:34px 24px 60px} .hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:24px} h1{font-size:36px;margin:0 0 8px;letter-spacing:-1px} .sub{color:var(--muted);font-size:14px;line-height:1.5;max-width:850px} .pill{border:1px solid var(--line);background:rgba(0,255,136,.06);border-radius:999px;padding:8px 12px;color:#baffd7;font-weight:700;font-size:12px;white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0} .kpi{background:linear-gradient(180deg,rgba(16,38,26,.95),rgba(8,18,13,.95));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 18px 50px rgba(0,0,0,.28)} .kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);font-weight:800} .kpi-val{font-size:29px;font-weight:900;margin-top:6px} .kpi-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.section{margin-top:30px} .section h2{font-size:22px;margin:0 0 14px} .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px} .card{background:rgba(13,28,20,.88);border:1px solid var(--line);border-radius:18px;padding:16px;min-height:220px} .card.low{border-color:rgba(255,77,77,.25)} .card.mid{border-color:rgba(255,215,0,.25)} .card.good{border-color:rgba(0,255,136,.34)} .card-head{display:flex;align-items:center;gap:10px;min-height:34px} .card h3{font-size:15px;margin:0} .dot{width:11px;height:11px;border-radius:50%;display:inline-block;flex:0 0 auto} .dot.small{width:8px;height:8px;margin-right:8px} .big{font-size:34px;font-weight:950;margin:18px 0 10px} .bar{height:10px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden} .bar span{display:block;height:100%;border-radius:999px} .metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px} .metrics div{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:9px} .metrics b{display:block;font-size:15px} .metrics span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:800}
+table{width:100%;border-collapse:collapse;background:rgba(13,28,20,.86);border:1px solid var(--line);border-radius:16px;overflow:hidden} th,td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;font-size:13px} th{color:#baffd7;font-size:11px;text-transform:uppercase;letter-spacing:1px;background:rgba(0,255,136,.06)} tr:last-child td{border-bottom:0} .note{margin-top:18px;color:var(--muted);font-size:12px;line-height:1.5} .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:1100px){.grid,.kpis{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}} @media(max-width:640px){.grid,.kpis{grid-template-columns:1fr}.hero{display:block}}
+</style></head><body><div class="wrap">
+  <div class="hero"><div><h1>September + Q3 Target Attainment</h1><div class="sub">Closed Won MRR by product line vs target. September covers close dates 2026-09-01 through 2026-09-30; Q3 covers 2026-07-01 through 2026-09-30. Generated September 09, 2026 19:27 UTC.</div></div><div class="pill">Source: Salesforce + forecast target model</div></div>
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-label">September Attainment</div><div class="kpi-val" style="color:var(--green)">1.7%</div><div class="kpi-sub">$1,000 of $60,075</div></div>
+    <div class="kpi"><div class="kpi-label">September Remaining</div><div class="kpi-val">$59,075</div><div class="kpi-sub">1 closed-won deals</div></div>
+    <div class="kpi"><div class="kpi-label">Q3 Attainment</div><div class="kpi-val" style="color:var(--green)">20.4%</div><div class="kpi-sub">$36,763 of $180,225</div></div>
+    <div class="kpi"><div class="kpi-label">Q3 Remaining</div><div class="kpi-val">$143,462</div><div class="kpi-sub">62 closed-won deals</div></div>
+  </div>
+  <div class="section"><h2>September by Product Line</h2><div class="grid"><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#00ff88;box-shadow:0 0 14px #00ff8888"></span><h3>PSA 2.0</h3></div>
+      <div class="big" style="color:#00ff88">3.3%</div>
+      <div class="bar"><span style="width:3.3%;background:#00ff88;box-shadow:0 0 14px #00ff8877"></span></div>
+      <div class="metrics">
+        <div><b>$1,000</b><span>Closed Won</span></div>
+        <div><b>$30,000</b><span>Target</span></div>
+        <div><b>$29,000</b><span>Remaining</span></div>
+        <div><b>1</b><span>Deals</span></div>
+      </div>
+    </div><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#00e5ff;box-shadow:0 0 14px #00e5ff88"></span><h3>Billing / Odin</h3></div>
+      <div class="big" style="color:#00e5ff">0.0%</div>
+      <div class="bar"><span style="width:0.0%;background:#00e5ff;box-shadow:0 0 14px #00e5ff77"></span></div>
+      <div class="metrics">
+        <div><b>$0</b><span>Closed Won</span></div>
+        <div><b>$13,368</b><span>Target</span></div>
+        <div><b>$13,368</b><span>Remaining</span></div>
+        <div><b>0</b><span>Deals</span></div>
+      </div>
+    </div><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#7c3aed;box-shadow:0 0 14px #7c3aed88"></span><h3>Payments AR</h3></div>
+      <div class="big" style="color:#7c3aed">0.0%</div>
+      <div class="bar"><span style="width:0.0%;background:#7c3aed;box-shadow:0 0 14px #7c3aed77"></span></div>
+      <div class="metrics">
+        <div><b>$0</b><span>Closed Won</span></div>
+        <div><b>$10,540</b><span>Target</span></div>
+        <div><b>$10,540</b><span>Remaining</span></div>
+        <div><b>0</b><span>Deals</span></div>
+      </div>
+    </div><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#ff6b35;box-shadow:0 0 14px #ff6b3588"></span><h3>Cyber Protect</h3></div>
+      <div class="big" style="color:#ff6b35">0.0%</div>
+      <div class="bar"><span style="width:0.0%;background:#ff6b35;box-shadow:0 0 14px #ff6b3577"></span></div>
+      <div class="metrics">
+        <div><b>$0</b><span>Closed Won</span></div>
+        <div><b>$4,500</b><span>Target</span></div>
+        <div><b>$4,500</b><span>Remaining</span></div>
+        <div><b>0</b><span>Deals</span></div>
+      </div>
+    </div><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#ffd700;box-shadow:0 0 14px #ffd70088"></span><h3>CommerceHub</h3></div>
+      <div class="big" style="color:#ffd700">0.0%</div>
+      <div class="bar"><span style="width:0.0%;background:#ffd700;box-shadow:0 0 14px #ffd70077"></span></div>
+      <div class="metrics">
+        <div><b>$0</b><span>Closed Won</span></div>
+        <div><b>$1,667</b><span>Target</span></div>
+        <div><b>$1,667</b><span>Remaining</span></div>
+        <div><b>0</b><span>Deals</span></div>
+      </div>
+    </div></div></div>
+  <div class="section"><h2>Q3 by Product Line</h2><div class="grid"><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#00ff88;box-shadow:0 0 14px #00ff8888"></span><h3>PSA 2.0</h3></div>
+      <div class="big" style="color:#00ff88">26.1%</div>
+      <div class="bar"><span style="width:26.1%;background:#00ff88;box-shadow:0 0 14px #00ff8877"></span></div>
+      <div class="metrics">
+        <div><b>$23,461</b><span>Closed Won</span></div>
+        <div><b>$90,000</b><span>Target</span></div>
+        <div><b>$66,539</b><span>Remaining</span></div>
+        <div><b>29</b><span>Deals</span></div>
+      </div>
+    </div><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#00e5ff;box-shadow:0 0 14px #00e5ff88"></span><h3>Billing / Odin</h3></div>
+      <div class="big" style="color:#00e5ff">19.1%</div>
+      <div class="bar"><span style="width:19.1%;background:#00e5ff;box-shadow:0 0 14px #00e5ff77"></span></div>
+      <div class="metrics">
+        <div><b>$7,644</b><span>Closed Won</span></div>
+        <div><b>$40,104</b><span>Target</span></div>
+        <div><b>$32,460</b><span>Remaining</span></div>
+        <div><b>14</b><span>Deals</span></div>
+      </div>
+    </div><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#7c3aed;box-shadow:0 0 14px #7c3aed88"></span><h3>Payments AR</h3></div>
+      <div class="big" style="color:#7c3aed">17.9%</div>
+      <div class="bar"><span style="width:17.9%;background:#7c3aed;box-shadow:0 0 14px #7c3aed77"></span></div>
+      <div class="metrics">
+        <div><b>$5,658</b><span>Closed Won</span></div>
+        <div><b>$31,620</b><span>Target</span></div>
+        <div><b>$25,962</b><span>Remaining</span></div>
+        <div><b>19</b><span>Deals</span></div>
+      </div>
+    </div><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#ff6b35;box-shadow:0 0 14px #ff6b3588"></span><h3>Cyber Protect</h3></div>
+      <div class="big" style="color:#ff6b35">0.0%</div>
+      <div class="bar"><span style="width:0.0%;background:#ff6b35;box-shadow:0 0 14px #ff6b3577"></span></div>
+      <div class="metrics">
+        <div><b>$0</b><span>Closed Won</span></div>
+        <div><b>$13,500</b><span>Target</span></div>
+        <div><b>$13,500</b><span>Remaining</span></div>
+        <div><b>0</b><span>Deals</span></div>
+      </div>
+    </div><div class="card low">
+      <div class="card-head"><span class="dot" style="background:#ffd700;box-shadow:0 0 14px #ffd70088"></span><h3>CommerceHub</h3></div>
+      <div class="big" style="color:#ffd700">0.0%</div>
+      <div class="bar"><span style="width:0.0%;background:#ffd700;box-shadow:0 0 14px #ffd70077"></span></div>
+      <div class="metrics">
+        <div><b>$0</b><span>Closed Won</span></div>
+        <div><b>$5,001</b><span>Target</span></div>
+        <div><b>$5,001</b><span>Remaining</span></div>
+        <div><b>0</b><span>Deals</span></div>
+      </div>
+    </div></div></div>
+  <div class="section two"><div><h2>September Summary</h2><table><thead><tr><th>Product</th><th>Closed Won</th><th>Target</th><th>Attainment</th><th>Remaining</th><th>Deals</th></tr></thead><tbody><tr><td><span class="dot small" style="background:#00ff88"></span>PSA 2.0</td><td>$1,000</td><td>$30,000</td><td>3.3%</td><td>$29,000</td><td>1</td></tr>
+<tr><td><span class="dot small" style="background:#00e5ff"></span>Billing / Odin</td><td>$0</td><td>$13,368</td><td>0.0%</td><td>$13,368</td><td>0</td></tr>
+<tr><td><span class="dot small" style="background:#7c3aed"></span>Payments AR</td><td>$0</td><td>$10,540</td><td>0.0%</td><td>$10,540</td><td>0</td></tr>
+<tr><td><span class="dot small" style="background:#ff6b35"></span>Cyber Protect</td><td>$0</td><td>$4,500</td><td>0.0%</td><td>$4,500</td><td>0</td></tr>
+<tr><td><span class="dot small" style="background:#ffd700"></span>CommerceHub</td><td>$0</td><td>$1,667</td><td>0.0%</td><td>$1,667</td><td>0</td></tr></tbody></table></div><div><h2>Q3 Summary</h2><table><thead><tr><th>Product</th><th>Closed Won</th><th>Target</th><th>Attainment</th><th>Remaining</th><th>Deals</th></tr></thead><tbody><tr><td><span class="dot small" style="background:#00ff88"></span>PSA 2.0</td><td>$23,461</td><td>$90,000</td><td>26.1%</td><td>$66,539</td><td>29</td></tr>
+<tr><td><span class="dot small" style="background:#00e5ff"></span>Billing / Odin</td><td>$7,644</td><td>$40,104</td><td>19.1%</td><td>$32,460</td><td>14</td></tr>
+<tr><td><span class="dot small" style="background:#7c3aed"></span>Payments AR</td><td>$5,658</td><td>$31,620</td><td>17.9%</td><td>$25,962</td><td>19</td></tr>
+<tr><td><span class="dot small" style="background:#ff6b35"></span>Cyber Protect</td><td>$0</td><td>$13,500</td><td>0.0%</td><td>$13,500</td><td>0</td></tr>
+<tr><td><span class="dot small" style="background:#ffd700"></span>CommerceHub</td><td>$0</td><td>$5,001</td><td>0.0%</td><td>$5,001</td><td>0</td></tr></tbody></table></div></div>
+  <div class="section"><h2>Q3 Closed-Won Detail</h2><table><thead><tr><th>Close Date</th><th>Bucket</th><th>Account / Opp</th><th>MRR</th><th>Owner</th><th>SF Product Type</th></tr></thead><tbody><tr><td>2026-07-01</td><td>PSA 2.0</td><td>B. Moyer Radio Communications LLC</td><td>$160</td><td>Ingrid Beard</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-02</td><td>PSA 2.0</td><td>Cameras Onsite</td><td>$800</td><td>Justin Lee</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-03</td><td>PSA 2.0</td><td>Veterans Communications Corp</td><td>$217</td><td>Ingrid Beard</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-06</td><td>Billing / Odin</td><td>SpectrumVoIP</td><td>$600</td><td>Justin Lee</td><td>Billing Add-on</td></tr>
+<tr><td>2026-07-07</td><td>Payments AR</td><td>Weaver Systems</td><td>$229</td><td>Ingrid Beard</td><td>Payments AR</td></tr>
+<tr><td>2026-07-08</td><td>Payments AR</td><td>Elite Connect</td><td>$50</td><td>Justin Lee</td><td>Payments AR</td></tr>
+<tr><td>2026-07-09</td><td>PSA 2.0</td><td>Planet Secure</td><td>$1,220</td><td>Jaylin Bender</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-09</td><td>PSA 2.0</td><td>PSD Integrations</td><td>$1,000</td><td>Jake Borah</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-10</td><td>PSA 2.0</td><td>Teleco Wilmington</td><td>$0</td><td>Katerra Stephenson Greenwood</td><td>PSA</td></tr>
+<tr><td>2026-07-13</td><td>PSA 2.0</td><td>Empire Telecom</td><td>$500</td><td>Connor Flynn</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-13</td><td>Billing / Odin</td><td>Empire Telecom</td><td>$500</td><td>Connor Flynn</td><td>Billing</td></tr>
+<tr><td>2026-07-13</td><td>Billing / Odin</td><td>Telecom Fiji Limited</td><td>$294</td><td>Justin Lee</td><td>Odin</td></tr>
+<tr><td>2026-07-13</td><td>Billing / Odin</td><td>Telecom Fiji Limited</td><td>$0</td><td>Justin Lee</td><td>Odin</td></tr>
+<tr><td>2026-07-15</td><td>Billing / Odin</td><td>Unicom Solutions</td><td>$0</td><td>Jakob Champion</td><td>Billing</td></tr>
+<tr><td>2026-07-16</td><td>Payments AR</td><td>Castle Security</td><td>$50</td><td>Ingrid Beard</td><td>Payments AR</td></tr>
+<tr><td>2026-07-17</td><td>PSA 2.0</td><td>Millennium Systems Integration</td><td>$1,000</td><td>Jaylin Bender</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-21</td><td>PSA 2.0</td><td>ICS Communications</td><td>$103</td><td>Justin Lee</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-22</td><td>Payments AR</td><td>Omidi Enterprises</td><td>$50</td><td>Katerra Stephenson Greenwood</td><td>Payments AR</td></tr>
+<tr><td>2026-07-23</td><td>Payments AR</td><td>Next Step Communications LLC</td><td>$986</td><td>Ingrid Beard</td><td>Payments AR</td></tr>
+<tr><td>2026-07-24</td><td>Payments AR</td><td>DFW Security</td><td>$1,864</td><td>Ingrid Beard</td><td>Payments AR</td></tr>
+<tr><td>2026-07-24</td><td>Payments AR</td><td>DFW Security</td><td>$437</td><td>Ingrid Beard</td><td>Payments AR</td></tr>
+<tr><td>2026-07-24</td><td>Payments AR</td><td>Atlantic Companies</td><td>$50</td><td>Justin Lee</td><td>Payments AR</td></tr>
+<tr><td>2026-07-29</td><td>PSA 2.0</td><td>Intec Security Solutions</td><td>$1,000</td><td>Andy Whisenant</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-29</td><td>Billing / Odin</td><td>Telesupply,LLC</td><td>$500</td><td>Jakob Champion</td><td>Billing Add-on</td></tr>
+<tr><td>2026-07-29</td><td>Payments AR</td><td>K&amp;L Telecom</td><td>$50</td><td>Ingrid Beard</td><td>Payments AR</td></tr>
+<tr><td>2026-07-29</td><td>Billing / Odin</td><td>One Stop Telecom</td><td>$0</td><td>Jakob Champion</td><td>Billing</td></tr>
+<tr><td>2026-07-30</td><td>PSA 2.0</td><td>R-Options</td><td>$2,430</td><td>Jamie Butler</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-30</td><td>Payments AR</td><td>White Label Communications</td><td>$50</td><td>Justin Lee</td><td>Payments AR</td></tr>
+<tr><td>2026-07-31</td><td>PSA 2.0</td><td>Midwest Security Systems, Inc.</td><td>$1,250</td><td>Patrick Davies</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-31</td><td>PSA 2.0</td><td>IMC Jax</td><td>$930</td><td>Connor Flynn</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-31</td><td>Billing / Odin</td><td>ET&amp;T Corporation</td><td>$750</td><td>Jamie Butler</td><td>Billing</td></tr>
+<tr><td>2026-07-31</td><td>Payments AR</td><td>Richmond Security</td><td>$750</td><td>Katerra Stephenson Greenwood</td><td>Payments AR</td></tr>
+<tr><td>2026-07-31</td><td>PSA 2.0</td><td>Blue Water Networks</td><td>$550</td><td>Connor Flynn</td><td>PSA 2.0</td></tr>
+<tr><td>2026-07-31</td><td>Billing / Odin</td><td>IMC Jax</td><td>$450</td><td>Connor Flynn</td><td>Billing</td></tr>
+<tr><td>2026-08-04</td><td>PSA 2.0</td><td>Integrated Systems</td><td>$60</td><td>Justin Lee</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-06</td><td>Billing / Odin</td><td>InterGlobe Communications</td><td>$250</td><td>Jakob Champion</td><td>Billing Add-on</td></tr>
+<tr><td>2026-08-06</td><td>PSA 2.0</td><td>Network Datacom Solutions</td><td>$126</td><td>Jakob Champion</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-11</td><td>Payments AR</td><td>Fountaine Information Systems</td><td>$50</td><td>Justin Lee</td><td>Payments AR</td></tr>
+<tr><td>2026-08-11</td><td>Payments AR</td><td>Tribe Connect</td><td>$50</td><td>Ingrid Beard</td><td>Payments AR</td></tr>
+<tr><td>2026-08-12</td><td>Payments AR</td><td>AVSS</td><td>$50</td><td>Justin Lee</td><td>Payments AR</td></tr>
+<tr><td>2026-08-13</td><td>PSA 2.0</td><td>NAS Wireless</td><td>$1,000</td><td>Patrick Davies</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-17</td><td>Billing / Odin</td><td>JD Telecom</td><td>$250</td><td>Jamie Butler</td><td>Billing Add-on</td></tr>
+<tr><td>2026-08-18</td><td>PSA 2.0</td><td>Intelligent Technology Group</td><td>$1,000</td><td>Abbey McIntosh</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-19</td><td>Payments AR</td><td>GymPhone</td><td>$81</td><td>Justin Lee</td><td>Payments AR</td></tr>
+<tr><td>2026-08-20</td><td>Payments AR</td><td>Womack Technologies</td><td>$50</td><td>Jakob Champion</td><td>Payments AR</td></tr>
+<tr><td>2026-08-21</td><td>PSA 2.0</td><td>BSN Security</td><td>$1,000</td><td>Jake Borah</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-25</td><td>PSA 2.0</td><td>HyVee, Inc. dba A+ Communications &amp; Security</td><td>$0</td><td>Ingrid Beard</td><td>PSA</td></tr>
+<tr><td>2026-08-26</td><td>Billing / Odin</td><td>BalsamWest Fibernet</td><td>$250</td><td>Justin Lee</td><td>Billing Add-on</td></tr>
+<tr><td>2026-08-26</td><td>Payments AR</td><td>ECI-Empire Communications</td><td>$50</td><td>Ingrid Beard</td><td>Payments AR</td></tr>
+<tr><td>2026-08-26</td><td>Payments AR</td><td>Digital Market POS</td><td>$50</td><td>Jakob Champion</td><td>Payments AR</td></tr>
+<tr><td>2026-08-27</td><td>Billing / Odin</td><td>SouthEast Telephone</td><td>$2,650</td><td>Connor Flynn</td><td>Billing</td></tr>
+<tr><td>2026-08-27</td><td>PSA 2.0</td><td>VoxConnectUC LLC</td><td>$1,000</td><td>Patrick Davies</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-27</td><td>PSA 2.0</td><td>B&amp;S Integrated Security Systems</td><td>$1,000</td><td>Abbey McIntosh</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-27</td><td>PSA 2.0</td><td>SouthEast Telephone</td><td>$880</td><td>Connor Flynn</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-27</td><td>PSA 2.0</td><td>Canitan</td><td>$752</td><td>Andy Whisenant</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-28</td><td>PSA 2.0</td><td>Sunshine Communications Mgt LLC - Broadstar</td><td>$2,195</td><td>Jakob Champion</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-28</td><td>PSA 2.0</td><td>Communication Service Solutions</td><td>$48</td><td>Katerra Stephenson Greenwood</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-31</td><td>PSA 2.0</td><td>ITR-Systems</td><td>$1,240</td><td>Patrick Davies</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-31</td><td>Billing / Odin</td><td>Unicom Telecom</td><td>$1,150</td><td>Jamie Butler</td><td>Billing</td></tr>
+<tr><td>2026-08-31</td><td>PSA 2.0</td><td>Trigent Technologies, LLC</td><td>$1,000</td><td>Andy Whisenant</td><td>PSA 2.0</td></tr>
+<tr><td>2026-08-31</td><td>Payments AR</td><td>Planet Secure</td><td>$711</td><td>Ingrid Beard</td><td>Payments AR</td></tr>
+<tr><td>2026-09-02</td><td>PSA 2.0</td><td>First Response Security Services</td><td>$1,000</td><td>Jaylin Bender</td><td>PSA 2.0</td></tr></tbody></table></div>
+  <div class="note"><b>Target note:</b> I used the existing Rev.io forecast target model in <code>robin-decks/patch_may_forecast.py</code>. September targets: PSA $30,000; Billing/Odin $13,368; Payments $10,540; Cyber Protect $4,500; CommerceHub $1,667. Q3 targets are July + August + September using the same monthly model because I did not find a newer Q3 quota file in the workspace. Billing bucket includes Billing, Billing Add-on, and Odin. Untagged/Other closed-won records are excluded from target-attainment calculations.</div>
+</div></body></html>
