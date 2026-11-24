@@ -6,7 +6,7 @@ Static, dependency-free GitHub Pages presentation of the **Rev.io PSA Deal-Kille
 
 - `index.html` — semantic page structure
 - `styles.css` — responsive, accessible light/dark visual system
-- `app.js` — the 13 ranked needs, search/filtering, expansion controls, and persisted theme toggle
+- `app.js` — the 13 build needs, search/filtering, expansion controls, and persisted theme toggle
 - `.nojekyll` — direct GitHub Pages serving
 - `desktop-preview.png` and `mobile-preview.png` — full-page verification captures
 
