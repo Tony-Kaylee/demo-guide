@@ -5,7 +5,7 @@
 
 > Build what removes the migration blockers.
 
-A prioritized build to-do list for capabilities most likely to block or materially end a PSA migration.
+A prioritized build to-do list for capabilities most likely to block or materially end a migration.
 
 ## At a glance
 
