@@ -10,7 +10,7 @@ A prioritized build to-do list for capabilities most likely to block or material
 ## At a glance
 
 - **2** critical commercial and finance foundations
-- **13** clearly defined build needs
+- **14** clearly defined build needs
 
 ## Where to start
 
@@ -69,7 +69,21 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** Publish and pass a clear list of what data moves to and from QuickBooks; map products many-to-one; choose auto-create versus approval; sync payments, voids, refunds, and reversals; sync POs; send per-line dimensions and COGS; provide unique transaction IDs; surface actionable exceptions; retry without creating duplicates; and reconcile Rev.io totals and record IDs to QBO by accounting period.
 
-## 4. Complete change orders for tickets and projects
+## 4. Role-based cost visibility across the platform
+
+**Category:** Security
+
+**What we need to build:** A platform-wide role permission that controls whether a user can see cost, margin, markup, profit, and any value calculated from cost. The same permission must apply across quotes, tickets, projects, products, purchasing, inventory, agreements, reports, dashboards, search, exports, APIs, notifications, print views, and mobile experiences.
+
+**Why it blocks deals:** Many service organizations do not want technicians, subcontractors, or other limited-access users to see internal costs or profit margins. If cost is hidden in one area but exposed somewhere else, sensitive commercial information can leak and the customer cannot safely give people the access they need to do their jobs.
+
+**Where Rev.io stands today:** Planned but incomplete. The live roadmap has two Subcontractor Role rows: one in Backlog and one assigned to Viking 2; both are Not Started, At Risk, and PRD Complete. They call for hiding cost when a subcontractor adds products to a ticket. A separate Subcontractor Login item is also Backlog/Not Started and says cost should be hidden by default. None of these rows proves one platform-wide cost visibility permission across every screen, report, export, and API.
+
+**Incumbent benchmark:** Autotask documents security-level controls over the visibility of charges, expenses, contract costs, and project costs. This makes role-based protection of internal financial information an established PSA expectation.
+
+**What done looks like:** Add a role permission for viewing cost-sensitive information. When it is off, hide cost, margin, markup, profit, and all values calculated from cost everywhere in the platform, including user screens, reports, dashboards, search results, exports, APIs, notifications, print views, and mobile. Keep customer price and revenue visible when the role is allowed to see them. Do not send hidden values to the browser or API response where they could still be found. Apply the rule to technicians, subcontractors, customer users, impersonation, and delegated access. Record every permission change with the person and date, and provide a test checklist covering every product area.
+
+## 5. Complete change orders for tickets and projects
 
 **Category:** Commercial
 
@@ -83,7 +97,7 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** From a ticket and from a project, create a change against a locked original; add/remove/change lines and narrative scope; calculate price, cost, margin, tax, schedule, PO, and billing impacts; preview impacts; run configurable internal approval; capture customer signature with timestamp and signed artifact; reject/revise/resubmit; apply only the approved version; update forecast, purchasing, billing schedule, invoice grouping, and accounting payload once; show old/new values and actor/time in an exportable audit trail; reverse or replace with a newer version without deleting history.
 
-## 5. Reliable quote-to-project, order, agreement, and purchasing conversion
+## 6. Reliable quote-to-project, order, agreement, and purchasing conversion
 
 **Category:** Commercial
 
@@ -97,7 +111,7 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** Configure line-to-destination rules; preview generated objects; convert once with safe retries that do not create duplicates; create project structure from templates; branch recurring, one-time, labor, material, and asset lines correctly; preserve IDs, descriptions, quantities, price, cost, discount, tax, options, attachments, and billing terms; create purchasing demand where required; expose exceptions; and show where every quote line went after conversion.
 
-## 6. Carry the signed SOW into projects, tickets, and orders
+## 7. Carry the signed SOW into projects, tickets, and orders
 
 **Category:** Delivery
 
@@ -111,7 +125,7 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** Author structured scope; version it; approve and sign a fixed version; securely store the signed document; carry configured sections and attachments to each destination; display source and replacement links; prevent silent edits to accepted scope; link every approved change to affected baseline sections; and export a complete baseline/change timeline.
 
-## 7. Form management by ticket and issue type
+## 8. Form management by ticket and issue type
 
 **Category:** Service
 
@@ -125,7 +139,7 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** Create and version forms without code; bind a form to one or more ticket/issue/request types; support text, choice, date, number, checkbox, customer/contact/site/asset/service selectors, and file uploads; make questions required or conditionally visible; validate input before submission; use the same definition internally and in the customer portal with permission-aware fields; map answers to ticket fields and structured form responses; set the resulting ticket type and other configured defaults; preserve the submitted version and answers in the ticket audit history; and report/filter on captured values.
 
-## 8. SLA policy assignment by ticket type
+## 9. SLA policy assignment by ticket type
 
 **Category:** Service
 
@@ -139,7 +153,7 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** Select a default SLA policy on every active Ticket Type; define and display the precedence chain; show the effective policy and source on the ticket; apply the correct response/resolution targets, business hours, pause conditions, and escalation thresholds; recalculate consistently when Ticket Type changes while preserving elapsed-time history; restrict manual overrides by permission and require a reason; retain an audit trail of every policy/source change; and report SLA performance by Ticket Type and effective policy.
 
-## 9. Configurable internal quote approval policy
+## 10. Configurable internal quote approval policy
 
 **Category:** Governance
 
@@ -153,7 +167,7 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** Build conditions without code; support combined AND/OR rules; choose approvers by role and limit; run approval steps that run in order or at the same time; delegate with dates; escalate on SLA; capture comments and attachments; reject to a named revision; require approval again when governed fields change; prevent downstream execution until final approval; and export the full decision trail.
 
-## 10. Configurable time approval and one queue for unbilled work
+## 11. Configurable time approval and one queue for unbilled work
 
 **Category:** Revenue Ops
 
@@ -167,7 +181,7 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** Let administrators turn time approval off, require it for all time, or apply it only when rules match a worker, role, work type, contract, customer, or other selected condition. When approval is off, eligible billable time can move directly to billing. When approval is required, users can submit, approve, reject, correct, and lock time with the person, date, and reason recorded. Collect every unbilled charge type in one queue; show its source, age, amount, customer, owner, and blocking reason; let authorized users assign, resolve, write off, or defer items; check again after reopened work; and match every resolved item to its invoice result.
 
-## 11. Agreement rollover, renewals, coverage, and license matching
+## 12. Agreement rollover, renewals, coverage, and license matching
 
 **Category:** Recurring Revenue
 
@@ -181,7 +195,7 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** Configure rollover/expiry by agreement; calculate balances the same way every time; track renewal and notice dates; trigger owner workflows; select coverage consistently for a ticket; import vendor quantities and costs; match to customer/service lines; queue unmatched and changed records; require approval before create/update/cancel; apply effective dates; and audit each connector run and billing result.
 
-## 12. Physical inventory counts and variance review
+## 13. Physical inventory counts and variance review
 
 **Category:** Inventory
 
@@ -195,7 +209,7 @@ Only concrete, clearly defined process gaps likely to block or materially end a 
 
 **What done looks like:** Freeze or snapshot count scope; generate blind or expected count sessions; scan or enter item/serial quantities by location; support recounts; calculate variances; require approval above thresholds; post traceable adjustments once; preserve reservation integrity; update valuation/export consistently; and produce before/after and actor/time audit reports.
 
-## 13. RMA, replacements, vendor credits, and serial tracking
+## 14. RMA, replacements, vendor credits, and serial tracking
 
 **Category:** Inventory
 
